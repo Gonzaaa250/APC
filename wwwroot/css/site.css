@@ -90,7 +90,7 @@ body{
 }
 .LTI-R{
 	color: #102770;
-  background-color: #ffeba7;
+  background-color: #c4c3ca;
 }
 a {
 	cursor: pointer;
@@ -131,6 +131,7 @@ h6 span{
   position: absolute;
   left: -9999px;
 }
+
 .checkbox:checked + label,
 .checkbox:not(:checked) + label{
   position: relative;
@@ -164,7 +165,7 @@ h6 span{
   transition: all 0.5s ease;
 }
 .checkbox:checked + label:before {
-  transform: translateX(44px) rotate(-270deg);
+  transform: translateX(44px) rotate(-270deg)
 }
 
 
@@ -366,5 +367,6 @@ h6 span{
 	width: auto;
 	display: block;
 }
+
 
 /* Propiedades carrusel home */
