@@ -11,4 +11,6 @@ public class TesisPadelDbContext: DbContext{
     public DbSet <Jugador> Jugadores {get; set;}
     public DbSet <Club> Club {get; set;}
     public DbSet <Torneo> Torneos {get; set;}
+    public DbSet<TesisPadel.Models.Localidad> Localidad { get; set; }
+    public DbSet<TesisPadel.Models.Provincia> Provincia { get; set; }
 }

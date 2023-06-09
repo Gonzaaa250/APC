@@ -10,22 +10,22 @@ using TesisPadel.Models;
 
 namespace TesisPadel.Controllers
 {
-    public class ClubsController : Controller
+    public class ProvinciaController : Controller
     {
         private readonly TesisPadelDbContext _context;
 
-        public ClubsController(TesisPadelDbContext context)
+        public ProvinciaController(TesisPadelDbContext context)
         {
             _context = context;
         }
 
-        // GET: Clubs
+        // GET: Provincia
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Club.ToListAsync());
+            return View(await _context.Provincia.ToListAsync());
         }
 
-        // GET: Clubs/Details/5
+        // GET: Provincia/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -33,39 +33,39 @@ namespace TesisPadel.Controllers
                 return NotFound();
             }
 
-            var club = await _context.Club
-                .FirstOrDefaultAsync(m => m.ClubId == id);
-            if (club == null)
+            var provincia = await _context.Provincia
+                .FirstOrDefaultAsync(m => m.ProvinciaId == id);
+            if (provincia == null)
             {
                 return NotFound();
             }
 
-            return View(club);
+            return View(provincia);
         }
 
-        // GET: Clubs/Create
+        // GET: Provincia/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Clubs/Create
+        // POST: Provincia/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ClubId,Nombre,Direccion,Eliminado")] Club club)
+        public async Task<IActionResult> Create([Bind("ProvinciaId")] Provincia provincia)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(club);
+                _context.Add(provincia);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(club);
+            return View(provincia);
         }
 
-        // GET: Clubs/Edit/5
+        // GET: Provincia/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -73,22 +73,22 @@ namespace TesisPadel.Controllers
                 return NotFound();
             }
 
-            var club = await _context.Club.FindAsync(id);
-            if (club == null)
+            var provincia = await _context.Provincia.FindAsync(id);
+            if (provincia == null)
             {
                 return NotFound();
             }
-            return View(club);
+            return View(provincia);
         }
 
-        // POST: Clubs/Edit/5
+        // POST: Provincia/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ClubId,Nombre,Direccion,Eliminado")] Club club)
+        public async Task<IActionResult> Edit(int id, [Bind("ProvinciaId")] Provincia provincia)
         {
-            if (id != club.ClubId)
+            if (id != provincia.ProvinciaId)
             {
                 return NotFound();
             }
@@ -97,12 +97,12 @@ namespace TesisPadel.Controllers
             {
                 try
                 {
-                    _context.Update(club);
+                    _context.Update(provincia);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ClubExists(club.ClubId))
+                    if (!ProvinciaExists(provincia.ProvinciaId))
                     {
                         return NotFound();
                     }
@@ -113,10 +113,10 @@ namespace TesisPadel.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(club);
+            return View(provincia);
         }
 
-        // GET: Clubs/Delete/5
+        // GET: Provincia/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -124,30 +124,30 @@ namespace TesisPadel.Controllers
                 return NotFound();
             }
 
-            var club = await _context.Club
-                .FirstOrDefaultAsync(m => m.ClubId == id);
-            if (club == null)
+            var provincia = await _context.Provincia
+                .FirstOrDefaultAsync(m => m.ProvinciaId == id);
+            if (provincia == null)
             {
                 return NotFound();
             }
 
-            return View(club);
+            return View(provincia);
         }
 
-        // POST: Clubs/Delete/5
+        // POST: Provincia/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var club = await _context.Club.FindAsync(id);
-            _context.Club.Remove(club);
+            var provincia = await _context.Provincia.FindAsync(id);
+            _context.Provincia.Remove(provincia);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool ClubExists(int id)
+        private bool ProvinciaExists(int id)
         {
-            return _context.Club.Any(e => e.ClubId == id);
+            return _context.Provincia.Any(e => e.ProvinciaId == id);
         }
     }
 }
