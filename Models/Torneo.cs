@@ -1,14 +1,14 @@
-using System.ComponentModel.DataAnnotations;
+// using System.ComponentModel.DataAnnotations;
 
-namespace TesisPadel.Models{
-    public class Torneo{ 
-        [Key]
-        public int TorneoId {get; set;}
+// namespace TesisPadel.Models{
+//     public class Torneo{ 
+//         [Key]
+//         public int TorneoId {get; set;}
     
-        [Display(Name ="Fecha")]
-       [DataType(DataType.Date)]
-        public DateTime? Fecha {get; set;}
+//         [Display(Name ="Fecha")]
+//        [DataType(DataType.Date)]
+//         public DateTime? Fecha {get; set;}
 
-        public virtual ICollection<Jugador>? Jugador {get; set;}
-    }
-}
+//         public virtual ICollection<Jugador>? Jugador {get; set;}
+//     }
+// }

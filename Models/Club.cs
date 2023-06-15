@@ -13,6 +13,6 @@ public class Club{
     [MaxLength(150, ErrorMessage = "El largo maximo es de {0} caracteres.")]
     public string? Direccion {get; set;}
     public bool Eliminado {get; set;}
-    public virtual ICollection<Localidad>? Localidad {get; set;}
-    // public virtual ICollection<Categoria>? Categoria {get; set;}
+    public virtual Localidad? Localidad {get; set;}
+    // public virtual Categoria? Categoria {get; set;}
 }
