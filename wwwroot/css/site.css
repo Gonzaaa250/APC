@@ -41,6 +41,14 @@ html {
 .B{
   background-color: #2a2b38;
 }
+
+.APC{
+  border-radius: 4px;
+  height: 44px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
 .BTN{
   border-radius: 4px;
   height: 44px;
@@ -102,8 +110,9 @@ body{
 
 }
 .LTI-R{
-	color: #102770;
-  background-color: #ffeba7;
+  margin-top: 30px;
+	color: #ffeba7;
+  
 }
 a {
 	cursor: pointer;
@@ -180,6 +189,7 @@ h6 span{
 .checkbox:checked + label:before {
   transform: translateX(44px) rotate(-270deg)
 }
+
 
 
 .card-3d-wrap {
@@ -382,6 +392,10 @@ h6 span{
 	display: block;
 }
 
+.LogIn{
+  background-color: #000000;
+}
+
 /* Propiedades carrousel */
 
 /*****carrousel 3d automatique*****/
@@ -485,3 +499,20 @@ from{transform:rotatey(0)}
 to{transform:rotatey(0.5turn)}}
 	
 /*****fin carrousel 3d automatique*****/
+
+/* Novedades de torneos */
+
+.container{
+  width: 100%;
+  display: flex;
+  max-width: 1100px;
+}
+/* .card1{
+position: left;
+}
+.card2{
+position: center;
+}
+.card3{
+position: right;
+} */

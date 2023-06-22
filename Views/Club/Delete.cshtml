@@ -1,7 +1,7 @@
 @model TesisPadel.Models.Club
 
 @{
-    Layout = null;
+    Layout = "_Layout";
 }
 
 <!DOCTYPE html>
@@ -9,11 +9,11 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Delete</title>
+    <title>Eliminar</title>
 </head>
 <body>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3>¿Estas seguro que quiere eliminar esto?</h3>
 <div>
     <h4>Club</h4>
     <hr />
@@ -41,7 +41,7 @@
     <form asp-action="Delete">
         <input type="hidden" asp-for="ClubId" />
         <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
+        <a asp-action="Index">Volver a la lista</a>
     </form>
 </div>
 </body>
