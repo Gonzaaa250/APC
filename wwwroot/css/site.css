@@ -20,7 +20,17 @@ html {
 	margin-bottom: 2rem;
 	text-shadow: 2px 4px 1px rgb(67, 53, 9);
 }
+.Footer{
+  background-color: none;
+  
+}
+
+
 /* Barra nvar */
+.Barra{
+  background-color: black;
+}
+
 .B{
   background-color: #2a2b38;
 }
@@ -48,7 +58,7 @@ html {
   -ms-flex-pack: center;
   text-align: center;
   border: none;
-  background-color: #ffeba7;
+  background-color: #0f0e09;
   color: #102770;
   box-shadow: 0 8px 24px 0 rgba(255,235,167,.2);
   margin-left: 5px;
@@ -66,47 +76,6 @@ html {
   box-shadow: 0 8px 24px 0 rgba(16,39,112,.2);
 }
 
-.APC{
-  border-radius: 4px;
-  height: 44px;
-  font-size: 13px;
-  font-weight: 600;
-  text-transform: uppercase;
-  -webkit-transition : all 200ms linear;
-  transition: all 200ms linear;
-  padding: 0 30px;
-  letter-spacing: 1px;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-align-items: center;
-  -moz-align-items: center;
-  -ms-align-items: center;
-  align-items: center;
-  -webkit-justify-content: center;
-  -moz-justify-content: center;
-  -ms-justify-content: center;
-  justify-content: center;
-  -ms-flex-pack: center;
-  text-align: center;
-  border: none;
-  background-color: #102770;
-  color: #ffeba7;
-  box-shadow: 0 8px 24px 0 rgba(255,235,167,.2);
-  margin-left: 5px;
-}
-
-.APC:active,
-.APC:focus{  
-  background-color: #ffeba7;
-  color: #102770;
-  box-shadow: 0 8px 24px 0 rgba(16,39,112,.2);
-}
-.APC:hover{  
-  background-color: #ffeba7;
-  color: #102770;
-  box-shadow: 0 8px 24px 0 rgba(16,39,112,.2);
-}
 /* LOGIN-REGISTER */
 @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700,800,900');
 
@@ -117,7 +86,11 @@ body{
 	line-height: 1.7;
 	color: #c4c3ca;
 	background-image: url(https://www.onlytenis.com/blog/wp-content/uploads/2022/02/diferencias-entre-padel-y-tenis.jpg);
-	overflow-x: hidden;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  overflow-x: hidden;
+
 }
 .LTI-R{
 	color: #102770;
@@ -385,6 +358,7 @@ h6 span{
   box-shadow: 0 8px 24px 0 rgba(16,39,112,.2);
 }
 
+
 .logo {
 	position: absolute;
 	top: 30px;
@@ -398,6 +372,3 @@ h6 span{
 	width: auto;
 	display: block;
 }
-
-
-/* Propiedades carrusel home */
