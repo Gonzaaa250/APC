@@ -6,10 +6,10 @@ public class TesisPadelDbContext: DbContext{
     public TesisPadelDbContext(DbContextOptions<TesisPadelDbContext> options) : base(options)
     {
     }
-    public DbSet <Usuario> Usuarios {get; set;}
+    public DbSet <Usuario>? Usuarios {get; set;}
     // public DbSet <Jugador> Jugadores {get; set;}
-    public DbSet <Club> Club {get; set;}
+    public DbSet <Club>? Club {get; set;}
     // public DbSet <Torneo> Torneos {get; set;}
-    public DbSet<Localidad> Localidad { get; set; }
-    public DbSet<Provincia> Provincia { get; set; }
+    public DbSet<Localidad>? Localidad { get; set; }
+    public DbSet<Provincia>? Provincia { get; set; }
 }
