@@ -507,12 +507,10 @@ to{transform:rotatey(0.5turn)}}
   display: flex;
   max-width: 1100px;
 }
-/* .card1{
-position: left;
+
+.card{
+width: 100%;
+margin: 20px;
+border-radius: 5px;
+overflow: hidden;
 }
-.card2{
-position: center;
-}
-.card3{
-position: right;
-} */

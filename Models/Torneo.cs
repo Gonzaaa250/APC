@@ -7,7 +7,7 @@
     
 //         [Display(Name ="Fecha")]
 //        [DataType(DataType.Date)]
-//         public DateTime? Fecha {get; set;}
+//         public DateTime? FechaCreacion {get; set;}
 
 //         public virtual ICollection<Jugador>? Jugador {get; set;}
 //     }
