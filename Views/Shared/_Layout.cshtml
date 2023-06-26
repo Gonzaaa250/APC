@@ -15,7 +15,7 @@
             <div class="container-fluid">
                 @* Propiedades del logo (Boton de "inicío/Home"). *@
                 <a class=" nav-link" asp-area="" asp-controller="Home" asp-action="Index">
-                    <img src="css/img/APC.png" alt="logo" width="150px" >
+                    <img src="css/img/APC.png" class="APC" alt="logo" width="150px" >
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -25,13 +25,20 @@
                     <ul class="navbar-nav flex-grow-1">
                         
                         <li class="nav-item">
+<<<<<<< HEAD
                             <a class="BTN nav-link" asp-area="noticias" asp-controller="" asp-action="Index">Noticias</a>
+=======
+                            <a class="BTN nav-link" asp-area="" asp-controller="" asp-action="Index">Noticias</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="BTN nav-link" asp-area="" asp-controller="" asp-action="Index">Ranking</a>
+>>>>>>> c1da81b067f2345e0e9725b6ebc0f98ff5534b11
                         </li>
                         <li class="nav-item">
                             <a class="BTN nav-link" asp-area="" asp-controller="" asp-action="Index">Torneos</a>
                         </li>
                         <li class="nav-item">
-                            <a class="BTN nav-link" asp-area="" asp-controller="" asp-action="Index">Clubes</a>
+                            <a class="BTN nav-link" asp-area="" asp-controller="Club" asp-action="Index">Clubes</a>
                         </li>
                         <li class="nav-item">
                             <a class="BTN nav-link" asp-area="" asp-controller="" asp-action="Index">Jugadores</a>
@@ -50,7 +57,8 @@
 
     <footer>
         <div class="Footer">
-
+            <h5>Seguinos en nuestras redes</h5>
+            &copy; 2023 Copyright © - Todos los derechos reservados. -
         </div>
     </footer>
 

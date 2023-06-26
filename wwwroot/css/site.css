@@ -11,8 +11,17 @@ html {
 }
 .IHome{
   background-color: none;
-
 }
+
+.ImgHome{
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  overflow-x: hidden;
+  background-color: #000000;
+}
+
+
 .HTitulo{
 	color: #ffeba7;
 	font-size: 3em;
@@ -22,9 +31,7 @@ html {
 }
 .Footer{
   background-color: none;
-  
 }
-
 
 /* Barra nvar */
 .Barra{
@@ -34,6 +41,14 @@ html {
 .B{
   background-color: #2a2b38;
 }
+
+.APC{
+  border-radius: 4px;
+  height: 44px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
 .BTN{
   border-radius: 4px;
   height: 44px;
@@ -76,6 +91,8 @@ html {
   box-shadow: 0 8px 24px 0 rgba(16,39,112,.2);
 }
 
+
+
 /* LOGIN-REGISTER */
 @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700,800,900');
 
@@ -85,16 +102,17 @@ body{
 	font-size: 15px;
 	line-height: 1.7;
 	color: #c4c3ca;
-	background-image: url(https://www.onlytenis.com/blog/wp-content/uploads/2022/02/diferencias-entre-padel-y-tenis.jpg);
-  background-repeat: no-repeat;
+	/* background-image: url(https://www.onlytenis.com/blog/wp-content/uploads/2022/02/diferencias-entre-padel-y-tenis.jpg); */
+  /* background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
-  overflow-x: hidden;
+  overflow-x: hidden; */
 
 }
 .LTI-R{
-	color: #102770;
-  background-color: #ffeba7;
+  margin-top: 30px;
+	color: #ffeba7;
+  
 }
 a {
 	cursor: pointer;
@@ -171,6 +189,7 @@ h6 span{
 .checkbox:checked + label:before {
   transform: translateX(44px) rotate(-270deg)
 }
+
 
 
 .card-3d-wrap {
@@ -371,4 +390,127 @@ h6 span{
 	height: 26px;
 	width: auto;
 	display: block;
+}
+
+.LogIn{
+  background-color: #000000;
+}
+
+/* Propiedades carrousel */
+
+/*****carrousel 3d automatique*****/
+
+*{box-sizing : border-box}
+
+img{max-width:100%}
+
+.contenu_carou_auto{
+
+margin:2rem auto;
+width:420px;
+height:279px;
+perspective:8000px
+	
+	}
+		
+.caroussel-image{
+	
+animation:rotation 24s infinite alternate linear;	
+transform-style:preserve-3d;
+position:relative;	
+
+}
+
+.caroussel-image img{
+	
+position: absolute;
+top:0;
+left: 0;
+	
+	
+	}
+
+
+		
+.caroussel-image img{
+	
+filter:drop-shadow(0 12px 5px hsla(0,0%,0%,.4));
+width:400px;
+height:266px;
+left:10px;
+outline:1px solid transparent;
+backface-visibility:hidden
+	
+	}
+		
+.caroussel-image img:nth-child(1){
+	
+transform:translate3d(0,0,495px)
+		
+		}
+		
+.caroussel-image img:nth-child(2){
+	
+transform:rotateY(45deg) translateZ(495px)
+	
+		}
+		
+.caroussel-image img:nth-child(3){
+	
+	transform:rotateY(90deg) translateZ(495px)
+	
+	}
+	
+.caroussel-image img:nth-child(4){
+	
+	transform:rotateY(135deg) translateZ(495px)
+	
+	}
+	
+.caroussel-image img:nth-child(5){
+	
+	transform:rotateY(180deg) translateZ(495px)
+	
+	}
+	
+.caroussel-image img:nth-child(6){
+	
+	transform:rotateY(225deg) translateZ(495px)
+	
+	}
+	
+.caroussel-image img:nth-child(7){
+	
+	transform:rotateY(270deg) translateZ(495px)
+	
+	}
+	
+.caroussel-image img:nth-child(8){
+	
+	transform:rotateY(315deg) translateZ(495px)
+	
+	}
+
+	
+
+	
+@keyframes rotation{
+from{transform:rotatey(0)}
+to{transform:rotatey(0.5turn)}}
+	
+/*****fin carrousel 3d automatique*****/
+
+/* Novedades de torneos */
+
+.container{
+  width: 100%;
+  display: flex;
+  max-width: 1100px;
+}
+
+.card{
+width: 100%;
+margin: 20px;
+border-radius: 5px;
+overflow: hidden;
 }

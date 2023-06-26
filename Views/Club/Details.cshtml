@@ -9,11 +9,10 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Eliminar</title>
+    <title>Details</title>
 </head>
 <body>
 
-<h3>¿Estas seguro que quiere eliminar esto?</h3>
 <div>
     <h4>Club</h4>
     <hr />
@@ -37,12 +36,10 @@
             @Html.DisplayFor(model => model.Eliminado)
         </dd>
     </dl>
-    
-    <form asp-action="Delete">
-        <input type="hidden" asp-for="ClubId" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Volver a la lista</a>
-    </form>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.ClubId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
 </div>
 </body>
 </html>
