@@ -500,20 +500,7 @@ to{transform:rotatey(0.5turn)}}
 	
 /*****fin carrousel 3d automatique*****/
 
-/* Novedades de torneos */
-
-/* .container{
-  width: 100%;
-  display: flex;
-  max-width: 1100px;
-}
-
-.card{
-width: 100%;
-margin: 20px;
-border-radius: 5px;
-overflow: hidden;
-} */
+/* Carrousel para fotos random*/
 
 @import url("https://fonts.googleapis.com/css2?family=Asap:ital,wght@0,400;1,400");
 
