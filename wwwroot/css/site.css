@@ -29,9 +29,6 @@ html {
 	margin-bottom: 2rem;
 	text-shadow: 2px 4px 1px rgb(67, 53, 9);
 }
-.Footer{
-  background-color: none;
-}
 
 /* Barra nvar */
 .Barra{
@@ -73,7 +70,7 @@ html {
   -ms-flex-pack: center;
   text-align: center;
   border: none;
-  background-color: #0f0e09;
+  background-color: #000000;
   color: #102770;
   box-shadow: 0 8px 24px 0 rgba(255,235,167,.2);
   margin-left: 5px;
@@ -90,8 +87,6 @@ html {
   color: #ffeba7;
   box-shadow: 0 8px 24px 0 rgba(16,39,112,.2);
 }
-
-
 
 /* LOGIN-REGISTER */
 @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700,800,900');
@@ -570,27 +565,22 @@ to{transform:rotatey(0.5turn)}}
   background-image: url("https://yt3.googleusercontent.com/fFr5vtF0wTYFd3l5wWhjVa8hOgEBl46hqG_WjFcsBxDSOv6pjqMW_RUmqUJe8KitYtrDDS1B8A=s900-c-k-c0x00ffffff-no-rj");
   background-position: 72% 35%;
 }
-
 .item:nth-child(2) {
   background-image: url("https://www.2playbook.com/uploads/s1/82/19/world-padel-tour.jpeg");
   background-position: 60% 8%;
 }
-
 .item:nth-child(3) {
   background-image: url("https://padelgood.com/wp-content/uploads/2022/05/sanyo_gutierrez_agustin_tapia_final_danish_open_2022_gp2_4777-1-1170x658-1.jpg");
   background-position: 52% 8%;
 }
-
 .item:nth-child(4) {
   background-image: url("https://s1.eestatic.com/2022/03/08/actualidad/655695273_222512250_1706x960.jpg");
   background-position: 45% 8%;
 }
-
 .item:nth-child(5) {
   background-image: url("https://d26itsb5vlqdeq.cloudfront.net//image/3A203E31-AF91-4A97-96F3B23C85C04010");
   background-position: 45% 25%;
 }
-
 .item:nth-child(6) {
   background-image: url("https://pbs.twimg.com/media/FEFnCxRXsAQTlqH.jpg");
   background-position: 65% 2%;
