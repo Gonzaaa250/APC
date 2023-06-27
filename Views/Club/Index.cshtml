@@ -1,4 +1,4 @@
-@* @model IEnumerable<TesisPadel.Models.Club>
+@model IEnumerable<TesisPadel.Models.Club>
 @{
     ViewData["Title"] = "Club";
 }
@@ -21,7 +21,8 @@
     <a asp-action="Create">Crear nuevo</a>
 >>>>>>> c1da81b067f2345e0e9725b6ebc0f98ff5534b11
 </p>
-<table class="table">
+<div class="FormatoT">
+    <table class="table" style="color: white;">
     <thead>
         <tr>
             <th>
@@ -49,8 +50,7 @@
                 @Html.DisplayFor(modelItem => item.Eliminado)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.ClubId">Editar</a> |
-                <a asp-action="Details" asp-route-id="@item.ClubId">Detalles</a> |
+                <a asp-action="Edit" asp-route-id="@item.ClubId">Editar</a>
                 <a asp-action="Delete" asp-route-id="@item.ClubId">Eliminar</a>
 
             </td>
@@ -58,8 +58,10 @@
 }
     </tbody>
 </table>
+</div>
+
 </body>
 @section Scripts{
     <script src="~/js/club-1.0.0.js"></script>
 }
-</html> *@
+</html> 
