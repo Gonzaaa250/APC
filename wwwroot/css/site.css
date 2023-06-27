@@ -495,6 +495,13 @@ to{transform:rotatey(0.5turn)}}
 	
 /*****fin carrousel 3d automatique*****/
 
+.texto{
+  margin-top: 4rem;
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: rgb(252, 224, 187);
+}
+
 /* Carrousel para fotos random*/
 
 @import url("https://fonts.googleapis.com/css2?family=Asap:ital,wght@0,400;1,400");
@@ -505,6 +512,7 @@ to{transform:rotatey(0.5turn)}}
 
 .body2 {
   margin: 0;
+  margin-top: 3rem;
   font-family: 'Asap', 'Poppins', sans-serif;
   text-shadow: #000 0 0 10px;
 }
@@ -657,4 +665,30 @@ to{transform:rotatey(0.5turn)}}
   0%, 100% { border-color: rgba(204, 204, 204, 1); }
   25%, 75% { border-color: rgba(204, 204, 255, 0.9); }
   50% { border-color: rgba(204, 204, 255, 0.5); }
+}
+
+/* Propiedades cards */
+.Card{
+  width: 45%;
+  height: 200px;
+  margin: 10px;
+  text-align: center;
+  position: relative;  
+}
+
+.Card1{
+  background-color: rgb(46, 46, 46);
+  border-radius: 5px;
+}
+.Card2{
+  background-color: rgb(46, 46, 46);
+  border-radius: 5px;
+}
+.Card3{
+  background-color: rgb(46, 46, 46);
+  border-radius: 5px;
+}
+.Card4{
+  background-color: rgb(46, 46, 46);
+  border-radius: 5px;
 }
