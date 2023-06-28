@@ -13,7 +13,7 @@
 </head>
 <body>
 <p>
-    <a asp-action="Create" style="color: white;">Crear Nuevo</a>
+    <a class="botonCrear" asp-action="Create">Crear Nuevo</a>
 </p>
 <div class="FormatoT">
    <table class="table " style="color: white; ">
@@ -44,8 +44,8 @@
                 @Html.DisplayFor(modelItem => item.Puntos)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.RankingId">Edit</a> 
-                <a asp-action="Delete" asp-route-id="@item.RankingId">Delete</a>
+                <a class="botonEditar" asp-action="Edit" asp-route-id="@item.RankingId">Edit</a> 
+                 <a class="btn botonEliminar" asp-action="Delete" onclick="EliminarRanking(@item.RankingId)">Delete</a> @*ver esto *@
             </td>
         </tr>
 }

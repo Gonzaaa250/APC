@@ -8,13 +8,13 @@ public class Usuario {
     public int LocalidadId { get; set;}
     public string? Nombre {get; set;} 
     public string? Apellido {get; set;}
-     public DateTime UsuarioBirhtDate {get; set;}
+     public DateTime EdadUsuario {get; set;}
     [NotMapped]
          public int UsuarioAge 
         {
            get
            {
-                return DateTime.Now.Year - UsuarioBirhtDate.Year;
+                return DateTime.Now.Year - EdadUsuario.Year;
             } 
        }
     public string? Telefono {get; set;}

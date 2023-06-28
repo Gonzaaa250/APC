@@ -13,7 +13,7 @@
 </head>
 <body>
 <p>
-    <a asp-action="Create" style="color: white;">Crear nuevo</a>
+    <a class="botonCrear" asp-action="Create">Crear nuevo</a>
 </p>
 <div class="FormatoT">
     <table class="table" style="color: white;">
@@ -29,7 +29,7 @@
                 @Html.DisplayNameFor(model => model.Apellido)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.UsuarioBirhtDate)
+                @Html.DisplayNameFor(model => model.EdadUsuario)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Telefono)
@@ -59,7 +59,7 @@
                 @Html.DisplayFor(modelItem => item.Apellido)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.UsuarioBirhtDate)
+                @Html.DisplayFor(modelItem => item.EdadUsuario)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Telefono)
@@ -74,8 +74,8 @@
                 @Html.DisplayFor(modelItem => item.Eliminado)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.UsuarioId">Editar</a>
-                <a asp-action="Delete" asp-route-id="@item.UsuarioId">Eliminar</a>
+                <a class="botonEditar" asp-action="Edit" asp-route-id="@item.UsuarioId">Editar</a>
+                <a class="btn botonEliminar" asp-action="Delete" onclick="EliminarUsuario(@item.UsuarioId);">Eliminar</a>
             </td>
         </tr>
 }

@@ -16,7 +16,7 @@
 <body>
 <p>
 
-    <a asp-action="Create" style="color: white;">Crear Nuevo</a>
+    <a class="botonCrear" asp-action="Create">Crear Nuevo</a>
 
 </p>
 <div class="FormatoT">
@@ -45,8 +45,8 @@
                 @Html.DisplayFor(modelItem => item.Eliminado)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.ClubId">Editar</a>
-                <a asp-action="Delete" asp-route-id="@item.ClubId">Eliminar</a>
+                <a class="botonEditar" asp-action="Edit" asp-route-id="@item.ClubId">Editar</a>
+                <a class="btn botonEliminar" onclick="EliminarClub(@item.ClubId);">Eliminar</a>
 
             </td>
         </tr>
