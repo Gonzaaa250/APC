@@ -15,4 +15,5 @@ public class Club{
     public bool Eliminado {get; set;}
     public virtual Localidad? Localidad {get; set;}
     public virtual Categoria? Categoria {get; set;}
+    // public virtual Noticia? Noticia {get;set;}
 }

@@ -20,11 +20,10 @@ html {
   overflow-x: hidden;
   background-color: #000000;
 }
-.rankingC{
-  background-color: white;
-
+.Formato{
+  color:#ffffff;
+  margin-top: 5rem;
 }
-
 .FormatoT{
   color:#ffffff;
   margin-top: 5rem;

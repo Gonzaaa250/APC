@@ -1,10 +1,10 @@
-// using System.ComponentModel.DataAnnotations;
+ //using System.ComponentModel.DataAnnotations;
 
-// namespace TesisPadel.Models;
+//namespace TesisPadel.Models;
 
-// public class Noticia{
+//public class Noticia{
 
-//     public int NoticiaId { get; set; }
-//     [Required]
-//     public string? 
+ //   public int NoticiaId { get; set; }
+// // //     [Required]
+// // //     public string? 
 // }
