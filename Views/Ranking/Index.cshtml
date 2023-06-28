@@ -9,14 +9,13 @@
 <html class="Formato">
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title style="color: white;">Ranking</title>
+    <title style="color: white ;">Ranking</title>
 </head>
 <body>
 <p>
     <a class="botonCrear" asp-action="Create">Crear Nuevo</a>
 </p>
-<div class="FormatoT">
-   <table class="table " style="color: white; ">
+<table class="table">
     <thead>
         <tr>
             <th>
@@ -27,6 +26,9 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Puntos)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Club)
             </th>
             <th></th>
         </tr>
@@ -44,14 +46,15 @@
                 @Html.DisplayFor(modelItem => item.Puntos)
             </td>
             <td>
-                <a class="botonEditar" asp-action="Edit" asp-route-id="@item.RankingId">Edit</a> 
-                 <a class="btn botonEliminar" asp-action="Delete" onclick="EliminarRanking(@item.RankingId)">Delete</a> @*ver esto *@
+                @Html.DisplayFor(modelItem => item.Club)
+            </td>
+            <td>
+                <a class="botonEditar" asp-action="Edit" asp-route-id="@item.RankingId">Edit</a>
+                <a class="btn botonEliminar" asp-action="Delete" onclick="(@item.RankingId)";>Delete</a>
             </td>
         </tr>
 }
     </tbody>
-</table> 
-</div>
-
+</table>
 </body>
 </html>

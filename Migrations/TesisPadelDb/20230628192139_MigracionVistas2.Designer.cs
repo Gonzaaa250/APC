@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TesisPadel.Data;
 
@@ -11,9 +12,10 @@ using TesisPadel.Data;
 namespace TesisPadel.Migrations.TesisPadelDb
 {
     [DbContext(typeof(TesisPadelDbContext))]
-    partial class TesisPadelDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230628192139_MigracionVistas2")]
+    partial class MigracionVistas2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,21 +23,6 @@ namespace TesisPadel.Migrations.TesisPadelDb
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
-
-            modelBuilder.Entity("CategoriaRanking", b =>
-                {
-                    b.Property<int>("CategoriasCategoriaId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("RankingsRankingId")
-                        .HasColumnType("int");
-
-                    b.HasKey("CategoriasCategoriaId", "RankingsRankingId");
-
-                    b.HasIndex("RankingsRankingId");
-
-                    b.ToTable("CategoriaRanking");
-                });
 
             modelBuilder.Entity("TesisPadel.Models.Categoria", b =>
                 {
@@ -140,8 +127,8 @@ namespace TesisPadel.Migrations.TesisPadelDb
                     b.Property<string>("Apellido")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Club")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int?>("CategoriaId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Nombre")
                         .HasColumnType("nvarchar(max)");
@@ -149,12 +136,9 @@ namespace TesisPadel.Migrations.TesisPadelDb
                     b.Property<string>("Puntos")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("UsuarioId")
-                        .HasColumnType("int");
-
                     b.HasKey("RankingId");
 
-                    b.HasIndex("UsuarioId");
+                    b.HasIndex("CategoriaId");
 
                     b.ToTable("Ranking");
                 });
@@ -196,21 +180,6 @@ namespace TesisPadel.Migrations.TesisPadelDb
                     b.ToTable("Usuarios");
                 });
 
-            modelBuilder.Entity("CategoriaRanking", b =>
-                {
-                    b.HasOne("TesisPadel.Models.Categoria", null)
-                        .WithMany()
-                        .HasForeignKey("CategoriasCategoriaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("TesisPadel.Models.Ranking", null)
-                        .WithMany()
-                        .HasForeignKey("RankingsRankingId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("TesisPadel.Models.Club", b =>
                 {
                     b.HasOne("TesisPadel.Models.Categoria", "Categoria")
@@ -237,11 +206,14 @@ namespace TesisPadel.Migrations.TesisPadelDb
 
             modelBuilder.Entity("TesisPadel.Models.Ranking", b =>
                 {
-                    b.HasOne("TesisPadel.Models.Usuario", "Usuario")
-                        .WithMany()
-                        .HasForeignKey("UsuarioId");
+                    b.HasOne("TesisPadel.Models.Categoria", null)
+                        .WithMany("Rankings")
+                        .HasForeignKey("CategoriaId");
+                });
 
-                    b.Navigation("Usuario");
+            modelBuilder.Entity("TesisPadel.Models.Categoria", b =>
+                {
+                    b.Navigation("Rankings");
                 });
 #pragma warning restore 612, 618
         }
