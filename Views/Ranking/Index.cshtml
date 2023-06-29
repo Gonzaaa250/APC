@@ -9,7 +9,7 @@
 <html class="Formato">
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title style="color: white ;">Ranking</title>
+    <h1 style="color: white ;">Ranking</h1>
 </head>
 <body>
 <p>
@@ -49,8 +49,8 @@
                 @Html.DisplayFor(modelItem => item.Club)
             </td>
             <td>
-                <a class="botonEditar" asp-action="Edit" asp-route-id="@item.RankingId">Edit</a>
-                <a class="btn botonEliminar" asp-action="Delete" onclick="(@item.RankingId)";>Delete</a>
+                <a class="botonEditar" asp-action="Edit" asp-route-id="@item.RankingId">Editar</a>
+                <a class="btn botonEliminar" asp-action="Delete" onclick="(@item.RankingId)";>Eliminar</a>
             </td>
         </tr>
 }

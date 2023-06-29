@@ -9,8 +9,6 @@ using System.ComponentModel.DataAnnotations;
         public string? Apellido { get; set; }
         public string? Puntos { get; set; }
         public string? Club {get; set;}
-
-        //Chekear si esta bien la relación
     public virtual ICollection<Categoria>? Categorias {get; set;}
     public virtual Usuario? Usuario {get; set;}
 

@@ -2,24 +2,25 @@
 @{
     ViewData["Title"] = "Club";
 }
-@{
+ @* @{
     Layout = "_Layout";
-}
+} 
 
-<!DOCTYPE html>
+
+ <!DOCTYPE html>
 
 <html class="Formato">
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title style="color: white;">club</title>
+    <h1 style="color: white;">club</h1>
 </head>
-<body>
+<body class="body5">
 <p>
 
     <a class="botonCrear" asp-action="Create">Crear Nuevo</a>
 
 </p>
-<div class="FormatoT">
+<div>
     <table class="table" style="color: white;">
     <thead>
         <tr>
@@ -46,7 +47,7 @@
             </td>
             <td>
                 <a class="botonEditar" asp-action="Edit" asp-route-id="@item.ClubId">Editar</a>
-                <a class="btn botonEliminar" onclick="EliminarClub(@item.ClubId);">Eliminar</a>
+                <a class="botonEliminar" onclick="EliminarClub(@item.ClubId);">Eliminar</a>
 
             </td>
         </tr>
@@ -55,8 +56,56 @@
 </table>
 </div>
 
+</body> *@
+
+<body class="body5">
+<!--modal-->
+<div class="modal fade" id="ModalClub" tabindex="1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Agregar Club</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="ClubId" value="0">
+                <div class="control-label">
+                    <p>Nombre</p>
+                    <input type="text"class="form-control" id="Nombre" autocomplete="off" onkeyup="this.value = this.value.toUpperCase()">
+                    <p>Localidad</p>
+                     <input type="text"class="form-control" id="Localidad" autocomplete="off" onkeyup="this.value = this.value.toUpperCase()">
+                </div>
+                <div class="modal-footer">
+                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" onclick="GuardarClub()" class="btn btn-primary">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div>
+     <h1 class="display-4 titulo">Club</h1>
+
+      <!-- Button trigger modal -->
+      <div class="mb-2">
+        <button type="button" onclick="VaciarFormulario()" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ModalClub">
+            Nuevo
+        </button>
+      </div>
+      <table class="table table-bordered table-striped table-condensed">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Localidad</th>
+        </tr>
+    </thead>
+        <tbody id="tbody-club">        
+        </tbody>
+  </table>
+</div>
+    
 </body>
-@section Scripts{
+ @* @section Scripts{
     <script src="~/js/club-1.0.0.js"></script>
-}
-</html> 
+}  
+</html> *@ 

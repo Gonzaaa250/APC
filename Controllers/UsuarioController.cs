@@ -86,7 +86,7 @@ namespace TesisPadel.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("UsuarioId,LocalidadId,Nombre,Apellido,EdadUsuario,Telefono,DNI,Direccion,Eliminado")] Usuario usuario)
+        public async Task<IActionResult> Edit(int id, [Bind("UsuarioId,Localidad,Nombre,Apellido,Edad,Telefono,DNI,Direccion,Eliminado")] Usuario usuario)
         {
             if (id != usuario.UsuarioId)
             {
