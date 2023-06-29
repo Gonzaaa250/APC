@@ -1,60 +1,53 @@
 @model IEnumerable<TesisPadel.Models.Ranking>
-
-@{
-    Layout = "_Layout";
-}
-
-<!DOCTYPE html>
-
-<html class="Formato">
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <h1 style="color: white ;">Ranking</h1>
-</head>
-<body>
-<p>
-    <a class="botonCrear" asp-action="Create">Crear Nuevo</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
+    @{
+        ViewData["Title"]="Ranking";
+    }
+    <body class="body-5">
+        <div class="Modal fade" id="ModalRanking" tabindex="1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">crear</h5>
+                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="hidden" id="ClubId" value="0">
+                        <p>Nombre</p>
+                        <input type="text"class="form-control" id="Nombre" autocomplete="off" onkeyup="this.value = this.value.toUpperCase()">
+                        <p>Apellido</p>
+                        <input type="text"class="form-control" id="Apellido" autocomplete="off" onkeyup="this.value = this.value.toUpperCase()">
+                        <p>Club</p>
+                        <input type="text"class="form-control" id="Club" autocomplete="off" onkeyup="this.value = this.value.toUpperCase()">
+                        <p>Puntos</p>
+                        <input type="text"class="form-control" id="Puntos" autocomplete="off" onkeyup="this.value = this.value.toUpperCase()">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" onclick="GuardarClub()" class="btn btn-primary">Guardar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <h1 class="display-4 titulo">Ranking</h1>
+            <div class="mb-2">
+        <button type="button" onclick="VaciarFormulario()" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ModalClub">
+            Nuevo
+        </button>
+      </div>
+      <table class="table table-bordered table-striped table-condensed">
+        <thead>
             <th>
-                @Html.DisplayNameFor(model => model.Nombre)
+                <tr>Nombre</tr>
+                <tr>Apellido</tr>
+                <tr>Club</tr>
+                <tr>Puntos</tr>
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Apellido)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Puntos)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Club)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nombre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Apellido)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Puntos)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Club)
-            </td>
-            <td>
-                <a class="botonEditar" asp-action="Edit" asp-route-id="@item.RankingId">Editar</a>
-                <a class="btn botonEliminar" asp-action="Delete" onclick="(@item.RankingId)";>Eliminar</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
-</body>
-</html>
+        </thead>
+        <tbody id="tbody-ranking"></tbody>
+      </table>
+        </div>
+    </body>
+    @section script{
+        <script src="~/js/ranking-1.0.0.js"></script>
+    }

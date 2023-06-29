@@ -1,0 +1,46 @@
+@model IEnumerable<TesisPadel.Models.Provincia>
+    @{
+        ViewData["Title"]="Provincia";
+    }
+    <body class="body-5">
+        <div class="Modal fade" id="ModalProvincia" tabindex="1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Crear Provincia</h5>
+                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="hidden" id="ProvinciaId" value="0">
+                        <div class="control-label">
+                            <p>Nombre</p>
+                            <input type="text"class="form-control" id="Nombre" autocomplete="off" onkeyup="this.value = this.value.toUpperCase()">
+                        </div>
+                        <div class="modal-footer">
+                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                             <button type="button" onclick="GuardarProvincia()" class="btn btn-primary">Guardar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <h1 class="display-4 titulo">Provincia</h1>
+            <div class="mb-2">
+                <button type="button" onclick="VaciarFormulario()" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ModalProvincia">
+                    Nuevo
+                </button>
+            </div>
+            <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                    </tr>
+                </thead>
+                <tbody id="tdbody-provincia"></tbody>
+            </table>
+        </div>
+    </body>
+     @section Scripts{
+    <script src="~/js/Provincia-1.0.0.js"></script>
+}  

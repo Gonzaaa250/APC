@@ -2,62 +2,6 @@
 @{
     ViewData["Title"] = "Club";
 }
- @* @{
-    Layout = "_Layout";
-} 
-
-
- <!DOCTYPE html>
-
-<html class="Formato">
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <h1 style="color: white;">club</h1>
-</head>
-<body class="body5">
-<p>
-
-    <a class="botonCrear" asp-action="Create">Crear Nuevo</a>
-
-</p>
-<div>
-    <table class="table" style="color: white;">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Nombre)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Direccion)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nombre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Direccion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Eliminado)
-            </td>
-            <td>
-                <a class="botonEditar" asp-action="Edit" asp-route-id="@item.ClubId">Editar</a>
-                <a class="botonEliminar" onclick="EliminarClub(@item.ClubId);">Eliminar</a>
-
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
-</div>
-
-</body> *@
-
 <body class="body5">
 <!--modal-->
 <div class="modal fade" id="ModalClub" tabindex="1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -105,7 +49,6 @@
 </div>
     
 </body>
- @* @section Scripts{
+  @section Scripts{
     <script src="~/js/club-1.0.0.js"></script>
-}  
-</html> *@ 
+}
