@@ -19,7 +19,5 @@ public class Usuario {
        }
     public string? Telefono {get; set;}
     public string? DNI {get;set;}
-    public string? Direccion {get; set;}
-    public bool Eliminado {get; set;}
     public virtual Categoria? Categoria {get; set;}
     }

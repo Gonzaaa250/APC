@@ -25,23 +25,6 @@ namespace TesisPadel.Controllers
             return View(await _context.Club.ToListAsync());
         }
 
-        // GET: Club/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var club = await _context.Club
-                .FirstOrDefaultAsync(m => m.ClubId == id);
-            if (club == null)
-            {
-                return NotFound();
-            }
-
-            return View(club);
-        }
 
         // GET: Club/Create
         public IActionResult Create()
