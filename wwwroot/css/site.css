@@ -9,6 +9,12 @@ html {
 		font-size: 16px;
 	}
 }
+
+.hr{
+  box-shadow: 0 8px 24px 0 rgba(241, 235, 215, 0.2);
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}
 .IHome{
   background-color: none;
 }
@@ -22,20 +28,21 @@ html {
 }
 .rankingC{
   background-color: white;
-
 }
 
 .FormatoT{
   color:#ffffff;
   margin-top: 5rem;
+  position: center;
 }
-.HTitulo{
+
+/* .HTitulo{
 	color: #ffeba7;
 	font-size: 3em;
 	padding-top: 0.2em;
 	margin-bottom: 2rem;
 	text-shadow: 2px 4px 1px rgb(67, 53, 9);
-}
+} */
 
 /* Barra nvar */
 .Barra{
@@ -442,60 +449,40 @@ height:266px;
 left:10px;
 outline:1px solid transparent;
 backface-visibility:hidden
-	
-	}
+}
 		
 .caroussel-image img:nth-child(1){
-	
 transform:translate3d(0,0,495px)
-		
-		}
+}
 		
 .caroussel-image img:nth-child(2){
-	
 transform:rotateY(45deg) translateZ(495px)
-	
-		}
+}
 		
 .caroussel-image img:nth-child(3){
-	
-	transform:rotateY(90deg) translateZ(495px)
-	
-	}
+transform:rotateY(90deg) translateZ(495px)
+}
 	
 .caroussel-image img:nth-child(4){
-	
-	transform:rotateY(135deg) translateZ(495px)
-	
-	}
+transform:rotateY(135deg) translateZ(495px)
+}
 	
 .caroussel-image img:nth-child(5){
-	
-	transform:rotateY(180deg) translateZ(495px)
-	
-	}
+transform:rotateY(180deg) translateZ(495px)
+}
 	
 .caroussel-image img:nth-child(6){
-	
-	transform:rotateY(225deg) translateZ(495px)
-	
-	}
+transform:rotateY(225deg) translateZ(495px)
+}
 	
 .caroussel-image img:nth-child(7){
-	
-	transform:rotateY(270deg) translateZ(495px)
-	
-	}
+transform:rotateY(270deg) translateZ(495px)
+}
 	
 .caroussel-image img:nth-child(8){
-	
-	transform:rotateY(315deg) translateZ(495px)
-	
-	}
+transform:rotateY(315deg) translateZ(495px)
+}
 
-	
-
-	
 @keyframes rotation{
 from{transform:rotatey(0)}
 to{transform:rotatey(0.5turn)}}
@@ -673,6 +660,7 @@ to{transform:rotatey(0.5turn)}}
   25%, 75% { border-color: rgba(204, 204, 255, 0.9); }
   50% { border-color: rgba(204, 204, 255, 0.5); }
 }
+/* Prpiedades profes */
 
 /* Propiedades cards */
 .Card{
@@ -699,3 +687,126 @@ to{transform:rotatey(0.5turn)}}
   background-color: rgb(46, 46, 46);
   border-radius: 5px;
 }
+/*Fin*/
+
+/* cards profesores */
+.card{
+  height: 100%;
+  margin-left: 90px;
+  align-items: center;
+  background-color: rgb(46, 46, 46);
+}
+
+.card-body2{
+  color: #ffffff;
+}
+
+.card-img-top{
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+  border: 3px solid black;
+}
+/* fin */
+
+/* Card noticias */
+
+.containerN{
+  width: 100%;
+  max-width: 1200px;
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: auto;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}
+
+
+.containerN .CardN{
+  width: 300px;
+  height:380px;
+  border-radius: 10px;
+  box-shadow: 0 2px 2px rgb(0, 255, 255);
+  overflow: hidden;
+  margin: 20px;
+  text-align: center;
+  transition: all 0.5s;
+}
+
+.containerN .CardN:hover{
+  transform: translateY(-15px);
+  box-shadow: 0 12px 16px rgb(102, 226, 1);
+}
+
+.containerN .CardN img{
+  width: 300px;
+  height: 220px;
+}
+
+.containerN .CardN .h4{
+  font-weight: 600;
+}
+
+.containerN .CardN p{
+  padding: 0 1rem;
+  font-size: 16px;
+  font-weight: 300;
+}
+
+.containerN .CardN a{
+  font-weight: 500;
+  text-decoration: none;
+  color: #3498db;
+}
+/* Fin */
+
+/* Imagenes varias */
+
+.sectionI1{
+  display: flex;
+  justify-content: space-between;
+  padding: 40px;
+  width: 100%;
+  margin: 15px auto;
+  background-color: #4d4e66;
+  border-radius: 15px;
+  box-shadow: 5px 5px 5px rgb(#ccc);
+}
+.sectionI1 img{
+  width: 200px;
+  border-radius: 25px;
+}
+.sectionI1 h4{
+  margin: 15px;
+  color:  rgb(241, 218, 8);
+}
+.sectionI1 p{
+  color: rgb(241, 218, 8);
+  margin-right: 15px;
+}
+
+.sectionI2{
+  display: flex;
+  justify-content: space-between;
+  padding: 40px;
+  width: 100%;
+  margin: 15px auto;
+  background-color: #4d4e66;
+  border-radius: 15px;
+  box-shadow: 5px 5px 5px rgb(#ccc);
+}
+.sectionI2 img{
+  width: 200px;
+  border-radius: 25px;
+}
+.sectionI2 h4{
+  margin: 15px;
+  color:  rgb(241, 218, 8);
+}
+.sectionI2 p{
+  color: rgb(241, 218, 8);
+  margin-right: 15px;
+}
+/* Fin */
