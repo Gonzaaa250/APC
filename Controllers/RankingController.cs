@@ -54,7 +54,7 @@ namespace TesisPadel.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("RankingId,Nombre,Apellido,Puntos")] Ranking ranking)
+        public async Task<IActionResult> Create([Bind("RankingId,Nombre,Apellido,Puntos,Club")] Ranking ranking)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +86,7 @@ namespace TesisPadel.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("RankingId,Nombre,Apellido,Puntos")] Ranking ranking)
+        public async Task<IActionResult> Edit(int id, [Bind("RankingId,Nombre,Apellido,Puntos,Club")] Ranking ranking)
         {
             if (id != ranking.RankingId)
             {

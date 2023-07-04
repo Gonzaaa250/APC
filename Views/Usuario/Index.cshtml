@@ -1,87 +1,61 @@
 @model IEnumerable<TesisPadel.Models.Usuario>
 
-@{
-    Layout = "_Layout";
+ @{
+    ViewData["Title"]="Usuario";
 }
+ <body class="body-5">
+    <!--modal-->
+    <div class="modal fade" id="ModalUsuario" tabindex="1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Usuario</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" id="UsuarioId" value="0">
+                    <div class="control-label">
+                        <p>Nombre</p>
+                        <input type="text" class="form-control" id="Nombre" autocomplete="off" onkeyup="this.value = this.value.toUpperCase()">
+                        <p>Apellido</p>
+                        <input type="text" class="form-control" id="Localidad" autocomplete="off" onkeyup="this.value = this.value.toUpperCase()">
+                        <p>Localidad</p>
+                        <input type="text" class="form-control" id="Localidad" autocomplete="off" onkeyup="this.value = this.value.toUpperCase()">
+                        <p>Fecha de Nacimiento</p>
+                        <input type="text" class="form-control" id="Localidad" autocomplete="off" onkeyup="this.value = this.value.toUpperCase()">
+                        <p>DNI</p>
+                        <input type="text" class="form-control" id="Localidad" autocomplete="off" onkeyup="this.value = this.value.toUpperCase()">
+                        <p>Telefono</p>
+                        <input type="text" class="form-control" id="Localidad" autocomplete="off" onkeyup="this.value = this.value.toUpperCase()">
 
-<!DOCTYPE html>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="button" onclick="GuardarUsuario()" class="btn btn-primary">Guardar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <h1 class="display-4 titulo">Usuario</h1>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-</head>
-<body>
-<p>
-    <a asp-action="Create">Crear nuevo</a>
-</p>
-<div class="FormatoT">
-    <table class="table" style="color: white;">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.LocalidadId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Nombre)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Apellido)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.UsuarioBirhtDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Telefono)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DNI)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Direccion)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Eliminado)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.LocalidadId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nombre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Apellido)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UsuarioBirhtDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Telefono)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DNI)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Direccion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Eliminado)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.UsuarioId">Editar</a>
-                <a asp-action="Delete" asp-route-id="@item.UsuarioId">Eliminar</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
-</div>
-
-</body>
-</html>
+        <!-- Button trigger modal -->
+        <div class="mb-2">
+            <button type="button" onclick="VaciarFormulario()" class="btn btn-primary" data-bs-toggle="modal"
+                data-bs-target="#ModalUsuario">
+                Nuevo
+            </button>
+        </div>
+        @* <table class="table table-bordered table-striped table-condensed">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Localidad</th>
+                </tr>
+            </thead>
+            <tbody id="tbody-usuario">
+            </tbody>
+        </table> *@
+    </div>
+</body> 

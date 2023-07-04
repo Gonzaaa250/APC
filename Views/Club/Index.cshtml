@@ -2,66 +2,57 @@
 @{
     ViewData["Title"] = "Club";
 }
-@{
-    Layout = "_Layout";
-}
 
-<!DOCTYPE html>
+<body class="body5">
+    <!--modal-->
+    <div class="modal fade" id="ModalClub" tabindex="1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Agregar Club</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" id="ClubId" value="0">
+                    <div class="control-label">
+                        <p>Nombre</p>
+                        <input type="text" class="form-control" id="Nombre" autocomplete="off"
+                            onkeyup="this.value = this.value.toUpperCase()">
+                        <p>Localidad</p>
+                        <input type="text" class="form-control" id="Localidad" autocomplete="off"
+                            onkeyup="this.value = this.value.toUpperCase()">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="button" onclick="GuardarClub()" class="btn btn-primary">Guardar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <h1 class="display-4 titulo">Club</h1>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-</head>
-<body>
-<p>
-<<<<<<< HEAD
-    <a asp-action="Create">Crear</a>
-=======
-    <a asp-action="Create">Crear nuevo</a>
->>>>>>> c1da81b067f2345e0e9725b6ebc0f98ff5534b11
-</p>
-<div class="FormatoT">
-    <table class="table" style="color: white;">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Nombre)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Direccion)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Eliminado)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nombre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Direccion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Eliminado)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ClubId">Editar</a>
-                <a asp-action="Delete" asp-route-id="@item.ClubId">Eliminar</a>
-
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
-</div>
+        <!-- Button trigger modal -->
+        <div class="mb-2">
+            <button type="button" onclick="VaciarFormulario()" class="btn btn-primary" data-bs-toggle="modal"
+                data-bs-target="#ModalClub">
+                Nuevo
+            </button>
+        </div>
+        <table class="table table-bordered table-striped table-condensed">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Localidad</th>
+                </tr>
+            </thead>
+            <tbody id="tbody-club">
+            </tbody>
+        </table>
+    </div>
 
 </body>
 @section Scripts{
     <script src="~/js/club-1.0.0.js"></script>
 }
-</html> 

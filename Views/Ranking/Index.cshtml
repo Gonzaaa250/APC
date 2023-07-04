@@ -1,7 +1,6 @@
 @model IEnumerable<TesisPadel.Models.Ranking>
-
 @{
-    Layout = "_Layout";
+    ViewData["Title"] = "Ranking";
 }
 
 <!DOCTYPE html>
@@ -40,15 +39,12 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Apellido)
             </td>
-            @* <td>
-                @Html.DisplayFor(modelItem => item.Categoria)
-            </td> *@
             <td>
                 @Html.DisplayFor(modelItem => item.Puntos)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.RankingId">Editar</a> 
-                <a asp-action="Delete" asp-route-id="@item.RankingId">Eliminar</a>
+                <a asp-action="Edit" asp-route-id="@item.RankingId">Edit</a> 
+                <a asp-action="Delete" asp-route-id="@item.RankingId">Delete</a>
             </td>
         </tr>
 }
@@ -57,4 +53,6 @@
 </div>
 
 </body>
-</html>
+@section script{
+    <script src="~/js/ranking-1.0.0.js"></script>
+}

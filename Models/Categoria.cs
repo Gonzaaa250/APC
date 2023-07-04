@@ -5,8 +5,6 @@ public class Categoria{
     public int CategoriaId { get; set; }
 
     public Genero genero {get; set;}
-    
-    public virtual ICollection<Ranking>? Rankings {get; set;}
 }
 public enum Genero
 {

@@ -28,15 +28,14 @@ html {
 }
 .rankingC{
   background-color: white;
-}
 
-.FormatoT{
+}
+ .Formato{
   color:#ffffff;
   margin-top: 5rem;
   position: center;
 }
-
-/* .HTitulo{
+.HTitulo{
 	color: #ffeba7;
 	font-size: 3em;
 	padding-top: 0.2em;
@@ -482,6 +481,7 @@ transform:rotateY(270deg) translateZ(495px)
 .caroussel-image img:nth-child(8){
 transform:rotateY(315deg) translateZ(495px)
 }
+
 
 @keyframes rotation{
 from{transform:rotatey(0)}
