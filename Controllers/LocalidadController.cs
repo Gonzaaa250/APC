@@ -8,146 +8,59 @@ using Microsoft.EntityFrameworkCore;
 using TesisPadel.Data;
 using TesisPadel.Models;
 
-namespace TesisPadel.Controllers
-{
+namespace TesisPadel.Controllers;
+
     public class LocalidadController : Controller
     {
-        private readonly TesisPadelDbContext _context;
-
-        public LocalidadController(TesisPadelDbContext context)
+        private readonly ILogger<LocalidadController> _logger;
+        private TesisPadelDbContext _context;
+        public LocalidadController(ILogger<LocalidadController> logger, TesisPadelDbContext context)
         {
+            _logger = logger;
             _context = context;
         }
-
-        // GET: Localidad
-        public async Task<IActionResult> Index()
+        public JsonResult BuscarLocalidad(int LocalidadId = 0)
         {
-            return View(await _context.Localidad.ToListAsync());
+            var localidad = _context.Localidad.ToList();
+            if (LocalidadId > 0)
+            {
+                localidad = localidad.Where(l => l.LocalidadId == LocalidadId).OrderBy(l => l.LNombre).ToList();
+            }
+            return Json(localidad);
         }
-
-        // GET: Localidad/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public JsonResult GuardarLocalidad(int LocalidadId, string LNombre)
         {
-            if (id == null)
+            bool resultado = false;
+            if (!string.IsNullOrEmpty(LNombre))
             {
-                return NotFound();
-            }
-
-            var localidad = await _context.Localidad
-                .FirstOrDefaultAsync(m => m.LocalidadId == id);
-            if (localidad == null)
-            {
-                return NotFound();
-            }
-
-            return View(localidad);
-        }
-
-        // GET: Localidad/Create
-        public IActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Localidad/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("LocalidadId,LocalidadNombre")] Localidad localidad)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Add(localidad);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(localidad);
-        }
-
-        // GET: Localidad/Edit/5
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var localidad = await _context.Localidad.FindAsync(id);
-            if (localidad == null)
-            {
-                return NotFound();
-            }
-            return View(localidad);
-        }
-
-        // POST: Localidad/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("LocalidadId,LocalidadNombre")] Localidad localidad)
-        {
-            if (id != localidad.LocalidadId)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
+                var Localidad1 = _context.Localidad.Where(l => l.LNombre == LNombre).FirstOrDefault();
+                if (Localidad1 == null)
                 {
-                    _context.Update(localidad);
-                    await _context.SaveChangesAsync();
+                    var localidadguardar = new Localidad
+                    {
+                        LNombre = LNombre,
+                    };
+                    _context.Add(localidadguardar);
+                    _context.SaveChanges();
+                    resultado = true;
                 }
-                catch (DbUpdateConcurrencyException)
+            }
+            else
+            {
+                var Localidad1 = _context.Localidad.Where(l => l.LNombre == LNombre && l.LocalidadId != LocalidadId).FirstOrDefault();
+                if (Localidad1 == null)
                 {
-                    if (!LocalidadExists(localidad.LocalidadId))
+                    var localidadeditar = _context.Localidad.Find(LocalidadId);
+                    if (localidadeditar != null)
                     {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
+                        localidadeditar.LNombre = LNombre;
+                        _context.SaveChanges();
+                        resultado = true;
                     }
                 }
-                return RedirectToAction(nameof(Index));
             }
-            return View(localidad);
+            return Json(resultado);
         }
 
-        // GET: Localidad/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var localidad = await _context.Localidad
-                .FirstOrDefaultAsync(m => m.LocalidadId == id);
-            if (localidad == null)
-            {
-                return NotFound();
-            }
-
-            return View(localidad);
-        }
-
-        // POST: Localidad/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var localidad = await _context.Localidad.FindAsync(id);
-            _context.Localidad.Remove(localidad);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
-
-        private bool LocalidadExists(int id)
-        {
-            return _context.Localidad.Any(e => e.LocalidadId == id);
-        }
     }
-}
+

@@ -4,7 +4,7 @@ window.onload = BuscarClub();
     $("#tbody-club").empty();
      $.ajax({
          // URL para la peticion
-         url:'../../Clubs/BuscarClub',
+         url:'../../Club/BuscarClub',
          // la información a enviar
          // (también es posible utilizar una cadena de datos)
          data:{},
@@ -19,7 +19,7 @@ window.onload = BuscarClub();
              $.each(club, function (Index, club){
                  //VARIABLES PARA DEFINIR BOTONES Y ESTETICA
                  let BotonDesahabilitar ='';
-                 let botones= '<button type="button" onclick="BuscarClub(' + club.ClubId +')" class="btn btn-primary btn-sm" style="margin-right:5px" onkeyup="this.value = this.value.toUpperCase()">Editar</button>'+
+                 let botones= '<button type="button" onclick="BuscarClub(' + club.ClubId +') class="btn btn-primary btn-sm" style="margin-right:5px" onkeyup="this.value = this.value.toUpperCase()">Editar</button>'+
                  '<button type="button" onclick="EliminarClub(' + club.ClubId +',1)" class="btn btn-danger btn-sm">Desahabilitar</button>';
                  //DEFINE SI ESTA ELIMINADA
                 if (club.Estado == 'E') {
@@ -87,15 +87,15 @@ window.onload = BuscarClub();
  }
  function GuardarClub(){
      //JAVASCRIP
-     // let descripcion1 = document.getElementById("Descripcion").value;
-     // let descripcion2 = $("#Descripcion").val();
-     // let categoriaID = $("#CategoriaID").val();
+      let Nombre = document.getElementById("Nombre").value;
+      let Direccion = $("#Direccion").val();
+      let ClubId = $("#ClubId").val();
      $.ajax({
          // URL para la peticion
-         url:'../../Clubs/GuardarClub',
+         url:'../../Club/GuardarClub',
          // la información a enviar
          // (también es posible utilizar una cadena de datos)
-         data:{ClubId: ClubId}, //<=VER
+         data:{ClubId: ClubId, Nombre: Nombre, Direccion: Direccion}, 
          // especifica si será una petición POST o GET
          type: 'POST',
          // el tipo de información que se espera de respuesta
@@ -123,7 +123,7 @@ window.onload = BuscarClub();
  function EliminarClub( ClubId, eliminado){
      $.ajax({
          // URL para la peticion
-         url:'../../Clubs/EliminarClub',
+         url:'../../Club/EliminarClub',
          // la información a enviar
          // (también es posible utilizar una cadena de datos)
          data:{ClubId: ClubId, Eliminado: Eliminado},

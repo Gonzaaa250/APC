@@ -1,46 +1,11 @@
 @model IEnumerable<TesisPadel.Models.Localidad>
-
- @{
-    Layout = "_Layout";
+@{
+    ViewData["Title"] = "Localidad";
 }
+<body class="body5">
+    
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-</head>
-<body>
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.LocalidadNombre)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.LocalidadNombre)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.LocalidadId">Editar</a> |
-                <a asp-action="Delete" asp-route-id="@item.LocalidadId">eliminar</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
-</body>
-</html> 
-@* <!--modal-->
+ <!--modal-->
 <div class="modal fade" id="ModalLocalidad" tabindex="1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -55,7 +20,7 @@
                 </div>
                 <div class="modal-footer">
                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-        <button type="button" onclick="GuardarRanking()" class="btn btn-primary">Guardar</button>
+        <button type="button" onclick="GuardarLocalidad()" class="btn btn-primary">Guardar</button>
                 </div>
             </div>
         </div>
@@ -79,4 +44,8 @@
         <tbody id="tbody-ranking">        
         </tbody>
   </table>
-</div> *@
+</div> 
+</body>
+@section Scripts{
+    <script src="~/js/Localidad-1.0.0.js"></script>
+}

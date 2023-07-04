@@ -8,129 +8,77 @@ using Microsoft.EntityFrameworkCore;
 using TesisPadel.Data;
 using TesisPadel.Models;
 
-namespace TesisPadel.Controllers
+namespace TesisPadel.Controllers;
+public class ClubController : Controller
 {
-    public class ClubController : Controller
+    private readonly ILogger<ClubController> _logger;
+    private TesisPadelDbContext _context;
+    public ClubController(ILogger<ClubController> logger, TesisPadelDbContext context)
     {
-        private readonly TesisPadelDbContext _context;
-
-        public ClubController(TesisPadelDbContext context)
-        {
-            _context = context;
+        _logger = logger;
+        _context = context;
+    }
+    public IActionResult Index()
+    {
+        return View();
+    }
+    public JsonResult BuscarClub(int ClubId=0){
+        var club= _context.Club.ToList();
+        if (ClubId>0){
+            club= club.Where(c=> c.ClubId== ClubId).OrderBy(c=> c.Nombre).ToList();
         }
-
-        // GET: Club
-        public async Task<IActionResult> Index()
+        return Json(club);
+    }
+    public JsonResult GuardarClub(int ClubId, string Nombre, string Direccion)
+    {
+        bool resultado= false;
+        if (!string.IsNullOrEmpty(Nombre))
         {
-            return View(await _context.Club.ToListAsync());
-        }
-
-
-        // GET: Club/Create
-        public IActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Club/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ClubId,Nombre,Direccion,Eliminado")] Club club)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Add(club);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(club);
-        }
-
-        // GET: Club/Edit/5
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var club = await _context.Club.FindAsync(id);
-            if (club == null)
-            {
-                return NotFound();
-            }
-            return View(club);
-        }
-
-        // POST: Club/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ClubId,Nombre,Direccion,Eliminado")] Club club)
-        {
-            if (id != club.ClubId)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(club);
-                    await _context.SaveChangesAsync();
+            if(ClubId==0){
+                var Club1= _context.Club.Where(c=> c.Nombre== Nombre && c.Direccion==Direccion).FirstOrDefault();
+                if(Club1==null){
+                    var clubguardar= new Club{
+                        Nombre= Nombre,
+                        Direccion= Direccion
+                    };
+                    _context.Add(clubguardar);
+                    _context.SaveChanges();
+                    resultado= true ;
                 }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!ClubExists(club.ClubId))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
+            }
+            else{
+                var Club1= _context.Club.Where(c=> c.Nombre== Nombre && c.ClubId!=ClubId && c.Direccion== Direccion).FirstOrDefault();
+                if (Club1==null){
+                    var clubeditar=_context.Club.Find(ClubId);
+                    if(clubeditar!= null){
+                        clubeditar.Nombre=Nombre;
+                        clubeditar.Direccion = Direccion;
+                        _context.SaveChanges();
+                        resultado=true;
                     }
                 }
-                return RedirectToAction(nameof(Index));
             }
-            return View(club);
         }
-
-        // GET: Club/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
+        return Json(resultado);
+    }
+    public JsonResult EliminarClub(int ClubId, int Eliminado){
+        int resultado=0;
+        var club= _context.Club.Find(ClubId);
+        if(club !=null){
+            if(Eliminado==0)
             {
-                return NotFound();
+                club.Eliminado= false;
+                _context.SaveChanges();
             }
-
-            var club = await _context.Club
-                .FirstOrDefaultAsync(m => m.ClubId == id);
-            if (club == null)
-            {
-                return NotFound();
+            else{
+                if(Eliminado==1){
+                    club.Eliminado= true;
+                    _context.SaveChanges();
+                }
             }
-
-            return View(club);
         }
+        resultado = 1;
 
-        // POST: Club/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var club = await _context.Club.FindAsync(id);
-            _context.Club.Remove(club);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
-
-        private bool ClubExists(int id)
-        {
-            return _context.Club.Any(e => e.ClubId == id);
-        }
+        return Json(resultado);
     }
 }
