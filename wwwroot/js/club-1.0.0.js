@@ -40,9 +40,9 @@ window.onload = BuscarClub();
          },
 
          // código a ejecutar sin importar si la petición falló o no
-         complete: function (xhr, status) {
-             //alert('Petición realizada');
-         }
+        complete: function (xhr, status) {
+            alert('Petición realizada');
+        }
      })
     
 
@@ -51,47 +51,17 @@ window.onload = BuscarClub();
      $("#Nombre").val('');
      $("#ClubId").val(0);
  }
- function BuscarClub(ClubId){
-     $.ajax({
-         // URL para la peticion
-         url:'../../Club/BuscarClub',
-         // la información a enviar
-        // (también es posible utilizar una cadena de datos)
-         data:{ClubId: ClubId},
-          // especifica si será una petición POST o GET
-          type: 'GET',
-          // el tipo de información que se espera de respuesta
-          dataType: 'json',
-          // código a ejecutar si la petición es satisfactoria;
-         // la respuesta es pasada como argumento a la función
-         success: function(club){
-             if(club.lenght==1){
-                 let club= club[0];
-                 $("#Nombre").val(club.Nombre);
-                 $("#ClubId").val(club.ClubId);
-                 $("#ModalClub").modal("show");
-             }
-         },
-         // código a ejecutar si la petición falla;
-         // son pasados como argumentos a la función
-         // el objeto de la petición en crudo y código de estatus de la petición
-         error: function (xhr, status) {
-             alert('Error al cargar club');
-         },
 
-         // código a ejecutar sin importar si la petición falló o no
-         complete: function (xhr, status) {
-        alert('Petición realizada');
-         }
-     })
- }
  function GuardarClub(){
      //JAVASCRIP
       let Nombre = document.getElementById("Nombre").value;
       let Direccion = $("#Direccion").val();
       let ClubId = $("#ClubId").val();
-     $.ajax({
-         // URL para la peticion
+    console.log(Nombre);
+    console.log(Direccion);
+    console.log(ClubId);
+    $.ajax({
+        // URL para la peticion
          url:'../../Club/GuardarClub',
          // la información a enviar
          // (también es posible utilizar una cadena de datos)
@@ -100,8 +70,8 @@ window.onload = BuscarClub();
          type: 'POST',
          // el tipo de información que se espera de respuesta
          dataType: 'json',
-         // código a ejecutar si la petición es satisfactoria;
-         // la respuesta es pasada como argumento a la función
+          // código a ejecutar si la petición es satisfactoria;
+          // la respuesta es pasada como argumento a la función
          success: function(resultado){
              if(resultado){
                 $("ModalClub").modal("hide");
@@ -109,18 +79,18 @@ window.onload = BuscarClub();
              }
              else{
                  alert("Ya existe el club");
-             }
+              }
          },
 
-        // código a ejecutar si la petición falla;
+         // código a ejecutar si la petición falla;
          // son pasados como argumentos a la función
          // el objeto de la petición en crudo y código de estatus de la petición
         error: function (xhr, status) {
             alert('surgio un problema');
-         }
+          }
      })
  }
- function EliminarClub( ClubId, eliminado){
+ function EliminarClub( ClubId, Eliminado){
      $.ajax({
          // URL para la peticion
          url:'../../Club/EliminarClub',

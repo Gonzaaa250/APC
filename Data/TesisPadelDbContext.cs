@@ -11,8 +11,7 @@ public class TesisPadelDbContext: DbContext{
     public DbSet <Club>? Club {get; set;}
     // public DbSet <Torneo> Torneos {get; set;}
     public DbSet<Localidad>? Localidad { get; set; }
-    public DbSet<Provincia>? Provincia { get; set; }
-    // public DbSet<Noticia>? Noticia { get; set; }
+
     public DbSet<TesisPadel.Models.Ranking> Ranking { get; set; }
     public DbSet<TesisPadel.Models.Categoria> Categoria { get; set; }
 }
