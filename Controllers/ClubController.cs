@@ -29,17 +29,18 @@ public class ClubController : Controller
         }
         return Json(club);
     }
-    public JsonResult GuardarClub(int ClubId, string Nombre, string Direccion)
+    public JsonResult GuardarClub(int ClubId, string Nombre, string Localidad)
     {
         bool resultado= false;
-        if (!string.IsNullOrEmpty(Nombre))
+        if (!string.IsNullOrEmpty(Nombre)) 
         {
             if(ClubId==0){
-                var Club1= _context.Club.Where(c=> c.Nombre== Nombre && c.Direccion==Direccion).FirstOrDefault();
+                var Club1= _context.Club.Where(c=> c.Nombre == Nombre && c.Localidad.LNombre==Localidad).FirstOrDefault();
+                var Localidad1= _context.Localidad.Where(l=> l.LNombre == Nombre && l.Provincia == Localidad).FirstOrDefault();
                 if(Club1==null){
                     var clubguardar= new Club{
                         Nombre= Nombre,
-                        Direccion= Direccion
+                        Localidad = Localidad1
                     };
                     _context.Add(clubguardar);
                     _context.SaveChanges();
@@ -47,12 +48,13 @@ public class ClubController : Controller
                 }
             }
             else{
-                var Club1= _context.Club.Where(c=> c.Nombre== Nombre && c.ClubId!=ClubId && c.Direccion== Direccion).FirstOrDefault();
+                var Club1= _context.Club.Where(c=> c.Nombre== Nombre && c.ClubId!=ClubId && c.Localidad.LNombre== Localidad).FirstOrDefault();
+                var Localidad1= _context.Localidad.Where(l=> l.LNombre == Nombre && l.Provincia == Localidad).FirstOrDefault();
                 if (Club1==null){
                     var clubeditar=_context.Club.Find(ClubId);
                     if(clubeditar!= null){
                         clubeditar.Nombre=Nombre;
-                        clubeditar.Direccion = Direccion;
+                        clubeditar.Localidad = Localidad1;
                         _context.SaveChanges();
                         resultado=true;
                     }

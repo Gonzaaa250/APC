@@ -55,17 +55,17 @@ window.onload = BuscarClub();
  function GuardarClub(){
      //JAVASCRIP
       let Nombre = document.getElementById("Nombre").value;
-      let Direccion = $("#Direccion").val();
+      let Localidad = $("#Localidad").val();
       let ClubId = $("#ClubId").val();
     console.log(Nombre);
-    console.log(Direccion);
+    console.log(Localidad);
     console.log(ClubId);
     $.ajax({
         // URL para la peticion
          url:'../../Club/GuardarClub',
          // la información a enviar
          // (también es posible utilizar una cadena de datos)
-         data:{ClubId: ClubId, Nombre: Nombre, Direccion: Direccion}, 
+         data:{ClubId: ClubId, Nombre: Nombre, Localidad: Localidad}, 
          // especifica si será una petición POST o GET
          type: 'POST',
          // el tipo de información que se espera de respuesta

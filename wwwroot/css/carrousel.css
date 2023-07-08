@@ -1,0 +1,256 @@
+/* Propiedades carrousel */
+
+/*****carrousel 3d automatique*****/
+
+*{box-sizing : border-box}
+
+img{max-width:100%}
+
+.contenu_carou_auto{
+
+margin:2rem auto;
+width:420px;
+height:279px;
+perspective:8000px
+	
+	}
+		
+.caroussel-image{
+	
+animation:rotation 24s infinite alternate linear;	
+transform-style:preserve-3d;
+position:relative;	
+
+}
+
+.caroussel-image img{
+	
+position: absolute;
+top:0;
+left: 0;
+	
+	
+	}
+
+
+		
+.caroussel-image img{
+	
+filter:drop-shadow(0 12px 5px hsla(0,0%,0%,.4));
+width:400px;
+height:266px;
+left:10px;
+outline:1px solid transparent;
+backface-visibility:hidden
+}
+		
+.caroussel-image img:nth-child(1){
+transform:translate3d(0,0,495px)
+}
+		
+.caroussel-image img:nth-child(2){
+transform:rotateY(45deg) translateZ(495px)
+}
+		
+.caroussel-image img:nth-child(3){
+transform:rotateY(90deg) translateZ(495px)
+}
+	
+.caroussel-image img:nth-child(4){
+transform:rotateY(135deg) translateZ(495px)
+}
+	
+.caroussel-image img:nth-child(5){
+transform:rotateY(180deg) translateZ(495px)
+}
+	
+.caroussel-image img:nth-child(6){
+transform:rotateY(225deg) translateZ(495px)
+}
+	
+.caroussel-image img:nth-child(7){
+transform:rotateY(270deg) translateZ(495px)
+}
+	
+.caroussel-image img:nth-child(8){
+transform:rotateY(315deg) translateZ(495px)
+}
+
+
+@keyframes rotation{
+from{transform:rotatey(0)}
+to{transform:rotatey(0.5turn)}}
+	
+/*****fin carrousel 3d automatique*****/
+
+.texto{
+  margin-top: 4rem;
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: rgb(252, 224, 187);
+}
+
+/* Carrousel para fotos random*/
+
+@import url("https://fonts.googleapis.com/css2?family=Asap:ital,wght@0,400;1,400");
+
+* {
+  box-sizing: border-box;
+}
+
+.body2 {
+  margin: 0;
+  margin-top: 3rem;
+  font-family: 'Asap', 'Poppins', sans-serif;
+  text-shadow: #000 0 0 10px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  background: #000000;
+  
+  @media (min-width: 1024px) {
+    flex-direction: row;
+  }
+}
+
+.item {
+  position: relative;
+  flex: calc(100vw / 6) 1 1;
+  background-size: cover;
+  overflow: hidden;
+  filter: saturate(90%);
+  transition: 1s;
+}
+
+.item:before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(25deg, rgba(0,0,0,.9), rgba(0,0,0,0));
+}
+
+.item:not(:last-child) {
+  border-bottom: 1px solid #ccc;
+  animation: borderPulse 5s infinite;
+  
+  @media (min-width: 1024px) {
+    border-right: 1px solid #ccc;
+    border-bottom: none;
+  }
+}
+
+.item:hover {
+  flex-basis: 40%;
+  filter: saturate(120%);
+  
+  @media (min-width: 1024px) {
+    flex-basis: 75%;
+  }
+  
+  .quote {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.item:nth-child(1) {
+  background-image: url("https://yt3.googleusercontent.com/fFr5vtF0wTYFd3l5wWhjVa8hOgEBl46hqG_WjFcsBxDSOv6pjqMW_RUmqUJe8KitYtrDDS1B8A=s900-c-k-c0x00ffffff-no-rj");
+  background-position: 72% 35%;
+}
+.item:nth-child(2) {
+  background-image: url("https://www.2playbook.com/uploads/s1/82/19/world-padel-tour.jpeg");
+  background-position: 60% 8%;
+}
+.item:nth-child(3) {
+  background-image: url("https://padelgood.com/wp-content/uploads/2022/05/sanyo_gutierrez_agustin_tapia_final_danish_open_2022_gp2_4777-1-1170x658-1.jpg");
+  background-position: 52% 8%;
+}
+.item:nth-child(4) {
+  background-image: url("https://s1.eestatic.com/2022/03/08/actualidad/655695273_222512250_1706x960.jpg");
+  background-position: 45% 8%;
+}
+.item:nth-child(5) {
+  background-image: url("https://d26itsb5vlqdeq.cloudfront.net//image/3A203E31-AF91-4A97-96F3B23C85C04010");
+  background-position: 45% 25%;
+}
+.item:nth-child(6) {
+  background-image: url("https://pbs.twimg.com/media/FEFnCxRXsAQTlqH.jpg");
+  background-position: 65% 2%;
+}
+
+.quote {
+  position: absolute;
+  color: #fff;
+  bottom: 35%;
+  left: 5rem;
+  width: calc(100% - 10rem);
+  opacity: 0;
+  transition: 1s;
+  transform: translateX(50%);
+  
+  @media (min-width: 512px) {
+    left: 15%;
+    bottom: 35%;
+    width: 20vw;
+  }
+  
+  @media (min-width: 1024px) {
+    left: 15%;
+    bottom: 35%;
+    width: 30vw;
+  }
+  
+  p {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 1.7rem;
+    font-size: 1.4rem;
+    text-wrap: balance;
+    font-style: italic;
+    
+    &:before, &:after {
+      position: absolute;
+      font-size: 5.5rem;
+      opacity: .6;
+    }
+    
+    &:before {
+      content: "“";
+      top: 4rem;
+      left: -2rem;
+      transform: translate(-100%, -100%);
+    }
+    
+    &:after {
+      content: "”";
+      bottom: 2rem;
+      right: -2rem;
+      transform: translate(100%, 100%);
+    }
+  }
+  
+  span {
+    position: absolute;
+    bottom: -2rem;
+    right: 0;
+    text-align: right;
+    font-size: 1.2rem;
+    font-weight: bold;
+    transform: translate(4rem, 100%);
+    
+    &:before {
+      content: "—";
+      margin-right: .7rem;
+    }
+  }
+}
+
+@keyframes borderPulse{
+  0%, 100% { border-color: rgba(204, 204, 204, 1); }
+  25%, 75% { border-color: rgba(204, 204, 255, 0.9); }
+  50% { border-color: rgba(204, 204, 255, 0.5); }
+}
