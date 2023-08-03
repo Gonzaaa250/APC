@@ -1,71 +1,75 @@
 ﻿@page
-
+@model LoginModel
 
 @{
-  ViewData["Title"] = "Login";
+    ViewData["Title"] = "";
 }
 
-<main>
+<h1>@ViewData["Title"]</h1>
+<body class="LogIn">
+  <div class="section">
   <div class="container">
-    <div class="box"></div>
-    <div class="container-forms">
-      <div class="container-info">
-        <div class="info-item">
-          <div class="table">
-            <div class="table-cell">
-              <p>
-                ¿Tienes una cuenta?
-              </p>
-              <div class="btn">
-                Iniciar
+    <div class="row full-height justify-content-center">
+      <div class="col-12 text-center align-self-center py-5">
+        <div class="section pb-5 pt-5 pt-sm-2 text-center">
+
+          <h6 class="LTI-R mb-0 pb-3"><span class="LTI-R">Iniciar sesión</span><span class="LTI-R">/</span><span class="LTI-R">Registrarse</span></h6>
+          
+          @* Boton para dar vuelta la tarjeta *@
+          <input class="checkbox" type="checkbox" id="reg-log" name="reg-log" />
+          <label for="reg-log"></label>
+
+        @* seccion iniciar sesion *@
+          <div class="card-3d-wrap mx-auto">
+            <div class="card-3d-wrapper">
+              <div class="card-front">
+                <div class="center-wrap">
+                  <div class="section text-center">
+                    <h4 class="mb-4 pb-3">Iniciar sesión</h4>
+                    <div class="form-group">
+                      <input type="email" name="logemail" class="form-style" placeholder="E-mail" id="logemail" autocomplete="off">
+                      <i class="input-icon uil uil-at"></i>
+                    </div>
+                    <div class="form-group mt-2">
+                      <input type="password" name="logpass" class="form-style" placeholder="Contraseña" id="logpass" autocomplete="off">
+                      <i class="input-icon uil uil-lock-alt"></i>
+                    </div>
+                    <a href="#" class="btn mt-4">Iniciar sesión</a>
+                    <p class="mb-0 mt-4 text-center"><a href="#0" class="link">Olvide mi contraseña</a></p>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
-        </div>
-        <div class="info-item">
-          <div class="table">
-            <div class="table-cell">
-              <p>
-                ¿No tienes una cuenta?
-              </p>
-              <div class="btn">
-                Registrarse
+
+              @* seccion registrarse *@
+              <div class="card-back">
+                <div class="center-wrap">
+                  <div class="section text-center">
+                    <h4 class="mb-4 pb-3">Registrarse</h4>
+                    <div class="form-group">
+                      <input type="text" name="logname" class="form-style" placeholder="Nombre" id="logname" autocomplete="off">
+                      <i class="input-icon uil uil-user"></i>
+                    </div>
+                    <div class="form-group mt-2">
+                      <input type="email" name="logemail" class="form-style" placeholder="E-mail" id="logemail" autocomplete="off">
+                      <i class="input-icon uil uil-at"></i>
+                    </div>
+                    <div class="form-group mt-2">
+                      <input type="password" name="logpass" class="form-style" placeholder="Contraseña" id="logpass" autocomplete="off">
+                      <i class="input-icon uil uil-lock-alt"></i>
+                    </div>
+                    <a href="#" class="btn mt-4">Registrarse</a>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!--Iniciar Sesion-->
-      <div id="loginF" class="container-form">
-        <div class="form-item log-in">
-          <div class="table">
-            <div class="table-cell">
-              <input name="email" placeholder="Email" type="text" />
-              <input name="Password" placeholder="Password"  type="Password" />
-              <input id="btn-login" type="submit">
-              <h2>Iniciar</h2>
-              </input>
-            </div>
-          </div>
-        </div>
-        <!--Registrarse-->
-        <div id="registerF" class="form-item sign-up">
-          <div class="table">
-            <div class="table-cell">
-              <input name="email" placeholder="Email" type="text" />
-              <input name="fullName" placeholder="Nombre" type="text" />
-              <input name="Password" placeholder="Contraseña" type="Password"/>
-              <input name="Password" placeholder="Confirmar contraseña"  type="Password"/>
-             <input id="btn-register" type="submit">
-             <h2>Registrarse</h2>
-             </input>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</main>
+</div>
+</body>
+
 
 
 @section Scripts {
