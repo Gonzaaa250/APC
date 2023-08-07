@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.002.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TesisPadel", "TesisPadel.csproj", "{A2F67122-257F-486A-8260-495C6190F163}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TesisPadel", "TesisPadel.csproj", "{C8E81B6A-C2D4-4BE2-9857-1AB01F849C93}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{A2F67122-257F-486A-8260-495C6190F163}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A2F67122-257F-486A-8260-495C6190F163}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A2F67122-257F-486A-8260-495C6190F163}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A2F67122-257F-486A-8260-495C6190F163}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C8E81B6A-C2D4-4BE2-9857-1AB01F849C93}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8E81B6A-C2D4-4BE2-9857-1AB01F849C93}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C8E81B6A-C2D4-4BE2-9857-1AB01F849C93}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C8E81B6A-C2D4-4BE2-9857-1AB01F849C93}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {42DE7934-F8DA-48A9-A988-9485A2F820F0}
+		SolutionGuid = {D6A122D7-495B-4976-A602-A5E0038C0B4D}
 	EndGlobalSection
 EndGlobal

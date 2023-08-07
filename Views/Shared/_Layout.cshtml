@@ -7,7 +7,6 @@
     <title>@ViewData["Title"] APC</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/Login.css" asp-append-version="true">
     <link rel="stylesheet" href="~/css/carrousel.css" asp-append-version="true">
     <link rel="stylesheet" href="~/TesisPadel.styles.css" asp-append-version="true" />
 </head>
@@ -33,13 +32,13 @@
                             <a class="BTN nav-link" asp-area="" asp-controller="Club" asp-action="Index">Clubes</a>
                         </li>
                     </ul>
-                    <partial name="_LoginPartial" />
+                   <li><a href="_LoginPartial" style="display: inline-block;">¿Eres Jugador?</a></li>
                 </div>
             </div>
         </nav>
     </header>
-    <div class="container">
-        <main role="main" class="pb-3">
+    <div class="">
+        <main role="main container" class="pb-3">
             @RenderBody()
         </main>
     </div>

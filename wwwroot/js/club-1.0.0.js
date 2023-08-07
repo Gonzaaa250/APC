@@ -9,9 +9,9 @@ function BuscarClub() {
         success: function(club) {
             $("#tbody-club").empty();
             $.each(club, function(Index, club) {
-                let BotonEliminar = '';
-                let botones = '<button type="button" onclick="BuscarClub(' + club.ClubId +')" class="btn btn-primary btn-sm" style="margin-right:5px" onkeyup="this.value = this.value.toUpperCase()">Editar</button>' +
-                              '<button type="button" onclick="EliminarClub(' + club.ClubId +', 1)" class="btn btn-danger btn-sm">Desahabilitar</button>';
+                var BotonEliminar = '';
+                var botones = '<button type="button" onclick="BuscarClub(' + club.ClubId +')" class="btn btn-primary btn-sm" style="margin-right:5px" onkeyup="this.value = this.value.toUpperCase()">Editar</button>' +
+                              '<button type="button" onclick="EliminarClub(' + club.ClubId +', 1)" class="btn btn-danger btn-sm">Eliminar</button>';
                 
                 if (club.Estado == 'E') {
                     BotonEliminar = 'table-danger';
@@ -37,12 +37,11 @@ function VaciarFormulario() {
 
 function GuardarClub() {
     let Nombre = $("#Nombre").val();
-    let Direccion = $("#Direccion").val();
     let ClubId = $("#ClubId").val();
 
     $.ajax({
         url: '../../Club/GuardarClub',
-        data: { ClubId: ClubId, Nombre: Nombre, }, 
+        data: { ClubId: ClubId, Nombre: Nombre, Localidad: Localidad }, 
         type: 'POST',
         dataType: 'json',
         success: function(resultado) {
