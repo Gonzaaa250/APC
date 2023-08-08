@@ -1,4 +1,4 @@
-@model IEnumerable<TesisPadel.Models.Club>
+@model IEnumerable<TesisPadel.Models.Club>;
 @{
     ViewData["Title"] = "Club";
 }
@@ -9,18 +9,20 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Agregar Club</h5>
+                    <h5 class="modal-title letra" id="exampleModalLabel" >Agregar Club</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <input type="hidden" id="ClubId" value="0">
+                    <input type="hidden" id="ClubId" value="0" class="letra">
                     <div class="control-label">
-                        <p>Nombre</p>
+                        <p class="letra">Nombre</p>
                         <input type="text" class="form-control" id="Nombre" autocomplete="off"
-                            onkeyup="this.value = this.value.toUpperCase()">
-                        <p>Localidad</p>
+                            onkeyup="this.value = this.value()">
+                            @* <span asp-validation-for="Nombre" class="text-danger"></span>  *@
+                        <p class="letra">Localidad</p>
                         <input type="text" class="form-control" id="Localidad" autocomplete="off"
-                            onkeyup="this.value = this.value.toUpperCase()">
+                            onkeyup="this.value = this.value()">
+                            @* <span asp-validation-for="Localidad" class="text-danger"></span>   *@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>

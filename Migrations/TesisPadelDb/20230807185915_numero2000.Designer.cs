@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TesisPadel.Data;
 
@@ -11,9 +12,10 @@ using TesisPadel.Data;
 namespace TesisPadel.Migrations.TesisPadelDb
 {
     [DbContext(typeof(TesisPadelDbContext))]
-    partial class TesisPadelDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230807185915_numero2000")]
+    partial class numero2000
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -54,9 +56,8 @@ namespace TesisPadel.Migrations.TesisPadelDb
                     b.Property<bool>("Eliminado")
                         .HasColumnType("bit");
 
-                    b.Property<string>("Localidad")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("LocalidadId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Nombre")
                         .IsRequired()
@@ -64,7 +65,28 @@ namespace TesisPadel.Migrations.TesisPadelDb
 
                     b.HasKey("ClubId");
 
+                    b.HasIndex("LocalidadId");
+
                     b.ToTable("Club");
+                });
+
+            modelBuilder.Entity("TesisPadel.Models.Localidad", b =>
+                {
+                    b.Property<int>("LocalidadId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("LocalidadId"), 1L, 1);
+
+                    b.Property<string>("LNombre")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Provincia")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("LocalidadId");
+
+                    b.ToTable("Localidad");
                 });
 
             modelBuilder.Entity("TesisPadel.Models.Ranking", b =>
@@ -138,6 +160,17 @@ namespace TesisPadel.Migrations.TesisPadelDb
                     b.HasOne("TesisPadel.Models.Ranking", null)
                         .WithMany("Categorias")
                         .HasForeignKey("RankingId");
+                });
+
+            modelBuilder.Entity("TesisPadel.Models.Club", b =>
+                {
+                    b.HasOne("TesisPadel.Models.Localidad", "Localidad")
+                        .WithMany()
+                        .HasForeignKey("LocalidadId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Localidad");
                 });
 
             modelBuilder.Entity("TesisPadel.Models.Ranking", b =>

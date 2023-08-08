@@ -708,7 +708,7 @@ to{transform:rotatey(0.5turn)}}
   border: 3px solid black;
 }
 .tamañoIc{
-  height: 20px;
+
 }
 .tamañoIt{
   
@@ -828,4 +828,10 @@ to{transform:rotatey(0.5turn)}}
 }
 .tamañot{
   width: 50% !important;
+}
+.color{
+  color: #ffffff !important;
+}
+.letra{
+  color: #000000;
 }
