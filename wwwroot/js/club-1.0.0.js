@@ -10,15 +10,18 @@ function BuscarClub() {
             $("#tbody-club").empty();
             $.each(club, function (Index, club) {
                 var BotonEliminar = '';
-                var botones = '<button type="button" onclick="BuscarClub(' + club.ClubId + ')" class="btn btn-primary btn-sm" style="margin-right:5px" onkeyup="this.value = this.value.toUpperCase()">Editar</button>' +
-                    '<button type="button" onclick="EliminarClub(' + club.ClubId + ', 1)" class="btn btn-danger btn-sm">Eliminar</button>';
+                var botones = '<button type="button" onclick="BuscarClub(' + club.clubId + ')" class="btn btn-primary btn-sm" style="margin-right:5px" onkeyup="this.value = this.value.toUpperCase()">Editar</button>' +
+                    '<button type="button" onclick="eliminarClub(' + club.clubId + ', 1)" class="btn fondoe btn-sm">Eliminar</button>';
 
                 if (club.Estado == 'E') {
                     BotonEliminar = 'table-danger';
-                    botones = '<button type="button" onclick="EliminarClub(' + club.ClubId + ', 0)" class="btn btn-warning btn-sm">Activar</button>';
+                    botones = '<button type="button" onclick="EliminarClub(' + club.clubId + ', 0)" class="btn btn-warning btn-sm">Activar</button>';
                 }
 
-                $("#tbody-club").append('<tr class="' + BotonEliminar + '">' + '<td>' + club.Nombre + '</td>' + '<td class="text-center">' + botones + '</td>' + '</tr>');
+                $("#tbody-club").append('<tr class="' + BotonEliminar + '">' 
+                + '<td>' + club.nombre + '</td>' 
+                + '<td>' + club.localidad + '</td>' + 
+                '<td class="text-center">' + botones + '</td>' + '</tr>');
             });
         },
         error: function (xhr, status) {
@@ -57,8 +60,6 @@ function GuardarClub() {
 }
 
 function EliminarClub(ClubId, Eliminado) {
-    console.log("ClubId:", ClubId);
-    console.log("Eliminado:", Eliminado);
 
     $.ajax({
         url: '../../Club/EliminarClub',

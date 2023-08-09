@@ -1,15 +1,15 @@
-@model IEnumerable<TesisPadel.Models.Club>;
-@{
+@model TesisPadel.Models.Club;
+    @{
     ViewData["Title"] = "Club";
 }
 
-<body class="body5 colorB">
+<body class="body5">
     <!--modal-->
     <div class="modal fade" id="ModalClub" tabindex="1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title letra" id="exampleModalLabel" >Agregar Club</h5>
+                    <h5 class="modal-title letra" id="exampleModalLabel">Agregar Club</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -17,12 +17,13 @@
                     <div class="control-label">
                         <p class="letra">Nombre</p>
                         <input type="text" class="form-control" id="Nombre" autocomplete="off"
-                            onkeyup="this.value = this.value()">
-                            @* <span asp-validation-for="Nombre" class="text-danger"></span>  *@
+                            onkeyup="this.value = this.value.toLowerCase()">
+                            <span asp-validation-for="Nombre" class="text-danger"></span>
                         <p class="letra">Localidad</p>
                         <input type="text" class="form-control" id="Localidad" autocomplete="off"
-                            onkeyup="this.value = this.value()">
-                            @* <span asp-validation-for="Localidad" class="text-danger"></span>   *@
+                            onkeyup="this.value = this.value.toLowerCase()">
+                            <span asp-validation-for="Localidad" class="text-danger"></span>
+                        
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
@@ -32,9 +33,9 @@
             </div>
         </div>
     </div>
-        <h1 class="display-4 titulo bajar" >Club</h1>
+    <h1 class="display-4 titulo bajar">Club</h1>
 
-        <!-- Button trigger modal -->
+    <!-- Button trigger modal -->
     <div class="tamañot">
         <div class="mb-2">
             <button type="button" onclick="VaciarFormulario()" class="btn btn-primary" data-bs-toggle="modal"
@@ -43,19 +44,20 @@
             </button>
         </div>
         <table class="table table-bordered  table-condensed colort">
-        <thead>
-        <tr>
-            <th>Club</th>
-            <th>Localidad</th>
-        </tr>
-        </thead>
-        <tbody id="tbody-club">        
-        </tbody>
+            <thead>
+                <tr>
+                    <th>Club</th>
+                    <th>Localidad</th>
+                    <th>botones</th>
+                </tr>
+            </thead>
+            <tbody id="tbody-club">
+            </tbody>
         </table>
     </div>
 
 
 </body>
 @section Scripts{
-        <script src="~/js/club-1.0.0.js"></script>
+    <script src="~/js/club-1.0.0.js"></script>
 }

@@ -77,25 +77,15 @@ public class ClubController : Controller
     }
     public JsonResult EliminarClub(int ClubId, int Eliminado)
     {
-        bool resultado = false;
-
-        // Encontrar el club por su ClubId
         var club = _context.Club.Find(ClubId);
 
         if (club != null)
         {
-            // Asignar el valor de 'Eliminado' al atributo correspondiente
             club.Eliminado = Eliminado == 1;
-
-            // Guardar los cambios en el contexto
             _context.SaveChanges();
-
-            // Actualizar el resultado a 'true' ya que se realizó la operación correctamente
-            resultado = true;
         }
 
-        // Devolver el resultado (true o false) como un JsonResult
-        return Json(resultado);
+        return Json(true);
     }
 }
 

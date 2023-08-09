@@ -1,61 +1,23 @@
 @model IEnumerable<TesisPadel.Models.Usuario>
 
- @{
+@{
     ViewData["Title"]="Usuario";
 }
- <body class="body-5">
-    <!--modal-->
-    <div class="modal fade" id="ModalUsuario" tabindex="1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Usuario</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <input type="hidden" id="UsuarioId" value="0">
-                    <div class="control-label">
-                        <p>Nombre</p>
-                        <input type="text" class="form-control" id="Nombre" autocomplete="off" onkeyup="this.value = this.value.toUpperCase()">
-                        <p>Apellido</p>
-                        <input type="text" class="form-control" id="Localidad" autocomplete="off" onkeyup="this.value = this.value.toUpperCase()">
-                        <p>Localidad</p>
-                        <input type="text" class="form-control" id="Localidad" autocomplete="off" onkeyup="this.value = this.value.toUpperCase()">
-                        <p>Fecha de Nacimiento</p>
-                        <input type="text" class="form-control" id="Localidad" autocomplete="off" onkeyup="this.value = this.value.toUpperCase()">
-                        <p>DNI</p>
-                        <input type="text" class="form-control" id="Localidad" autocomplete="off" onkeyup="this.value = this.value.toUpperCase()">
-                        <p>Telefono</p>
-                        <input type="text" class="form-control" id="Localidad" autocomplete="off" onkeyup="this.value = this.value.toUpperCase()">
+<body class="body-5 ">
+    <h1 class="display-4 titulo">Crear Jugador</h1>
+    <p>Nombre</p>
+    <input type="text" class="from-control" id="Nombre" autocomplete="off" onkeyup="this.value = this.value.toLowerCase()">
 
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                        <button type="button" onclick="GuardarUsuario()" class="btn btn-primary">Guardar</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div>
-        <h1 class="display-4 titulo">Usuario</h1>
+    <input type="text" class="from-control" id="Apellido" autocomplete="off" onkeyup="this.value = this.value.toLowerCase()">
 
-        <!-- Button trigger modal -->
-        <div class="mb-2">
-            <button type="button" onclick="VaciarFormulario()" class="btn btn-primary" data-bs-toggle="modal"
-                data-bs-target="#ModalUsuario">
-                Nuevo
-            </button>
-        </div>
-        @* <table class="table table-bordered table-striped table-condensed">
-            <thead>
-                <tr>
-                    <th>Nombre</th>
-                    <th>Localidad</th>
-                </tr>
-            </thead>
-            <tbody id="tbody-usuario">
-            </tbody>
-        </table> *@
-    </div>
+    <input type="text" class="from-control" id="Localidad" autocomplete="off" onkeyup="this.value = this.value.toLowerCase()">
+
+    <input type="text" class="from-control" id="Edad" autocomplete="off" onkeyup="this.value = this.value.toLowerCase()">
+
+    <input type="text" class="from-control" id="Telefono" autocomplete="off" onkeyup="this.value = this.value.toLowerCase()">
+
+    <input type="text" class="from-control" id="DNI" autocomplete="off" onkeyup="this.value = this.value.toLowerCase()">
+
+    <input type="text" class="from-control" id="Categoria" autocomplete="off" onkeyup="this.value = this.value.toLowerCase()">
+
 </body> 

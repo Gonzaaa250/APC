@@ -31,14 +31,17 @@
                         <li class="nav-item">
                             <a class="BTN nav-link" asp-area="" asp-controller="Club" asp-action="Index">Clubes</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="BTN nav-link" asp-area="" asp-controller="Usuario" asp-action="Index">Usuario</a>
+                        </li>
                     </ul>
-                    <partial class="BTN" name="_LoginPartial"/>
+                    <partial class="btn" name="_LoginPartial" />
                 </div>
             </div>
         </nav>
     </header>
-    <div class="">
-        <main role="main container" class="pb-3">
+    <div class="container">
+        <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
