@@ -1,23 +1,35 @@
 @model IEnumerable<TesisPadel.Models.Usuario>
 
 @{
-    ViewData["Title"]="Usuario";
+    ViewData["Title"] = "Usuario";
 }
-<body class="body-5 ">
-    <h1 class="display-4 titulo">Crear Jugador</h1>
-    <p>Nombre</p>
-    <input type="text" class="from-control" id="Nombre" autocomplete="off" onkeyup="this.value = this.value.toLowerCase()">
 
-    <input type="text" class="from-control" id="Apellido" autocomplete="off" onkeyup="this.value = this.value.toLowerCase()">
-
-    <input type="text" class="from-control" id="Localidad" autocomplete="off" onkeyup="this.value = this.value.toLowerCase()">
-
-    <input type="text" class="from-control" id="Edad" autocomplete="off" onkeyup="this.value = this.value.toLowerCase()">
-
-    <input type="text" class="from-control" id="Telefono" autocomplete="off" onkeyup="this.value = this.value.toLowerCase()">
-
-    <input type="text" class="from-control" id="DNI" autocomplete="off" onkeyup="this.value = this.value.toLowerCase()">
-
-    <input type="text" class="from-control" id="Categoria" autocomplete="off" onkeyup="this.value = this.value.toLowerCase()">
-
-</body> 
+<div>
+    <h1 class="display-4 titulo bajar">Crear Jugador</h1>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="col-md-6 mx-auto">
+                <p>Nombre</p>
+                <input type="text" class="from-control" id="Nombre" autocomplete="off">
+                <p>Apellido</p>
+                <input type="text" class="from-control" id="Apellido" autocomplete="off">
+                <p>Localidad</p>
+                <input type="text" class="from-control" id="Localidad" autocomplete="off">
+            </div>
+            <div class="col-md-6 mx-auto">
+                <p>Edad</p>
+                <input type="number" class="from-control" id="Edad" autocomplete="off">
+                <p>Telefono</p>
+                <input type="number" class="from-control" id="Telefono" autocomplete="off">
+                <p>DNI</p>
+                <input type="number" class="from-control" id="DNI" autocomplete="off">
+            </div>
+            <div class="col-md-12">
+                <p>Categoria</p>
+                <input type="text" class="from-control" id="Categoria" autocomplete="off">
+            </div>
+        </div>
+    </div>
+</div>
+<button type="button" class="button-87" role="button">Crear</button>
+</div>

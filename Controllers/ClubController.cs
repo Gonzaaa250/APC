@@ -55,7 +55,7 @@ public class ClubController : Controller
             }
             else
             {
-                var clubExistente = _context.Club.FirstOrDefault(c => c.Nombre == Nombre && c.ClubId != ClubId);
+                var clubExistente = _context.Club.FirstOrDefault(c => c.Nombre == Nombre && c.Localidad == Localidad && c.ClubId != ClubId);
 
                 if (clubExistente == null)
                 {
@@ -75,17 +75,32 @@ public class ClubController : Controller
         }
         return Json(resultado);
     }
+    
     public JsonResult EliminarClub(int ClubId, int Eliminado)
     {
+        int resultado = 0;
         var club = _context.Club.Find(ClubId);
 
         if (club != null)
         {
-            club.Eliminado = Eliminado == 1;
+            if (Eliminado ==0)
+            {
+                 club.Eliminado = false;
             _context.SaveChanges();
+            }
+           
+            else{
+                if (Eliminado == 1)
+                {
+                    club.Eliminado = true;
+                    _context.Remove(club);
+                    _context.SaveChanges();
+                }
+            }
         }
+        resultado = 1;
 
-        return Json(true);
+        return Json(resultado);
     }
 }
 

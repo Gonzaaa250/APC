@@ -6,21 +6,21 @@ function BuscarClub() {
         url: '../../Club/BuscarClub',
         type: 'GET',
         dataType: 'json',
-        success: function (club) {
+        success: function (clubes) {
             $("#tbody-club").empty();
-            $.each(club, function (Index, club) {
+            $.each(clubes, function (Index, club) {
                 var BotonEliminar = '';
-                var botones = '<button type="button" onclick="BuscarClub(' + club.clubId + ')" class="btn btn-primary btn-sm" style="margin-right:5px" onkeyup="this.value = this.value.toUpperCase()">Editar</button>' +
-                    '<button type="button" onclick="eliminarClub(' + club.clubId + ', 1)" class="btn fondoe btn-sm">Eliminar</button>';
+                var botones = '<button type="button" onclick="BuscarClub(' + club.clubId + ')" class="button-81" role="button"><img src="../css/img/lapiz.png" alt=""></button>' +
+                    '<button type="button" onclick="EliminarClub(' + club.clubId + ', 1)" class="button-82" role="button"><img src="../css/img/tachito.png" alt=""></button>';
 
-                if (club.Estado == 'E') {
+                if (club.eliminado) {
                     BotonEliminar = 'table-danger';
-                    botones = '<button type="button" onclick="EliminarClub(' + club.clubId + ', 0)" class="btn btn-warning btn-sm">Activar</button>';
+                    botones = '<button type="button" onclick="EliminarClub(' + club.clubId + ', 0)" class="button-87" role="button">Activar</button>';
                 }
 
                 $("#tbody-club").append('<tr class="' + BotonEliminar + '">' 
-                + '<td>' + club.nombre + '</td>' 
-                + '<td>' + club.localidad + '</td>' + 
+                + '<td class="text-center lt">' + club.nombre + '</td>' 
+                + '<td class="text-center lt">' + club.localidad + '</td>' + 
                 '<td class="text-center">' + botones + '</td>' + '</tr>');
             });
         },
@@ -67,14 +67,12 @@ function EliminarClub(ClubId, Eliminado) {
         type: 'POST',
         dataType: 'json',
         success: function (resultado) {
-            console.log("Resultado:", resultado);
             if (resultado) {
-                console.log("Club eliminado correctamente");
                 BuscarClub();
+                console.log("Club eliminado correctamente");
             }
         },
-        error: function (xhr, status) {
-            console.log("Error al eliminar el club");
+        error: function (xhr, status) {;
             alert('No se pudo eliminar el club');
         }
     });

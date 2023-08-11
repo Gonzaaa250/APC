@@ -1,63 +1,62 @@
 @model TesisPadel.Models.Club;
-    @{
+@{
     ViewData["Title"] = "Club";
 }
-
-<body class="body5">
+@* <section> *@
     <!--modal-->
     <div class="modal fade" id="ModalClub" tabindex="1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title letra" id="exampleModalLabel">Agregar Club</h5>
+                <div class="modal-header fondom">
+                    <h5 class="modal-title letra " id="exampleModalLabel">Agregar Club</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body fondom">
                     <input type="hidden" id="ClubId" value="0" class="letra">
                     <div class="control-label">
                         <p class="letra">Nombre</p>
-                        <input type="text" class="form-control" id="Nombre" autocomplete="off"
-                            onkeyup="this.value = this.value.toLowerCase()">
-                            <span asp-validation-for="Nombre" class="text-danger"></span>
+                        <input type="text" class="form-control fondoi" id="Nombre" autocomplete="off">
+                        <span asp-validation-for="Nombre" class="text-danger"></span>
                         <p class="letra">Localidad</p>
-                        <input type="text" class="form-control" id="Localidad" autocomplete="off"
-                            onkeyup="this.value = this.value.toLowerCase()">
-                            <span asp-validation-for="Localidad" class="text-danger"></span>
-                        
+                        <input type="text" class="form-control fondoi" id="Localidad" autocomplete="off">
+                        <span asp-validation-for="Localidad" class="text-danger"></span>
+
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                        <button type="button" onclick="GuardarClub()" class="btn btn-primary">Guardar</button>
+                        <button type="button" class="button-8" role="button" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="button" onclick="GuardarClub()" class="button-87" role="button">Guardar</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <h1 class="display-4 titulo bajar">Club</h1>
+    <h1 class="display-4 titulo bajar" style="font-family: Verdana, Geneva, Tahoma, sans-serif;">Club</h1>
 
     <!-- Button trigger modal -->
-    <div class="tamañot">
+    <div>
         <div class="mb-2">
-            <button type="button" onclick="VaciarFormulario()" class="btn btn-primary" data-bs-toggle="modal"
+            <button type="button" onclick="VaciarFormulario()" class="button-87" role="button" data-bs-toggle="modal"
                 data-bs-target="#ModalClub">
                 Nuevo
             </button>
         </div>
-        <table class="table table-bordered  table-condensed colort">
-            <thead>
-                <tr>
-                    <th>Club</th>
-                    <th>Localidad</th>
-                    <th>botones</th>
-                </tr>
-            </thead>
-            <tbody id="tbody-club">
-            </tbody>
-        </table>
+        <div>
+                    <table class="table table-dark table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col" class="lt">Club</th>
+                                <th scope="col" class="lt">Localidad</th>
+                                <th style="width: 30% !important;" scope="col" class="lt">botones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbody-club">
+                        </tbody>
+                    </table>
+                    
+        </div>
     </div>
+@* </section> *@
 
-
-</body>
 @section Scripts{
     <script src="~/js/club-1.0.0.js"></script>
 }
