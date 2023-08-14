@@ -122,7 +122,7 @@ body {
 
 .LTI-R {
   margin-top: 30px;
-  color: #ffeba7;
+  color: #a0a0a0;
 
 }
 
@@ -186,22 +186,23 @@ h6 span {
   padding: 0;
   margin: 10px auto;
   cursor: pointer;
-  background-color: #ffeba7;
+  background-color: #4e94af;
 }
 
 .checkbox:checked+label:before,
 .checkbox:not(:checked)+label:before {
   position: absolute;
-  display: block;
+  display: block; 
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  color: #ffeba7;
-  background-color: #102770;
+  background-image: url(../css/img/icons8-pelota-de-tenis-30.png);
+  background-repeat: no-repeat;
+  background-position: 25%;
   font-family: 'unicons';
   content: '\eb4f';
-  z-index: 20;
-  top: -10px;
+  z-index: 20; 
+  top: -10px; 
   left: -10px;
   line-height: 36px;
   text-align: center;
@@ -376,7 +377,7 @@ h6 span {
   transition: all 200ms linear;
 }
 
-/* .btn{  
+.btn{  
   border-radius: 4px;
   height: 44px;
   font-size: 13px;
@@ -400,26 +401,15 @@ h6 span {
   -ms-flex-pack: center;
   text-align: center;
   border: none;
-  background-color: #ffeba7;
+  background-color: #4e94af;
   color: #000000;
   box-shadow: 0 8px 24px 0 rgba(255,235,167,.2);
 }
-.btn:active,
-.btn:focus{  
-  background-color: #102770;
-  color: #ffeba7;
-  box-shadow: 0 8px 24px 0 rgba(14, 42, 133, 0.733);
-}
-.btn:hover{  
-  background-color: #102770;
-  /* color: #ffeba7; 
-  color: #000000;
-  box-shadow: 0 8px 24px 0 rgba(14, 42, 133, 0.733);
-}
-.fondoe:hover{
+
+/* .fondoe:hover{
 background-color: rgb(155, 6, 6);
 box-shadow: 0 8px 24px 0 rgba(129, 11, 11, 0.87);
-} */
+}  */
 
 .logo {
   position: absolute;
@@ -1033,3 +1023,4 @@ img {
 .fondoi{
   background-color: rgb(117, 115, 115);
 }
+/* BOTON LOGIN*/

@@ -10,8 +10,8 @@ function BuscarClub() {
             $("#tbody-club").empty();
             $.each(clubes, function (Index, club) {
                 var BotonEliminar = '';
-                var botones = '<button type="button" onclick="BuscarClub(' + club.clubId + ')" class="button-81" role="button"><img src="../css/img/lapiz.png" alt=""></button>' +
-                    '<button type="button" onclick="EliminarClub(' + club.clubId + ', 1)" class="button-82" role="button"><img src="../css/img/tachito.png" alt=""></button>';
+                var botones = '<button type="button" onclick="BuscarClub(' + club.clubId + ')" class="button-81" role="button" title="Editar"><img src="../css/img/lapiz.png" alt=""></button>' +
+                    '<button type="button" onclick="EliminarClub(' + club.clubId + ', 1)" class="button-82" role="button" title="Eliminar"><img src="../css/img/tachito.png" alt=""></button>';
 
                 if (club.eliminado) {
                     BotonEliminar = 'table-danger';
@@ -34,6 +34,25 @@ function VaciarFormulario() {
     $("#Nombre").val('');
     $("#ClubId").val(0);
     $("#Localidad").val("");
+}
+function BuscarClub(ClubId){
+$.ajax({
+    url:'../../Club/BuscarClub',
+    data:{'id': ClubId},
+    type:'GET',
+    dataType:'json',
+    success : function(data){
+        if (Club.length==1){
+            let club = Club[0];
+            $('#Nombre').val(club['nombre']);
+            $('#ClubId').val(club["id"]);
+            $('#Localidad').val(club["localidad"]);
+        }
+    },
+    error: function(data){
+
+    }
+});
 }
 
 function GuardarClub() {
