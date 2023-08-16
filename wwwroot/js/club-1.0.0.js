@@ -1,6 +1,6 @@
-window.onload = BuscarClub();
+window.onload = BuscarClubs();
 
-function BuscarClub() {
+function BuscarClubs() {
     $("#tbody-club").empty();
     $.ajax({
         url: '../../Club/BuscarClub',
@@ -35,26 +35,29 @@ function VaciarFormulario() {
     $("#ClubId").val(0);
     $("#Localidad").val("");
 }
+// EDITAR CLUB
 function BuscarClub(ClubId){
 $.ajax({
-    url:'../../Club/BuscarClub',
-    data:{'id': ClubId},
-    type:'GET',
-    dataType:'json',
-    success : function(data){
-        if (Club.length==1){
-            let club = Club[0];
-            $('#Nombre').val(club['nombre']);
-            $('#ClubId').val(club["id"]);
-            $('#Localidad').val(club["localidad"]);
+    url: '../../Club/BuscarClub',
+    data: {ClubId: ClubId},
+    type: 'GET',
+    dataType: "Json",
+    success: function(clubes){
+        if(clubes.length ==1){
+            let club =clubes[0];
+            $("#Nombre").val(club.nombre);
+            $("#Localidad").val(club.localidad);
+            $("#ClubId").val(club.clubId);
+
+            $("#ModalClub").modal("show");
         }
     },
-    error: function(data){
-
+    error: function(xhr, status){
+        alert("Error al editar el club")
     }
 });
 }
-
+/*GUARDAR CLUB*/
 function GuardarClub() {
     let ClubId = $("#ClubId").val();
     let Nombre = $("#Nombre").val();
@@ -77,7 +80,7 @@ function GuardarClub() {
         }
     });
 }
-
+/*Eliminar CLUB*/
 function EliminarClub(ClubId, Eliminado) {
 
     $.ajax({

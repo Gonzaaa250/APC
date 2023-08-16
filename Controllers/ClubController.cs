@@ -55,9 +55,9 @@ public class ClubController : Controller
             }
             else
             {
-                var clubsExistente = _context.Club.FirstOrDefault(c => c.Nombre == Nombre && c.Localidad == Localidad && c.ClubId != ClubId);
+                var clubExistente = _context.Club.FirstOrDefault(c => c.Nombre == Nombre && c.Localidad == Localidad && c.ClubId != ClubId);
 
-                if (clubsExistente == null)
+                if (clubExistente == null)
                 {
                     var clubeditar = _context.Club.Find(ClubId);
 
