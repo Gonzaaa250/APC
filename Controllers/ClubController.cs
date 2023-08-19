@@ -31,7 +31,7 @@ public class ClubController : Controller
         }
         return Json(clubs);
     }
-    public JsonResult GuardarClub(int ClubId, string Nombre, string Localidad)
+    public JsonResult GuardarClub(int ClubId, string Nombre, string Localidad, IFormFile imagen)
     {
         bool resultado = false;
 
@@ -48,6 +48,19 @@ public class ClubController : Controller
                         Nombre = Nombre,
                         Localidad = Localidad
                     };
+                    if (imagen != null && imagen.Length > 0)
+                    {
+                        byte[] imagenBinaria = null;
+                        using (var fs1 = imagen.OpenReadStream())
+                        using (var ms1 = new MemoryStream())
+                        {
+                            fs1.CopyTo(ms1);
+                            imagenBinaria = ms1.ToArray();
+                        }
+                        clubguardar.Imagen = imagenBinaria;
+                        clubguardar.TipoImagen = imagen.ContentType;
+                    }
+                
                     _context.Add(clubguardar);
                     _context.SaveChanges();
                     resultado = true;
@@ -70,8 +83,7 @@ public class ClubController : Controller
                     }
                 }
             }
-
-
+            return Json(resultado);
         }
         return Json(resultado);
     }
@@ -85,10 +97,10 @@ public class ClubController : Controller
         {
             if (Eliminado ==0)
             {
-                 club.Eliminado = false;
+                club.Eliminado = false;
             _context.SaveChanges();
             }
-           
+            
             else{
                 if (Eliminado == 1)
                 {
@@ -103,4 +115,3 @@ public class ClubController : Controller
         return Json(resultado);
     }
 }
-

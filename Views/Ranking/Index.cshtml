@@ -1,28 +1,26 @@
 @model TesisPadel.Models.Ranking;
 @{
-    ViewData["Title"] = "Ranking";
+    ViewData["Title"] = "club";
 }
-
-@* modal *@
-    <div class="modal fade" id="ModalRanking" tabindex="1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header fondom">
-                    <h5 class="modal-title letra " id="exampleModalLabel">Agregar Puesto</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div lass="modal-body fondom">
-                    <input type="hidden" id="RankingId" value="0" class="letra">
-                    <div class="control-label">
-                        <p class="letra">Nombre</p>
-                        <input type="text" class="form-control fondoi" id="Nombre" autocomplete="off">
-                        <p class="letra">Apellido</p>
-                        <input type="text" class="form-control fondoi" id="Apellido" autocomplete="off">
-                        <p class="letra">Club</p>
-                        <input type="text" class="form-control fondoi" id="Club" autocomplete="off">
-                        <p class="letra">Puntos</p>
-                        <input type="num" class="form-control fondoi" id="Nombre" autocomplete="off">
-                    </div>
+@* MODAL *@
+<div class="modal fade" id="ModalRanking" tabindex="1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header fondom">
+                <h5 class="modal-title letra" id="exampleModalLabel">Agregar puntos</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body fondom">
+                <input type="hidden" id="RankingId" value="0" class="letra">
+                <div class="control-label">
+                    <p class="letra">Nombre</p>
+                    <input type="text" class="from-control fondoi" id="Nombre" autocomplete="off">
+                    <p class="letra">Localidad</p>
+                    <input type="text" class="from-control fondoi" id="Localidad" autocomplete="off">
+                    <p class="letra">club</p>
+                    <input type="text" class="from-control fondoi" id="Club" autocomplete="off">
+                    <p class="letra">Puntos</p>
+                    <input type="Enum" class="from-control fondoi" id="Nombre" autocomplete="off">
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="button-8" role="button" data-bs-dismiss="modal">Cerrar</button>
@@ -31,28 +29,29 @@
             </div>
         </div>
     </div>
-    <h1></h1>
-    <div>
-        <div class="mb-2">
-            <button type="button" onclick="VaciarFormulario()" class="button-87" role="button" data-bs-toggle="modal"
+</div>
+<h1 class="display-4 titulo bajar" style="font-family: Verdana, Geneva, Tahoma, sans-serif;">Posiciones</h1>
+<div>
+    <div class="mb-2">
+        <button type="button" onclick="VaciarFormulario()" class="button-87" role="button" data-bs-toggle="modal"
                 data-bs-target="#ModalRanking">
-                Nuevo
+                Actualizar
             </button>
-        </div>
-        <table class="table table-dark table-bordered table-striped">
+    </div>
+    <table class="table table-dark table-bordered table-striped">
         <thead>
             <tr>
-                <th>Nombre</th>
-                <th>Apellidos</th>
-                <th>Club</th>
-                <th>Puntos</th>
+                <th scope="col" class="lt">Nombre</th>
+                <th scope="col" class="lt">Localidad</th>
+                <th scope="col" class="lt">Club</th>
+                <th scope="col" class="lt">Puntos</th>
+                <th style="width: 30% !important;" scope="col" class="lt"></th>
             </tr>
         </thead>
-        <tbody id="tbody-ranking">
+        <tbody id="tbody-ranking">   
         </tbody>
     </table>
-    </div>
-
-@section script{
-    <script src="~/js/ranking-1.0.0.js"></script>
+</div>
+@section Scripts{
+<script src="~/js/Ranking-1.0.0.js"></script>
 }

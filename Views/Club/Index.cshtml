@@ -11,22 +11,27 @@
                     <h5 class="modal-title letra " id="exampleModalLabel">Agregar Club</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
+                <form id="files" method="post" enctype="multipart/form-data">
                 <div class="modal-body fondom">
                     <input type="hidden" id="ClubId" value="0" class="letra">
                     <div class="control-label">
                         <p class="letra">Nombre</p>
-                        <input type="text" class="form-control fondoi" id="Nombre" autocomplete="off">
+                        <input name="Nombre" type="text" class="form-control fondoi" id="Nombre" autocomplete="off">
                         <span asp-validation-for="Nombre" class="text-danger"></span>
                         <p class="letra">Localidad</p>
-                        <input type="text" class="form-control fondoi" id="Localidad" autocomplete="off">
+                        <input name="Localidad" type="text" class="form-control fondoi" id="Localidad" autocomplete="off">
                         <span asp-validation-for="Localidad" class="text-danger"></span>
-
+                    </div>
+                    <div>
+                        <label class="control-label">Imagen</label>
+                        <input type='file' class="form-control" accept="image/*" name="imagen" id='imagen'>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="button-8" role="button" data-bs-dismiss="modal">Cerrar</button>
                         <button type="button" onclick="GuardarClub()" class="button-87" role="button">Guardar</button>
                     </div>
                 </div>
+                </form>
             </div>
         </div>
     </div>
@@ -46,7 +51,8 @@
                             <tr>
                                 <th scope="col" class="lt">Club</th>
                                 <th scope="col" class="lt">Localidad</th>
-                                <th style="width: 30% !important;" scope="col" class="lt">botones</th>
+                                <th style="width: 30% !important;" scope="col" class="lt">boton</th>
+                                <th scope="col" class="lt">Imagen</th>
                             </tr>
                         </thead>
                         <tbody id="tbody-club">

@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TesisPadel.Models
 {
@@ -12,7 +14,10 @@ namespace TesisPadel.Models
 
         [Required(ErrorMessage = "La localidad es obligatoria")]
         public string Localidad { get; set; }
-
+        public byte[]? Imagen {get;set;}
+        public string? TipoImagen {get; set;}
         public bool Eliminado { get; set; }
+        [NotMapped]
+        public string? ImagenBase64 {get; set;}
     }
 }

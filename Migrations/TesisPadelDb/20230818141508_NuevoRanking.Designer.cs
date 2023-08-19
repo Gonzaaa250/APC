@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TesisPadel.Data;
 
@@ -11,9 +12,10 @@ using TesisPadel.Data;
 namespace TesisPadel.Migrations.TesisPadelDb
 {
     [DbContext(typeof(TesisPadelDbContext))]
-    partial class TesisPadelDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230818141508_NuevoRanking")]
+    partial class NuevoRanking
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -33,17 +35,12 @@ namespace TesisPadel.Migrations.TesisPadelDb
                     b.Property<int?>("RankingId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("UsuarioId")
-                        .HasColumnType("int");
-
                     b.Property<int>("genero")
                         .HasColumnType("int");
 
                     b.HasKey("CategoriaId");
 
                     b.HasIndex("RankingId");
-
-                    b.HasIndex("UsuarioId");
 
                     b.ToTable("Categoria");
                 });
@@ -59,9 +56,6 @@ namespace TesisPadel.Migrations.TesisPadelDb
                     b.Property<bool>("Eliminado")
                         .HasColumnType("bit");
 
-                    b.Property<byte[]>("Imagen")
-                        .HasColumnType("varbinary(max)");
-
                     b.Property<string>("Localidad")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -70,10 +64,12 @@ namespace TesisPadel.Migrations.TesisPadelDb
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("TipoImagen")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int?>("RankingId")
+                        .HasColumnType("int");
 
                     b.HasKey("ClubId");
+
+                    b.HasIndex("RankingId");
 
                     b.ToTable("Club");
                 });
@@ -86,18 +82,22 @@ namespace TesisPadel.Migrations.TesisPadelDb
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RankingId"), 1L, 1);
 
-                    b.Property<string>("Club")
+                    b.Property<string>("Apellido")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("Eliminado")
                         .HasColumnType("bit");
 
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Puntos")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("UsuarioId")
+                    b.Property<int?>("UsuarioId")
                         .HasColumnType("int");
 
                     b.HasKey("RankingId");
@@ -115,8 +115,9 @@ namespace TesisPadel.Migrations.TesisPadelDb
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UsuarioId"), 1L, 1);
 
-                    b.Property<int?>("ClubId")
-                        .HasColumnType("int");
+                    b.Property<string>("Categoria")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("DNI")
                         .IsRequired()
@@ -142,8 +143,6 @@ namespace TesisPadel.Migrations.TesisPadelDb
 
                     b.HasKey("UsuarioId");
 
-                    b.HasIndex("ClubId");
-
                     b.ToTable("Usuario");
                 });
 
@@ -152,9 +151,19 @@ namespace TesisPadel.Migrations.TesisPadelDb
                     b.HasOne("TesisPadel.Models.Ranking", null)
                         .WithMany("Categorias")
                         .HasForeignKey("RankingId");
+                });
 
+            modelBuilder.Entity("TesisPadel.Models.Club", b =>
+                {
+                    b.HasOne("TesisPadel.Models.Ranking", null)
+                        .WithMany("Club")
+                        .HasForeignKey("RankingId");
+                });
+
+            modelBuilder.Entity("TesisPadel.Models.Ranking", b =>
+                {
                     b.HasOne("TesisPadel.Models.Usuario", "Usuario")
-                        .WithMany("Categoria")
+                        .WithMany()
                         .HasForeignKey("UsuarioId");
 
                     b.Navigation("Usuario");
@@ -162,32 +171,9 @@ namespace TesisPadel.Migrations.TesisPadelDb
 
             modelBuilder.Entity("TesisPadel.Models.Ranking", b =>
                 {
-                    b.HasOne("TesisPadel.Models.Usuario", "Usuario")
-                        .WithMany()
-                        .HasForeignKey("UsuarioId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Usuario");
-                });
-
-            modelBuilder.Entity("TesisPadel.Models.Usuario", b =>
-                {
-                    b.HasOne("TesisPadel.Models.Club", "Club")
-                        .WithMany()
-                        .HasForeignKey("ClubId");
+                    b.Navigation("Categorias");
 
                     b.Navigation("Club");
-                });
-
-            modelBuilder.Entity("TesisPadel.Models.Ranking", b =>
-                {
-                    b.Navigation("Categorias");
-                });
-
-            modelBuilder.Entity("TesisPadel.Models.Usuario", b =>
-                {
-                    b.Navigation("Categoria");
                 });
 #pragma warning restore 612, 618
         }

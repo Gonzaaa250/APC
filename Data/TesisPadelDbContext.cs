@@ -8,7 +8,6 @@ public class TesisPadelDbContext: DbContext{
     }
     public DbSet <Usuario> Usuario {get; set;}
     public DbSet <Club> Club {get; set;}
+    public DbSet<Ranking> Ranking { get; set; }
 
-    public DbSet<TesisPadel.Models.Ranking> Ranking { get; set; }
-    public DbSet<TesisPadel.Models.Categoria> Categoria { get; set; }
 }

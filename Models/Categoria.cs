@@ -5,6 +5,7 @@ public class Categoria{
     public int CategoriaId { get; set; }
 
     public Genero genero {get; set;}
+    public virtual Usuario? Usuario {get; set;}
 }
 public enum Genero
 {

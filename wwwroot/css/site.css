@@ -753,10 +753,11 @@ img {
   color: #ffffff;
 }
 
+
 .card-img-top {
-  height: 100%;
-  width: 100%;
-  border-radius: 50%;
+  max-height: 100%;
+  width: auto;
+  border-radius: 100%;
   border: 3px solid black;
 }
 
@@ -882,7 +883,7 @@ img {
 }
 
 .letra {
-  color: #000000;
+  color: #ffffff;
 }
 
 /* BOTONES */
@@ -920,7 +921,7 @@ img {
 /*BOTON ELIMINAR*/
 .button-82 {
   margin: 10px;
-  padding: 10px 25px;
+  padding: 6px 18px;
   text-align: center;
   text-transform: uppercase;
   transition: 0.5s;
@@ -951,7 +952,7 @@ img {
 /*BOTON EDITAR*/
 .button-81 {
   margin: 10px;
-  padding: 9px 25px;
+  padding: 6px 18px;
   text-align: center;
   text-transform: uppercase;
   transition: 0.5s;
@@ -1013,7 +1014,7 @@ img {
 /*FIN BOTONES*/
 .lt{
   font-family: Verdana, Geneva, Tahoma, sans-serif;
-  color:#000000; 
+  color:#ffffff; 
   /* color: #ffffff; */
   font-size: large;
 }
@@ -1024,3 +1025,11 @@ img {
   background-color: rgb(117, 115, 115);
 }
 /* BOTON LOGIN*/
+.btnL{
+  
+}
+/* IMAGENES CARDS */
+.card-image{
+max-width: 100%;
+height:auto ;
+}

@@ -8,8 +8,7 @@ using Microsoft.Extensions.Logging;
 using TesisPadel.Data;
 using TesisPadel.Models;
 
-namespace TesisPadel.Controllers
-{
+namespace TesisPadel.Controllers;
     public class UsuarioController : Controller
     {
         private readonly ILogger<UsuarioController> _logger;
@@ -40,8 +39,8 @@ namespace TesisPadel.Controllers
         public JsonResult GuardarUsuario(int UsuarioId, string Nombre, string Apellido, string Localidad, string Telefono, string DNI, DateTime Edad, string Categoria)
         {
             bool resultado = false;
-            if (!string.IsNullOrEmpty(Nombre) && !string.IsNullOrEmpty(Apellido) && !string.IsNullOrEmpty(Localidad) && !string.IsNullOrEmpty(Telefono)
-                && !string.IsNullOrEmpty(DNI) && !string.IsNullOrEmpty(Categoria))
+            if (!string.IsNullOrEmpty(Nombre) && !string.IsNullOrEmpty(Localidad) && !string.IsNullOrEmpty(Telefono)
+                && !string.IsNullOrEmpty(DNI))
             {
                 if (UsuarioId == 0)
                 {
@@ -51,12 +50,10 @@ namespace TesisPadel.Controllers
                         var usuarioguardar = new Usuario
                         {
                             Nombre = Nombre,
-                            Apellido = Apellido,
                             Localidad = Localidad,
                             Edad = Edad,
                             Telefono = Telefono,
                             DNI = DNI,
-                            Categoria = Categoria
                         };
                         _context.Add(usuarioguardar);
                         _context.SaveChanges();
@@ -66,5 +63,28 @@ namespace TesisPadel.Controllers
             }
             return Json(resultado); 
         }
+        public JsonResult EliminarUsuario(int UsuarioId, int Eliminado)
+        {
+            int resultado =0;
+            var usuario = _context.Usuario.Find(UsuarioId);
+            if(usuario != null)
+            {
+                if(Eliminado == 0)
+                {
+                    usuario.Eliminado = false;
+                    _context.SaveChanges();
+                }
+                else
+                {
+                    if(Eliminado ==1)
+                    {
+                        usuario.Eliminado = true;
+                        _context.Remove(usuario);
+                        _context.SaveChanges();
+                    }
+                }
+            }
+            resultado=1;
+            return Json(resultado);
+        }
     }
-}

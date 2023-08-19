@@ -14,8 +14,8 @@
         <div class="col-12 text-center align-self-center py-5">
           <div class="section pb-5 pt-5 pt-sm-2 text-center">
 
-            <h6 class="LTI-R mb-0 pb-3"><span class="LTI-R">Iniciar sesión</span><span class="LTI-R">/</span><span
-                class="LTI-R">Registrarse</span></h6>
+            <h6 class="LTI-R mb-0 pb-3"><button class="btn" onclick="">Iniciar sesión</button><span class="LTI-R">/</span><button
+                class="btn" onclick="">Registrarse</button></h6>
 
             @* Boton para dar vuelta la tarjeta *@
             <input class="checkbox" type="checkbox" id="reg-log" name="reg-log"></input>
@@ -38,7 +38,7 @@
                           autocomplete="off">
                         <i class="input-icon uil uil-lock-alt"></i>
                       </div>
-                      <a href="#" class="btn mt-4" role="button" id="btn_login">Iniciar sesión</a>
+                      <a href="#" class="btn mt-4" role="button" onclick="Iniciarsesion()">Iniciar sesión</a>
                       <p class="mb-0 mt-4 text-center"><a href="#0" class="link">Olvide mi contraseña</a></p>
                     </div>
                   </div>
@@ -50,20 +50,20 @@
                     <div class="section text-center">
                       <h4 class="mb-4 pb-3">Registrarse</h4>
                       <div class="form-group">
-                        <input type="email" name="logemail" class="form-style" placeholder="E-mail" id="logemail"
+                        <input type="email" name="logemail" class="form-style" placeholder="E-mail" id="regemail"
                           autocomplete="off">
                         <i class="input-icon uil uil-at"></i>
                         <div class="form-group mt-2">
-                          <input type="password" name="logpass" class="form-style" placeholder="Contraseña" id="logpass"
+                          <input type="password" name="logpass" class="form-style" placeholder="Contraseña" id="regpass"
                             autocomplete="off">
                           <i class="input-icon uil uil-lock-alt"></i>
                         </div>
                         <div class="form-group mt-2">
                           <input type="password" name="logpass" class="form-style" placeholder="Repetir Contraseña"
-                            id="logpass" autocomplete="off">
+                            id="regrtpass" autocomplete="off">
                           <i class="input-icon uil uil-lock-alt"></i>
                         </div>
-                        <a href="#" class="btn mt-4" role="button"  id="btn_register">Registrarse</a>
+                        <a id="btn-register" href="#" class="btn mt-4" role="button" >Registrarse</a>
                       </div>
                     </div>
                   </div>
