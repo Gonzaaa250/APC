@@ -19,7 +19,7 @@ public class ClubController : Controller
     }
     public IActionResult Index()
     {
-        var clubs = _context.Club.ToList();
+        var clubs = _context.Club.OrderBy(c=> c.Nombre).ToList();
         return View();
     }
     public JsonResult BuscarClub(int ClubId = 0)
@@ -78,6 +78,18 @@ public class ClubController : Controller
                     {
                         clubeditar.Nombre = Nombre;
                         clubeditar.Localidad = Localidad;
+                        if (imagen != null && imagen.Length>0 )
+                        {
+                            byte[] imagenBinaria=null ;
+                            using (var fs2 = imagen.OpenReadStream() )
+                            using (var ms3 =new MemoryStream())
+                            {
+                                fs2 . CopyTo(ms3 );
+                                imagenBinaria = ms3. ToArray ();
+                                }
+                                clubeditar. Imagen = imagenBinaria;
+                                clubeditar. TipoImagen = imagen. ContentType;
+                                }
                         _context.SaveChanges();
                         resultado = true;
                     }

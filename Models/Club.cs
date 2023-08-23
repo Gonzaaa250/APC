@@ -15,9 +15,9 @@ namespace TesisPadel.Models
         [Required(ErrorMessage = "La localidad es obligatoria")]
         public string Localidad { get; set; }
         public byte[]? Imagen {get;set;}
-        public string? TipoImagen {get; set;}
+        public string TipoImagen {get; set;}
         public bool Eliminado { get; set; }
         [NotMapped]
-        public string? ImagenBase64 {get; set;}
+        public string ImagenBase64 {get { if(Imagen != null){ return Convert.ToBase64String(Imagen); } else { return ""; } }}
     }
 }

@@ -36,7 +36,7 @@ namespace TesisPadel.Controllers;
             return Json(usuarios);
         }
 
-        public JsonResult GuardarUsuario(int UsuarioId, string Nombre, string Apellido, string Localidad, string Telefono, string DNI, DateTime Edad, string Categoria)
+        public JsonResult GuardarUsuario(int UsuarioId, string Nombre, string Localidad, string Telefono, string DNI, DateTime Edad, Genero Genero)
         {
             bool resultado = false;
             if (!string.IsNullOrEmpty(Nombre) && !string.IsNullOrEmpty(Localidad) && !string.IsNullOrEmpty(Telefono)
@@ -54,15 +54,38 @@ namespace TesisPadel.Controllers;
                             Edad = Edad,
                             Telefono = Telefono,
                             DNI = DNI,
+                            Genero = Genero
                         };
                         _context.Add(usuarioguardar);
                         _context.SaveChanges();
                         resultado = true;
                     }
                 }
+                else
+                {
+                    var usuarioExistente = _context.Usuario.FirstOrDefault(u => u.Nombre == Nombre && u.Localidad == Localidad && u.UsuarioId != UsuarioId);
+                    if (usuarioExistente == null)
+                    {
+                        var usuarioActualizar = _context.Usuario.Find(UsuarioId);
+                        if (usuarioActualizar !=null)
+                        {
+                            Nombre = Nombre;
+                            Localidad = Localidad;
+                            Edad = Edad;
+                            Telefono = Telefono;
+                            DNI = DNI;
+                            Genero = Genero;
+
+                            _context.SaveChanges();
+                            resultado = true;
+                        }
+                    }
+                }
             }
+        
             return Json(resultado); 
         }
+        
         public JsonResult EliminarUsuario(int UsuarioId, int Eliminado)
         {
             int resultado =0;

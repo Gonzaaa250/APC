@@ -13,7 +13,7 @@
                 </div>
                 <form id="files" method="post" enctype="multipart/form-data">
                 <div class="modal-body fondom">
-                    <input type="hidden" id="ClubId" value="0" class="letra">
+                    <input name="ClubId" type="hidden" id="ClubId" value="0" class="letra">
                     <div class="control-label">
                         <p class="letra">Nombre</p>
                         <input name="Nombre" type="text" class="form-control fondoi" id="Nombre" autocomplete="off">
@@ -23,7 +23,7 @@
                         <span asp-validation-for="Localidad" class="text-danger"></span>
                     </div>
                     <div>
-                        <label class="control-label">Imagen</label>
+                        <label class="control-label letra"">Imagen</label>
                         <input type='file' class="form-control" accept="image/*" name="imagen" id='imagen'>
                     </div>
                     <div class="modal-footer">
@@ -49,10 +49,10 @@
                     <table class="table table-dark table-bordered table-striped">
                         <thead>
                             <tr>
-                                <th scope="col" class="lt">Club</th>
+                                <th scope="col" class="lt" >Club</th>
                                 <th scope="col" class="lt">Localidad</th>
-                                <th style="width: 30% !important;" scope="col" class="lt">boton</th>
                                 <th scope="col" class="lt">Imagen</th>
+                                <th style="width: 30% !important;" scope="col" class="lt"></th>
                             </tr>
                         </thead>
                         <tbody id="tbody-club">

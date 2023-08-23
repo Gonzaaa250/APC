@@ -24,21 +24,21 @@ $(document).ready(function () {
       };
       
       console.log("data", formData);
-    //   $.ajax({
-    //     url: '../../Account/Register',
-    //     method: 'POST',
-    //     data: formData,
-    //     success: function (data) {
-    //       if (data) {
-    //         alert('Registrado correctamente');
-    //       } else {
-    //         alert('Error al registrarse: ' + data.errors.join(','));
-    //       }
-    //     },
-    //     error: function (error) {
-    //       console.log(error);
-    //     }
-    //   });
+      $.ajax({
+        url: '../../Account/Register',
+        method: 'POST',
+        data: formData,
+        success: function (data) {
+          if (data) {
+            alert('Registrado correctamente');
+          } else {
+            alert('Error al registrarse: ' + data.errors.join(','));
+          }
+        },
+        error: function (error) {
+          console.log(error);
+        }
+      });
     }
   });
 

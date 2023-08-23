@@ -13,7 +13,5 @@ namespace TesisPadel.Models;
         
         public string Club { get; set; }
         
-        public virtual ICollection<Categoria> Categorias { get; set; }
-        
         public virtual Usuario Usuario { get; set; }
     }

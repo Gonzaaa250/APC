@@ -1,0 +1,23 @@
+@model TesisPadel.Models.Usuario;
+@{
+    ViewData["Title"] ="Jugadores";
+}
+<h1 class="display-4 titulo bajar" style="font-family: Verdana, Geneva, Tahoma, sans-serif;">Jugadores</h1>
+<div>
+    <table class="table table-dark table-bordered table-striped">
+        <thead>
+            <tr>
+                <th scope="col" class="lt">Nombre</th>
+                <th scope="col" class="lt">Localidad</th>
+                <th scope="col" class="lt">Edad</th>
+                <th scope="col" class="lt">Telefono</th>
+                <th scope="col" class="lt">DNI</th>
+                <th scope="col" class="lt"></th>
+            </tr>
+        </thead>
+        <tbody id="tbody-usuario"></tbody>
+    </table>
+</div>
+@section Scripts{
+    <script src="~/js/usuario-1.0.0.js"></script>
+}

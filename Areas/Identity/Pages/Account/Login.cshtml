@@ -7,22 +7,28 @@
 
 <h1>@ViewData["Title"]</h1>
 
-<body class="LogIn">
+<body class="LogIn ">
   <div class="section">
     <div class="container">
       <div class="row full-height justify-content-center">
         <div class="col-12 text-center align-self-center py-5">
           <div class="section pb-5 pt-5 pt-sm-2 text-center">
+            <div class="row" style="margin-left: 25%;">
+              <div class="col-md-4">
+                <button class="btn" id="#IS" >Iniciar sesión</button>
+              </div>
+              <div class="col-md-2">
+                <button class="btn" id="#RE">Registrarse</button>
+              </div>
+            </div>
 
-            <h6 class="LTI-R mb-0 pb-3"><button class="btn" onclick="">Iniciar sesión</button><span class="LTI-R">/</span><button
-                class="btn" onclick="">Registrarse</button></h6>
 
             @* Boton para dar vuelta la tarjeta *@
             <input class="checkbox" type="checkbox" id="reg-log" name="reg-log"></input>
-            <label for="reg-log"></label>
+            <label for="reg-log"></label> 
 
             @* seccion iniciar sesion *@
-            <div class="card-3d-wrap mx-auto">
+            <div class="card-3d-wrap mx-auto" id="IS">
               <div class="card-3d-wrapper">
                 <div class="card-front">
                   <div class="center-wrap">
@@ -45,7 +51,7 @@
                 </div>
 
                 @* seccion registrarse *@
-                <div class="card-back">
+                <div class="card-back" id="RE">
                   <div class="center-wrap">
                     <div class="section text-center">
                       <h4 class="mb-4 pb-3">Registrarse</h4>
@@ -63,7 +69,7 @@
                             id="regrtpass" autocomplete="off">
                           <i class="input-icon uil uil-lock-alt"></i>
                         </div>
-                        <a id="btn-register" href="#" class="btn mt-4" role="button" >Registrarse</a>
+                        <a id="btn-register" href="#" class="btn mt-4" role="button">Registrarse</a>
                       </div>
                     </div>
                   </div>
