@@ -59,7 +59,6 @@ namespace TesisPadel.Controllers
                         var rankingGuardar = new Ranking
                         {
                             Usuario = usuarioExistente,
-                            Club = Club,
                             Puntos = Puntos
                         };
 
@@ -73,7 +72,6 @@ namespace TesisPadel.Controllers
                     var rankingEditar = _context.Ranking.Find(RankingId);
                     if (rankingEditar != null && rankingEditar.Usuario.Nombre == Nombre)
                     {
-                        rankingEditar.Club = Club;
                         rankingEditar.Puntos = Puntos;
 
                         _context.SaveChanges();

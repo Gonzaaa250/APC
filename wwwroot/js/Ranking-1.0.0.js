@@ -21,7 +21,7 @@ $.ajax({
             + '<td class="text-center lt>' +ranking.localidad +'</td>'
             + '<td class="text-center lt>' +ranking.club +'</td>'
             +'<td class="text-center lt">'+ ranking.puntos+'</td>'
-            + '<td class="text-center lt>' +botones +'</td>' +'</tr>');
+            + '<td class="text-center>' +botones +'</td>' +'</tr>');
         });
     },
     error: function (xhr, status) {

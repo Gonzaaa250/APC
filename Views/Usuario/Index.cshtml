@@ -10,7 +10,7 @@
     <div style="margin-left: 5%;">
         <div class="row">
             <div class="col-md-6 ">
-                <p>Nombre</p>
+                <p>Nombre y Apellido</p>
                 <input type="text" style="width : 450px; heigth : 400px class=" from-control" id="Nombre"
                     autocomplete="off">
             </div>
@@ -22,9 +22,8 @@
         </div>
         <div class="row">
             <div class="col-md-6 ">
-                <p>Edad</p>
-                <input type="number" style="width : 450px; heigth : 400px class=" from-control" id="Edad"
-                    autocomplete="off">
+                <p>Club</p>
+                <input style="width: 450px; heigth: 400px" type="text" class="from-control" id="Club">
             </div>
             <div class="col-md-4">
                 <p>Telefono</p>
@@ -42,11 +41,11 @@
             </div>
             <div class="col-md-4">
                 <p>Genero</p>
-               <select name="Genero" id="Genero" style="width : 450px; height: 45%;">
-                <option value=""></option>
-                <option value="1"> Masculino</option>
-                <option value="2">Femenino</option>
-               </select>
+                <select name="Genero" id="Genero" style="width : 450px; height: 45%;">
+                    <option value=""></option>
+                    <option value="1"> Masculino</option>
+                    <option value="2">Femenino</option>
+                </select>
         </div>
     </div>
 </div>
@@ -55,6 +54,22 @@
 <button style="margin-left: 44%;" type="button" onclick="GuardarUsuario()" class="button-87"
     role="button">Guardar</button>
 </div>
+@* <div>
+    <table class="table table-dark table-bordered table-striped">
+        <thead>
+            <tr>
+                <th scope="col" class="lt">Nombre</th>
+                <th scope="col" class="lt">Localidad</th>
+                <th scope="col" class="lt">Telefono</th>
+                <th scope="col" class="lt">DNI</th>
+                <th scope="col" class="lt">Club</th>
+                <th scope="col" class="lt"> Genero</th>
+                <th scope="col" class="lt" style="width: 25% !important;">#</th>
+            </tr>
+        </thead>
+        <tbody id="tbody-usuario"></tbody>
+    </table>
+</div> *@
 @section Scripts{
     <script src="~/js/usuario-1.0.0.js"></script>
 }

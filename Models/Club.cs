@@ -11,7 +11,6 @@ namespace TesisPadel.Models
 
         [Required(ErrorMessage = "El nombre es obligatorio")]
         public string Nombre { get; set; }
-
         [Required(ErrorMessage = "La localidad es obligatoria")]
         public string Localidad { get; set; }
         public byte[]? Imagen {get;set;}
@@ -19,5 +18,7 @@ namespace TesisPadel.Models
         public bool Eliminado { get; set; }
         [NotMapped]
         public string ImagenBase64 {get { if(Imagen != null){ return Convert.ToBase64String(Imagen); } else { return ""; } }}
+        public virtual ICollection <Ranking>? Ranking {get; set;}
+        public virtual ICollection <Usuario>? Usuario {get; set;}
     }
 }

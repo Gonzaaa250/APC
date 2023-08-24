@@ -6,8 +6,8 @@ public class TesisPadelDbContext: DbContext{
     public TesisPadelDbContext(DbContextOptions<TesisPadelDbContext> options) : base(options)
     {
     }
-    public DbSet <Usuario> Usuario {get; set;}
-    public DbSet <Club> Club {get; set;}
-    public DbSet<Ranking> Ranking { get; set; }
+    public DbSet <Usuario>? Usuario {get; set;}
+    public DbSet <Club>? Club {get; set;}
+    public DbSet<Ranking>? Ranking { get; set; }
 
 }

@@ -19,7 +19,7 @@ public class ClubController : Controller
     }
     public IActionResult Index()
     {
-        var clubs = _context.Club.OrderBy(c=> c.Nombre).ToList();
+        var clubs = _context.Club.ToList();
         return View();
     }
     public JsonResult BuscarClub(int ClubId = 0)

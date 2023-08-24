@@ -23,7 +23,7 @@ namespace TesisPadel.Controllers;
         public IActionResult Index()
         {
             var usuarios = _context.Usuario.ToList();
-            return View(usuarios); // Se debe pasar la lista de usuarios a la vista
+            return View(); // Se debe pasar la lista de usuarios a la vista
         }
 
         public JsonResult BuscarUsuario(int UsuarioId = 0)
@@ -36,7 +36,7 @@ namespace TesisPadel.Controllers;
             return Json(usuarios);
         }
 
-        public JsonResult GuardarUsuario(int UsuarioId, string Nombre, string Localidad, string Telefono, string DNI, DateTime Edad, Genero Genero)
+        public JsonResult GuardarUsuario(int UsuarioId, string Nombre, string Localidad, string Telefono, string DNI, Genero Genero)
         {
             bool resultado = false;
             if (!string.IsNullOrEmpty(Nombre) && !string.IsNullOrEmpty(Localidad) && !string.IsNullOrEmpty(Telefono)
@@ -51,7 +51,6 @@ namespace TesisPadel.Controllers;
                         {
                             Nombre = Nombre,
                             Localidad = Localidad,
-                            Edad = Edad,
                             Telefono = Telefono,
                             DNI = DNI,
                             Genero = Genero
@@ -71,7 +70,6 @@ namespace TesisPadel.Controllers;
                         {
                             Nombre = Nombre;
                             Localidad = Localidad;
-                            Edad = Edad;
                             Telefono = Telefono;
                             DNI = DNI;
                             Genero = Genero;

@@ -1,5 +1,5 @@
-window.onload= BuscarUsuarios();
-function BuscarUsuarios(){
+window.onload= BuscarUsuario();
+function BuscarUsuario(){
     $("#tbody-usuario").empty();
     $.ajax({
         url: '../../Usuario/BuscarUsuario',
@@ -9,20 +9,20 @@ function BuscarUsuarios(){
             $("#tbody-usuario").empty();
             $.each(usuarios, function(Index, usuario){
                 var BotonEliminar='';
-                var botones = '<button type="button" onclick="BuscarUsuario(' + usuario.usuarioId + ')" class="button-81" role="button" title="Editar"><img src="../css/img/lapiz.png" alt=""></button>' +
+                var botones = '<button type="button" onclick="BuscarUsuarios(' + usuario.usuarioId + ')" class="button-81" role="button" title="Editar"><img src="../css/img/lapiz.png" alt=""></button>' +
                         '<button type="button" onclick="EliminarUsuario(' + usuario.usuarioId  + ', 1)" class="button-82" role="button" title="Eliminar"><img src="../css/img/tachito.png" alt=""></button>';
                         // if(usuario.eliminado){
                         //     BotonEliminar= 'table-danger';
                         //     botones = '<button type="button" onclick="EliminarUsuario(' + usuario.usuarioId + ', 1)" class="button-87" role="button">Activar</button>';
                         // }
-                        $("#tbody-club").append('<tr class="' + BotonEliminar + '">'
+                        $("#tbody-usuario").append('<tr class="' + BotonEliminar + '">'
                         + '<td class="text-center lt">' + usuario.nombre + '</td>'
                         + '<td class="text-center lt">'+ usuario.localidad + '</td>' 
-                        + '<td class="text-center"' + usuario.edad+'</td>' + '</tr>'
-                        + '<td class="text-center"' + usuario.telefono+'</td>' + '</tr>'
-                        + '<td class="text-center"' + usuario.dni+'</td>' + '</tr>'
-                        + '<td class="text-center"' + usuario.categoria+'</td>' + '</tr>'
-                        + '<td class="text-center"' + botones +'</td>' + '</tr>');
+                        + '<td class="text-center lt">' + usuario.telefono+'</td>' 
+                        + '<td class="text-center lt">' + usuario.dni+'</td>'
+                        + '<td class="text-center lt">'+ usuario.club+'</td>'  
+                        + '<td class="text-center lt">' + usuario.genero+'</td>'
+                        + '<td class="text-center">' + botones + '</td>' +'</tr>');
             });
         },
         error :  function (xhr, status){
@@ -34,13 +34,12 @@ function VaciarFormulario() {
     $("#Nombre").val('');
     $("#UsuarioId").val(0);
     $("#Localidad").val("");
-    $("#Edad").val("");
     $("#Telefono").val("");
     $("#DNI").val("");
     $("#Categoria").val("");
 }
 //EDITAR USUARIO
-function BuscarUsuario(usuarioId){
+function BuscarUsuarios(usuarioId){
 $.ajax({
     url:'../../Usuario/BuscarUsuario',
     data: {UsuarioId: usuarioId},
@@ -52,10 +51,10 @@ $.ajax({
             let usuario = usuarios[0];
             $("#Nombre").val(usuario.nombre);
             $("#Localidad").val(usuario.localidad);
-            $("#Edad").val(usuario.edad);
             $("#Telefono").val(usuario.telefono);
             $("#DNI").val(usuario.dni);
-            $("#Categoria").val(usuario.categoria);
+            $("#Club").val(usuario.club);
+            $("#Genero").val(usuario.genero);
             $("#UsuarioId").val(usuario.usuarioId);
 
             $("#ModalUsuario").modal("show");
@@ -77,13 +76,15 @@ function GuardarUsuario(){
     let Categoria=$("#Categoria").val();
     $.ajax({
         url:'../../Usuario/GuardarUsuario',
-        data: {UsuarioId: UsuarioId, Nombre: Nombre, Localidad: Localidad, Edad: Edad, Telefono: Telefono, DNI: DNI, Categoria: Categoria},
+        data: {UsuarioId: UsuarioId, Nombre: Nombre, Localidad: Localidad, Telefono: Telefono, DNI: DNI, Categoria: Categoria},
         type: 'POST',
         dataType: 'json',
         success: function (resultado){
             if(resultado){
                 $("#ModalUsuario").modal("hide");
                 BuscarUsuario();
+                window.location.href="/"
+                alert("Guardado Correctamente")
             } else{
                 alert("Ya existe el usuario");
             }

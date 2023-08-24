@@ -20,7 +20,7 @@ $(document).ready(function () {
       console.log('dentro del if de registro');
       var formData = {
         email: email,
-        password: password
+        password: password,
       };
       
       console.log("data", formData);
@@ -28,14 +28,18 @@ $(document).ready(function () {
         url: '../../Account/Register',
         method: 'POST',
         data: formData,
-        success: function (data) {
+        success: function (data) 
+        {
           if (data) {
+            console.log('Entre en el segundo if');
             alert('Registrado correctamente');
+            window.location.href ="/Usuario";
           } else {
             alert('Error al registrarse: ' + data.errors.join(','));
           }
         },
         error: function (error) {
+          alert('ocurrio un error')
           console.log(error);
         }
       });
@@ -62,6 +66,7 @@ $(document).ready(function () {
       success: function (data) {
         if (data) {
           alert('Inicio de sesión exitoso');
+          window.location.href ="/";
         } else {
           alert('Error al iniciar sesión');
         }
