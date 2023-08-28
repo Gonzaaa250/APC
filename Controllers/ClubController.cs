@@ -2,12 +2,15 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using TesisPadel.Data;
 using TesisPadel.Models;
 namespace TesisPadel.Controllers;
+
+[Authorize]
 public class ClubController : Controller
 {
     private readonly ILogger<ClubController> _logger;

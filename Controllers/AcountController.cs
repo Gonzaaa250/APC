@@ -1,12 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
-using TesisPadel.Models;
+using Microsoft.AspNetCore.Mvc;
 
-namespace TesisPadel.Controllers;
+namespace TesisPadel.Areas.Identity.Pages.Account;
 
     public class RegisterViewModel
     {

@@ -1,4 +1,4 @@
-$(document).ready(function () {
+
   $(".info-item .btn").click(function () {
     $(".container").toggleClass("log-in");
   });
@@ -47,24 +47,23 @@ $(document).ready(function () {
   });
 
   // Iniciar Sesión
-  $("#btn-login").click(function (e) {
-    e.preventDefault();
-    console.log('entré en la función de inicio de sesión');
-    var email = $("#loginF input[name='email']").val();
-    var password = $("#loginF input[name='password']").val();
+  function IniciarSesion()
+  {
+   
+    var email = $("#logemail").val();
+    var password = $("#logpass").val();
     var formData = {
       email: email,
       password: password
     };
-    console.log('data', formData);
-
+    alert(email);
     $.ajax({
       url: '../../Account/Login',
       method: 'POST',
-      contentType: 'application/x-www-form-urlencoded',
+  
       data: formData,
       success: function (data) {
-        if (data) {
+        if (data.success) {
           alert('Inicio de sesión exitoso');
           window.location.href ="/";
         } else {
@@ -75,5 +74,4 @@ $(document).ready(function () {
         console.log(error);
       }
     });
-  });
-});
+  }
