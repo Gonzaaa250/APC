@@ -47,9 +47,15 @@
   });
 
   // Iniciar Sesión
+<<<<<<< HEAD
   function IniciarSesion()
   {
    
+=======
+  $("#btn-login").click(function (e) {
+    e.preventDefault();
+    console.log('entré en la función de inicio de sesión');
+>>>>>>> fa108fee79ae10e86ca9dd2092211aa7197bef60
     var email = $("#logemail").val();
     var password = $("#logpass").val();
     var formData = {

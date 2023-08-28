@@ -15,10 +15,10 @@
           <div class="section pb-5 pt-5 pt-sm-2 text-center">
             <div class="row" style="margin-left: 25%;">
               <div class="col-md-4">
-                <button class="btn" id="#IS" >Iniciar sesión</button>
+                <button class="btn" id="IS" >Iniciar sesión</button>
               </div>
               <div class="col-md-2">
-                <button class="btn" id="#RE">Registrarse</button>
+                <button class="btn" id="RE">Registrarse</button>
               </div>
             </div>
 
@@ -28,7 +28,7 @@
             <label for="reg-log"></label> 
 
             @* seccion iniciar sesion *@
-            <div class="card-3d-wrap mx-auto" id="IS">
+            <div class="card-3d-wrap mx-auto" href="#IS">
               <div class="card-3d-wrapper">
                 <div class="card-front">
                   <div class="center-wrap">
@@ -44,15 +44,19 @@
                           autocomplete="off">
                         <i class="input-icon uil uil-lock-alt"></i>
                       </div>
+<<<<<<< HEAD
                      
                       <a href="#" class="btn mt-4" onclick="IniciarSesion()" role="button">Iniciar sesiónn</a>
+=======
+                      <a id="btn-login" class="btn mt-4" role="button">Iniciar sesión</a>
+>>>>>>> fa108fee79ae10e86ca9dd2092211aa7197bef60
                       <p class="mb-0 mt-4 text-center"><a href="#0" class="link">Olvide mi contraseña</a></p>
                     </div>
                   </div>
                 </div>
 
                 @* seccion registrarse *@
-                <div class="card-back" id="RE">
+                <div class="card-back" href="#RE">
                   <div class="center-wrap">
                     <div class="section text-center">
                       <h4 class="mb-4 pb-3">Registrarse</h4>
@@ -70,7 +74,7 @@
                             id="regrtpass" autocomplete="off">
                           <i class="input-icon uil uil-lock-alt"></i>
                         </div>
-                        <a id="btn-register" href="#" class="btn mt-4" role="button">Registrarse</a>
+                        <a id="btn-register" class="btn mt-4" role="button">Registrarse</a>
                       </div>
                     </div>
                   </div>
