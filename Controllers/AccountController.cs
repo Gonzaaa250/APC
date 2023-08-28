@@ -31,7 +31,8 @@ namespace TesisPadel.Controllers;
         }
         [HttpPost]
         [Route("/Account/Login")]
-        public async Task<IActionResult> Login(RegisterViewModel model)
+
+        public async Task<JsonResult> Login(RegisterViewModel model)
         {
             var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, false, lockoutOnFailure: false);
             if (result.Succeeded)
@@ -53,7 +54,7 @@ namespace TesisPadel.Controllers;
         [HttpPost]
         [Route("/Account/Register")]
 
-        public async Task<IActionResult> Register(RegisterViewModel model)
+        public async Task<JsonResult> Register(RegisterViewModel model)
         {
             if (ModelState.IsValid)
             {
