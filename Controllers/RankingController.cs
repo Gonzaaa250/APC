@@ -1,12 +1,19 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
 using TesisPadel.Data;
 using TesisPadel.Models;
 
 namespace TesisPadel.Controllers
 {
+    [Authorize]
     public class RankingController : Controller
     {
         private readonly ILogger<RankingController> _logger;
@@ -20,7 +27,8 @@ namespace TesisPadel.Controllers
 
         public IActionResult Index()
         {
-            var rankings = _context.Ranking.ToList();
+            var club = _context.Club?.ToList();
+                ViewBag.ClubId = new SelectList(club, "ClubId", "Nombre");
             return View();
         }
         public JsonResult BuscarRanking(int RankingId = 0)

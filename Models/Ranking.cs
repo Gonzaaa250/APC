@@ -8,6 +8,7 @@ namespace TesisPadel.Models;
         public int RankingId { get; set; }
         
         public string Puntos { get; set; }
+        public string Categoria {get; set;}
         
         public bool Eliminado { get; set; }
         

@@ -1,42 +1,45 @@
 window.onload= BuscarUsuario();
-function BuscarUsuario(){
+function BuscarUsuario() {
     $("#tbody-usuario").empty();
     $.ajax({
         url: '../../Usuario/BuscarUsuario',
         type: 'GET',
-        dataType:'json',
-        success: function (usuarios){
+        dataType: 'json',
+        success: function (usuarios) {
             $("#tbody-usuario").empty();
-            $.each(usuarios, function(Index, usuario){
-                var BotonEliminar='';
+            $.each(usuarios, function (Index, usuario) {
+                console.log(usuario);
+                var BotonEliminar = '';
                 var botones = '<button type="button" onclick="BuscarUsuarios(' + usuario.usuarioId + ')" class="button-81" role="button" title="Editar"><img src="../css/img/lapiz.png" alt=""></button>' +
-                        '<button type="button" onclick="EliminarUsuario(' + usuario.usuarioId  + ', 1)" class="button-82" role="button" title="Eliminar"><img src="../css/img/tachito.png" alt=""></button>';
-                        // if(usuario.eliminado){
-                        //     BotonEliminar= 'table-danger';
-                        //     botones = '<button type="button" onclick="EliminarUsuario(' + usuario.usuarioId + ', 1)" class="button-87" role="button">Activar</button>';
-                        // }
-                        $("#tbody-usuario").append('<tr class="' + BotonEliminar + '">'
+                    '<button type="button" onclick="EliminarUsuario(' + usuario.usuarioId  + ', 1)" class="button-82" role="button" title="Eliminar"><img src="../css/img/tachito.png" alt=""></button>';
+                    var NombreC = usuario.club ? usuario.club.nombre :"";                  
+                    var generoTexto = "Masculino";
+                    if (usuario.genero == 2) {
+                        generoTexto = "Femenino";
+                    }
+                    $("#tbody-usuario").append('<tr class="' + BotonEliminar + '">'
                         + '<td class="text-center lt">' + usuario.nombre + '</td>'
-                        + '<td class="text-center lt">'+ usuario.localidad + '</td>' 
-                        + '<td class="text-center lt">' + usuario.telefono+'</td>' 
-                        + '<td class="text-center lt">' + usuario.dni+'</td>'
-                        + '<td class="text-center lt">'+ usuario.club+'</td>'  
-                        + '<td class="text-center lt">' + usuario.genero+'</td>'
-                        + '<td class="text-center">' + botones + '</td>' +'</tr>');
+                        + '<td class="text-center lt">' + usuario.localidad + '</td>'
+                        + '<td class="text-center lt">' + usuario.telefono + '</td>'
+                        + '<td class="text-center lt">' + usuario.dni + '</td>'
+                        + '<td class="text-center lt">' + NombreC + '</td>'
+                        + '<td class="text-center lt">' + generoTexto + '</td>'
+                        + '<td class="text-center lt">' + usuario.categoria + '</td>'
+                        + '<td class="text-center">' + botones + '</td>' + '</tr>');
             });
         },
-        error :  function (xhr, status){
+        error: function (xhr, status) {
             alert('Error al cargar usuario');
         },
     });
 }
+
 function VaciarFormulario() {
     $("#Nombre").val('');
     $("#UsuarioId").val(0);
     $("#Localidad").val("");
     $("#Telefono").val("");
     $("#DNI").val("");
-    $("#Categoria").val("");
 }
 //EDITAR USUARIO
 function BuscarUsuarios(usuarioId){
@@ -56,7 +59,7 @@ $.ajax({
             $("#Club").val(usuario.club);
             $("#Genero").val(usuario.genero);
             $("#UsuarioId").val(usuario.usuarioId);
-
+            $("#Categoria").val(usuario.categoria)
             $("#ModalUsuario").modal("show");
         }
     },
@@ -70,18 +73,21 @@ function GuardarUsuario(){
     let UsuarioId = $("#UsuarioId").val();
     let Nombre = $("#Nombre").val();
     let Localidad=$("#Localidad").val();
-    let Edad=parseInt($("#Edad").val());
     let Telefono=$("#Telefono").val();
     let DNI=$("#DNI").val();
-    let Categoria=$("#Categoria").val();
+    let Genero=$("#Genero").val();
+    let ClubId = $("#ClubId").val();
+    let Categoria = $("#Categoria").val()
+    
     $.ajax({
         url:'../../Usuario/GuardarUsuario',
-        data: {UsuarioId: UsuarioId, Nombre: Nombre, Localidad: Localidad, Telefono: Telefono, DNI: DNI, Categoria: Categoria},
+        data: {UsuarioId: UsuarioId, Nombre: Nombre, Localidad: Localidad, Telefono: Telefono, DNI: DNI, Genero: Genero, ClubId: ClubId, Categoria: Categoria},
         type: 'POST',
         dataType: 'json',
         success: function (resultado){
             if(resultado){
                 $("#ModalUsuario").modal("hide");
+;
                 BuscarUsuario();
                 window.location.href="/"
                 alert("Guardado Correctamente")

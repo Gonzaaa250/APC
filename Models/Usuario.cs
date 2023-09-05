@@ -11,6 +11,7 @@ public class Usuario
      public string Nombre { get; set; }
      public string Telefono { get; set; }
      public string DNI { get; set; }
+     public string Categoria {get; set;}
      public bool Eliminado { get; set; }
      public Genero Genero { get; set; }
      public virtual Club? Club { get; set; }
@@ -20,5 +21,5 @@ public class Usuario
 public enum Genero
 {
      Masculino = 1,
-     Femenino =2,
+     Femenino = 2,
 }

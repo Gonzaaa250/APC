@@ -1,6 +1,6 @@
-﻿@{
+﻿@* @{
   ViewData["Title"] = "APC";
-}
+} *@
 
 
 
@@ -11,11 +11,19 @@
     <p><a href="https://docs.microsoft.com/aspnet/core"></a></p>
   </div>
 
-  <div>
-
-    <img src="https://www.onlytenis.com/blog/wp-content/uploads/2022/02/diferencias-entre-padel-y-tenis.jpg"
-      class="ImgHome" style="position: fixed center; margin-left: 4%">
+  <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="~/css/img/jugadores.jpg" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="~/css/img/jugadores2.jpg" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="~/css/img/jugadores3.jpg" class="d-block w-100" alt="...">
+    </div>
   </div>
+</div>
 
   <hr class="hr">
 
@@ -26,7 +34,7 @@
 
   @* Seccion noticias*@
 
-  <h4 style="margin-top: 2rem">Noticias de torneos</h4>
+  <h4 style="margin-top: 2rem" class="titulo">Noticias de torneos</h4>
 
   <div class="containerN">
     <div class="CardN">
@@ -52,89 +60,68 @@
 
   </div>
 
-
-  @* <div class="sectionI1">
-    
-    <div class="parrafo1">
-      <h4 class="">Padel: El deporte que conquista corazones</h4>
-      <p>Descubre el maravilloso mundo del pádel, un deporte que combina habilidad, resistencia y diversión. Únete a la fiebre y disfruta de un juego emocionante</p>
-    </div>
-    <img src="https://www.radiosantvi.cat/images/pista-padel-al-aire-libre-raqueta-pelotas_362480-140.jpg" class="imgTexto1">
-
-  </div>  *@
-
-  @* <div class="sectionI2">
-    
-    <div class="parrafo2">
-      <h4 class="">Aprende, mejora y comparte experiencias</h4>
-      <p>Descubre el maravilloso mundo del pádel, un deporte que combina habilidad, resistencia y diversión. Únete a la fiebre y disfruta de un juego emocionante</p>
-    </div>
-    <img src="https://www.radiosantvi.cat/images/pista-padel-al-aire-libre-raqueta-pelotas_362480-140.jpg" class="imgTexto2">
-
-  </div>   *@
-
   <hr class="hr">
 
   @* Seccion Clubes *@
   <h2 class="display-4 titulo">Sigue a los Clubes que conforman a <b>APC</b></h2>
  
-  <div class="Profes row col-lg-12 col-md-9">
-    <div class="card" style="width: 10rem;">
+  <div class="Profes row col-lg-12 col-md-9" style="margin-left: 4%;">
+    <div class="cards" style="width: 10rem;">
      <a href="https://www.facebook.com/profile.php?id=100080628576874"><img class="card-img-top " src="~/css/img/paquita.png" alt="CardI image cap"></a> 
       <div class="card-body2">
         <h5 class="card-title">La Paquita</h5>
       </div>
     </div>
 
-    <div class="card" style="width: 10rem;">
+    <div class="cards" style="width: 10rem;">
     <a href="https://www.facebook.com/profile.php?id=100064522097167"><img class="card-img-top" src="~/css/img/chipion_1.png" alt="Card-image-cap"></a>  
       <div class="card-body2">
         <h5 class="card-title">Chipion</h5>
       </div>
     </div>
 
-    <div class="card" style="width: 10rem;">
+    <div class="cards" style="width: 10rem;">
      <a href="https://www.facebook.com/clubcentrosocial"><img class="card-img-top" style="background-image: 20%;" src="~/css/img/centro.png" alt="Card-image-cap"></a> 
       <div class="card-body2">
         <h5 class="card-title">Centro</h5>
       </div>
     </div>
 
-    <div class="card" style="width: 10rem;">
+    <div class="cards" style="width: 10rem;">
     <a href="https://www.facebook.com/mundosanjorge/photos?locale=es_LA"><img class="card-img-top" src="~/css/img/san-jorge.png" alt="Card-image-cap"></a>  
       <div class="card-body2">
         <h5 class="card-title">San Jorge</h5>
       </div>
     </div>
 
-    <div class="card" style="width: 10rem;">
+    <div class="cards" style="width: 10rem;">
      <a href="https://www.facebook.com/tiromorterosoficial"> <img class="card-img-top" src="~/css/img/tiro.png" alt="Card-image-cap"></a>
       <div class="card-body2">
         <h5 class="card-title">Tiro Federal</h5>
       </div>
     </div>
    
-    <div class="card" style="width: 10rem; margin-top: 15px;">
+    <div class="cards" style="width: 10rem; margin-top: 2%">
     <a href="https://www.facebook.com/elnuevedemorteros"><img class="card-img-top" src="~/css/img/9-de-morteros.png" alt="Card-image-cap"></a>  
       <div class="card-body2">
         <h5 class="card-title">9 de morteros</h5>
       </div>
     </div>
     
-    <div class="card" style="width: 10rem; margin-top: 15px">
+    <div class="cards" style="width: 10rem; margin-top: 2%">
     <a href="https://www.facebook.com/profile.php?id=100066839164805"><img class="card-img-top" src="~/css/img/suardi.png" alt="Card-image-cap"></a>  
       <div class="card-body2">
         <h5 class="card-title">Suardi</h5>
       </div>
     </div> 
-   
-    <div class="card" style="width: 10rem; margin-top: 15px">
+    
+    <div class="cards" style="width: 10rem; margin-top: 2%">
     <a href="https://www.facebook.com/clubatletico.libertadtrinidad.54"><img class="card-img-top" src="~/css/img/villa-trinidad.png" alt="Card-image-cap"></a>  
       <div class="card-body2">
         <h5 class="card-title">Villa Trinidad</h5>
       </div>
     </div>
-  <div class="card" style="width: 10rem; margin-top: 15px">
+  <div class="cards" style="width: 10rem;margin-top: 2%">
     <a href="https://www.facebook.com/portena.deportiva"><img class="card-img-top" src="~/css/img/porteña.png" alt="Card-image-cap"></a>  
       <div class="card-body2">
         <h5 class="card-title">Porteña</h5>
@@ -144,7 +131,7 @@
 
   <hr class="hr">
 
-
+@* CAMBIAR PREGUNTAS *@
   @* SECCION PREGUNTAS FRECUENTES *@
   <h1 class="preguntas titulo">Preguntas frecuentes</h1>
 
@@ -152,8 +139,8 @@
     <div class="Card col-lg-5">
       <div class="Card1">
         <div class="card-body">
-          <h4>¿Cómo empezar a jugar al padel?</h4>
-          <p>Para empezar, necesitarás unirse a nuestro club y reservar una pista. ¡También ofrecemos clases
+          <h4 style="color: white;">¿Cómo empezar a jugar al padel?</h4>
+          <p style="color: white;">Para empezar, necesitarás unirse a nuestro club y reservar una pista. ¡También ofrecemos clases
             para
             principiantes!</p>
         </div>
@@ -161,34 +148,48 @@
     </div>
 
     <div class="Card col-lg-5">
-      <div class="Card2">
+      <div class="Card1">
         <div class="card-body">
-          <h4>¿Necesito comprar mi propia raqueta?</h4>
-          <p>Sí, pero ofrecemos una tienda donde podrás comprar todo lo necesario para comenzar a jugar</p>
+          <h4 style="color: white;">¿Necesito comprar mi propia raqueta?</h4>
+          <p style="color: white;">Sí, pero ofrecemos una tienda donde podrás comprar todo lo necesario para comenzar a jugar</p>
         </div>
       </div>
     </div>
 
     <div class="row">
       <div class="Card col-lg-5">
-        <div class="Card3">
+        <div class="Card1" >
           <div class="card-body">
-            <h4>¿Ofrecen entrenamiento para principiantes?</h4>
-            <p>Sí, tenemos entrenadores expertos listos para ayudarte a mejorar tus habilidades desde cero</p>
+            <h4 style="color: white;">¿Ofrecen entrenamiento para principiantes?</h4>
+            <p style="color: white;">Sí, tenemos entrenadores expertos listos para ayudarte a mejorar tus habilidades desde cero</p>
           </div>
         </div>
       </div>
 
-      <div class="Card col-lg-5">
-        <div class="Card4">
+      <div class="Cards2 col-lg-5" style="height: 70%;">
+        <div class="Card1">
           <div class="card-body">
-            <h4>¿Cómo me uno a un equipo?</h4>
-            <p>Simplemente regístrate y nuestro equipo te emparejará con jugadores de habilidades similares</p>
+            <h4 style="color: white;">¿Cómo me uno a un equipo?</h4>
+            <p style="color: white;">Simplemente regístrate y nuestro equipo te emparejará con jugadores de habilidades similares</p>
           </div>
         </div>
       </div>
     </div>
-  </div>
+  </div> 
 
-
+@* <div>
+  <footer class="">
+    <div class="container">
+      <div class="row" style="padding-left: 15%;">
+        <div class="col-lg-2 col-sm-6 ml-auto text-center">
+                        <p style="margin-top: 10px;">
+                            <a target="_blank" href=""><img
+                                    src="~/css/img/icons8-instagram-64.png" alt=""></a>
+                        </p>
+                        <p style="margin-top:10px">Instagram</p>
+                    </div>
+      </div>
+    </div>
+  </footer>
+</div> *@
 </body>

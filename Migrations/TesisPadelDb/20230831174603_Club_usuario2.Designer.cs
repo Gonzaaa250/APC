@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TesisPadel.Data;
 
@@ -11,9 +12,10 @@ using TesisPadel.Data;
 namespace TesisPadel.Migrations.TesisPadelDb
 {
     [DbContext(typeof(TesisPadelDbContext))]
-    partial class TesisPadelDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230831174603_Club_usuario2")]
+    partial class Club_usuario2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -95,10 +97,6 @@ namespace TesisPadel.Migrations.TesisPadelDb
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UsuarioId"), 1L, 1);
 
-                    b.Property<string>("Categoria")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int?>("ClubId")
                         .HasColumnType("int");
 
@@ -117,6 +115,10 @@ namespace TesisPadel.Migrations.TesisPadelDb
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NombreClub")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

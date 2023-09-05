@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TesisPadel.Data;
 
@@ -11,9 +12,10 @@ using TesisPadel.Data;
 namespace TesisPadel.Migrations.TesisPadelDb
 {
     [DbContext(typeof(TesisPadelDbContext))]
-    partial class TesisPadelDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230831185759_Club_usuario3")]
+    partial class Club_usuario3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -95,11 +97,7 @@ namespace TesisPadel.Migrations.TesisPadelDb
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UsuarioId"), 1L, 1);
 
-                    b.Property<string>("Categoria")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("ClubId")
+                    b.Property<int>("ClubId")
                         .HasColumnType("int");
 
                     b.Property<string>("DNI")
@@ -150,7 +148,9 @@ namespace TesisPadel.Migrations.TesisPadelDb
                 {
                     b.HasOne("TesisPadel.Models.Club", "Club")
                         .WithMany("Usuario")
-                        .HasForeignKey("ClubId");
+                        .HasForeignKey("ClubId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Club");
                 });

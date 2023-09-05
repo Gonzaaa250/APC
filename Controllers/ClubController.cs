@@ -20,6 +20,7 @@ public class ClubController : Controller
         _logger = logger;
         _context = context;
     }
+    // [Authorize(Roles = "Administrador")]
     public IActionResult Index()
     {
         var clubs = _context.Club.ToList();
@@ -34,6 +35,7 @@ public class ClubController : Controller
         }
         return Json(clubs);
     }
+    // [Authorize(Roles = "Administrador")]
     public JsonResult GuardarClub(int ClubId, string Nombre, string Localidad, IFormFile imagen)
     {
         bool resultado = false;

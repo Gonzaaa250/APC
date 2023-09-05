@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TesisPadel.Data;
 
@@ -11,9 +12,10 @@ using TesisPadel.Data;
 namespace TesisPadel.Migrations.TesisPadelDb
 {
     [DbContext(typeof(TesisPadelDbContext))]
-    partial class TesisPadelDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230905173019_Cambio_usuario")]
+    partial class Cambio_usuario
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

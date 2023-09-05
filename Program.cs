@@ -15,9 +15,14 @@ builder.Services.AddDbContext<TesisPadelDbContext>(options =>
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
+.AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
-
+builder.Services.ConfigureApplicationCookie(options =>
+{
+options.LoginPath = "/Identity/Account/Login";
+options.AccessDeniedPath = "/Identity/Account/AccessDenied";
+});
 
 //Configuracion de Usuarios
 builder.Services.ConfigureApplicationCookie(options=>

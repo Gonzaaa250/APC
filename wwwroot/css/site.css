@@ -26,13 +26,16 @@ html {
   background-attachment: fixed;
   overflow-x: hidden;
   background-color: #000000;
-  background-image: url(../css/img/FondoPadel2.jpg);
+  background-image: url(../css/img/fondo-1.png);
   max-width: 100% ;
   height: 100%;
   background-repeat: no-repeat;
   background-position: center;
 }
-
+.posicion{
+  position: fixed center; 
+  /* margin-left: 20%; */
+}
 .rankingC {
   background-color: white;
 
@@ -73,7 +76,58 @@ html {
   font-size: 13px;
   font-weight: 600;
 }
-
+header{
+  display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: .5rem 2rem;
+}
+/* .logo-header img{
+  width: 50px;
+} */
+.nav-menu ul{
+  display: flex;
+  align-items: center;
+}
+.nav-menu li{
+  margin-right: 1rem;
+}
+@media (max-width:768px){
+  .checkbtn{
+      display: block;
+  }
+  .menu-icon{
+      display: block;
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      cursor: pointer;
+  }
+  .nav-menu ul{
+      display: block;
+      position: fixed;
+      top:70px;
+      left:-100%;
+      background: #222;
+      width: 100%;
+      height: 100vh;
+      right: 0;
+  }
+  .nav-menu ul li{
+      padding: 2rem;
+      display: flex;
+      justify-content: center;
+      margin: 0;
+  }
+  .nav-menu ul li:last-child{
+      background: none;
+      padding: 1rem;
+  }
+  #check:checked ~ ul{
+      left: 0;
+      transition: all .25s;
+  }
+}
 .BTN {
   border-radius: 4px;
   height: 44px;
@@ -125,9 +179,11 @@ body {
   font-weight: 300;
   font-size: 15px;
   line-height: 1.7;
-  color: #c4c3ca;
-  background-color: #0b445a;
- 
+  background-image: url(../css/img/fondo-1.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    max-width: 100%;
+    height: 100%;
 }
 
 .LTI-R {
@@ -157,10 +213,13 @@ p {
   font-weight: 500;
   font-size: 14px;
   line-height: 1.7;
+  margin: 0px 0px 5px;
+  color: #000;
 }
 
 h4 {
   font-weight: 600;
+  color: #ffffff;
 }
 
 h6 span {
@@ -196,7 +255,7 @@ h6 span {
   padding: 0;
   margin: 10px auto;
   cursor: pointer;
-  background-color: #4e94af;
+  background-color: #979090;
 }
 
 .checkbox:checked+label:before,
@@ -661,7 +720,6 @@ img {
     display: inline-block;
     margin-bottom: 1.7rem;
     font-size: 1.4rem;
-    text-wrap: balance;
     font-style: italic;
 
     &:before,
@@ -723,9 +781,17 @@ img {
 
 /* Propiedades cards */
 .Card {
-  width: 45%;
-  height: 200px;
-  margin: 10px;
+  width: 40%;
+  height: 40%;
+  margin: 1.5%;
+  text-align: center;
+  position: relative;
+}
+.Cards2 {
+  width: 41%;
+  height: 40% !important;
+  margin-left: 2.5% !important;
+  margin: 1.5%;
   text-align: center;
   position: relative;
 }
@@ -734,28 +800,12 @@ img {
   background-color: rgb(46, 46, 46);
   border-radius: 5px;
 }
-
-.Card2 {
-  background-color: rgb(46, 46, 46);
-  border-radius: 5px;
-}
-
-.Card3 {
-  background-color: rgb(46, 46, 46);
-  border-radius: 5px;
-}
-
-.Card4 {
-  background-color: rgb(46, 46, 46);
-  border-radius: 5px;
-}
-
 /*Fin*/
 
 /* cards profesores */
-.card {
+.cards {
   height: 100%;
-  margin-left: 60px;
+  margin-left: 4%;
   align-items: center;
   background-color: rgb(46, 46, 46);
 }
@@ -900,7 +950,7 @@ img {
 /* BOTONES */
 .button-87 {
   margin: 10px;
-  padding: 15px 30px;
+  padding: 12px 20px;
   text-align: center;
   text-transform: uppercase;
   transition: 0.5s;
@@ -931,8 +981,8 @@ img {
 
 /*BOTON ELIMINAR*/
 .button-82 {
-  margin: 10px;
-  padding: 6px 18px;
+  margin: 2px;
+  padding: 1px 2px;
   text-align: center;
   text-transform: uppercase;
   transition: 0.5s;
@@ -962,8 +1012,8 @@ img {
 }
 /*BOTON EDITAR*/
 .button-81 {
-  margin: 10px;
-  padding: 6px 18px;
+  margin: 2px;
+  padding: 1px 2px;
   text-align: center;
   text-transform: uppercase;
   transition: 0.5s;
@@ -994,7 +1044,7 @@ img {
 /*BOTON GUARDAR*/
 .button-8 {
   margin: 10px;
-  padding: 15px 30px;
+  padding: 12px 18px;
   text-align: center;
   text-transform: uppercase;
   transition: 0.5s;
@@ -1029,21 +1079,37 @@ img {
   /* color: #ffffff; */
   font-size: large;
 }
+.lt2{
+  color:#000000 !important; 
+  font-size: large;
+}
 .fondom{
   background-color: rgb(49, 49, 49);
 }
 .fondoi{
   background-color: rgb(117, 115, 115);
 }
-/* BOTON LOGIN*/
-.btnL{
-  
-}
 /* IMAGENES CARDS */
 .card-image{
 max-width: 100%;
 height:auto ;
 }
-.FondoL{
-  
+.borde{
+  border : solid black 1px!important;
+}
+/* BOTON WPP */
+#whatsapp {
+  position: fixed;
+  bottom: 10px;
+  right:10px;
+}
+svg {
+  width: 80px;
+  filter: drop-shadow(0 1px 4px rgba(0,0,0,.4));
+}
+circle {
+  fill: #25d366;
+}
+path {
+  fill: #fff;
 }

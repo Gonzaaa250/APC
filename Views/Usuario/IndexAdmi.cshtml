@@ -2,6 +2,33 @@
 @{
     ViewData["Title"] ="Jugadores";
 }
+ <div class="modal fade" id="ModalClub" tabindex="1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header fondom">
+                    <h5 class="modal-title letra " id="exampleModalLabel">Agregar Club</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form id="files" method="post" enctype="multipart/form-data">
+                <div class="modal-body fondom">
+                    <input name="ClubId" type="hidden" id="ClubId" value="0" class="letra">
+                    <div class="control-label">
+                        <p class="letra">Nombre</p>
+                        <input name="Nombre" type="text" class="form-control fondoi" id="Nombre" autocomplete="off">
+                        <span asp-validation-for="Nombre" class="text-danger"></span>
+                        <p class="letra">Localidad</p>
+                        <input name="Localidad" type="text" class="form-control fondoi" id="Localidad" autocomplete="off">
+                        <span asp-validation-for="Localidad" class="text-danger"></span>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="button-8" role="button" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="button" onclick="GuardarUsuario()" class="button-87" role="button">Guardar</button>
+                    </div>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
 <h1 class="display-4 titulo bajar" style="font-family: Verdana, Geneva, Tahoma, sans-serif;">Jugadores</h1>
 <div>
     <table class="table table-dark table-bordered table-striped">
@@ -9,10 +36,11 @@
             <tr>
                 <th scope="col" class="lt">Nombre</th>
                 <th scope="col" class="lt">Localidad</th>
-                <th scope="col" class="lt">Edad</th>
                 <th scope="col" class="lt">Telefono</th>
                 <th scope="col" class="lt">DNI</th>
-                <th scope="col" class="lt"></th>
+                <th scope="col" class="lt">Club</th>
+                <th scope="col" class="lt"> Genero</th>
+                <th scope="col" class="lt" style="width: 25% !important;">#</th>
             </tr>
         </thead>
         <tbody id="tbody-usuario"></tbody>
