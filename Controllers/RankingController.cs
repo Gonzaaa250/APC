@@ -27,8 +27,8 @@ namespace TesisPadel.Controllers
 
         public IActionResult Index()
         {
-            var club = _context.Club?.ToList();
-                ViewBag.ClubId = new SelectList(club, "ClubId", "Nombre");
+            var usuario = _context.Usuario?.ToList();
+                ViewBag.UsuarioId = new SelectList(usuario, "UsuarioId", "Nombre");
             return View();
         }
         public JsonResult BuscarRanking(int RankingId = 0)

@@ -12,7 +12,7 @@ namespace TesisPadel.Models;
         
         public bool Eliminado { get; set; }
         
-        public virtual Club? Club {get; set;}
+        // public virtual Club? Club {get; set;}
         
         public virtual Usuario? Usuario { get; set; }
     }

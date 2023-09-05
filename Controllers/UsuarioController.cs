@@ -32,14 +32,33 @@ public class UsuarioController : Controller
         return View();
     }
 
-    public async Task<JsonResult> BuscarUsuario(int UsuarioId = 0)
+    public JsonResult BuscarUsuario(int UsuarioId = 0)
     {
-        var usuarios = _context.Usuario.ToList();
+        var usuarios = _context.Usuario.Include(u => u.Club).ToList();
+        
         if (UsuarioId > 0)
         {
             usuarios = usuarios.Where(u => u.UsuarioId == UsuarioId).OrderBy(u => u.Nombre).ToList();
         }
-        return Json(usuarios);
+
+        List<ListadoUsuarios> usuariosMostrar = new List<ListadoUsuarios>();
+        foreach (var usuario in usuarios)
+        {
+            var usuarioMostrar = new ListadoUsuarios
+            {
+                    UsuarioId = usuario.UsuarioId,
+                    Localidad = usuario.Localidad,
+                    Nombre = usuario.Nombre,
+                    Telefono = usuario.Telefono,
+                    DNI = usuario.DNI,
+                    Genero = usuario.Genero,
+                    Categoria = usuario.Categoria,
+                    ClubNombre = usuario.Club.Nombre
+            };
+            usuariosMostrar.Add(usuarioMostrar);
+        }
+
+        return Json(usuariosMostrar);
         
     }
 

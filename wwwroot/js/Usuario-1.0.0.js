@@ -7,12 +7,12 @@ function BuscarUsuario() {
         dataType: 'json',
         success: function (usuarios) {
             $("#tbody-usuario").empty();
-            $.each(usuarios, function (Index, usuario) {
+            $.each(usuarios, function (index, usuario) {
                 console.log(usuario);
                 var BotonEliminar = '';
                 var botones = '<button type="button" onclick="BuscarUsuarios(' + usuario.usuarioId + ')" class="button-81" role="button" title="Editar"><img src="../css/img/lapiz.png" alt=""></button>' +
                     '<button type="button" onclick="EliminarUsuario(' + usuario.usuarioId  + ', 1)" class="button-82" role="button" title="Eliminar"><img src="../css/img/tachito.png" alt=""></button>';
-                    var NombreC = usuario.club ? usuario.club.nombre :"";                  
+                    // var NombreC = usuario.clubNombre ? usuario.clubNombre :"";                  
                     var generoTexto = "Masculino";
                     if (usuario.genero == 2) {
                         generoTexto = "Femenino";
@@ -22,7 +22,7 @@ function BuscarUsuario() {
                         + '<td class="text-center lt">' + usuario.localidad + '</td>'
                         + '<td class="text-center lt">' + usuario.telefono + '</td>'
                         + '<td class="text-center lt">' + usuario.dni + '</td>'
-                        + '<td class="text-center lt">' + NombreC + '</td>'
+                        + '<td class="text-center lt">' + usuario.clubNombre + '</td>'
                         + '<td class="text-center lt">' + generoTexto + '</td>'
                         + '<td class="text-center lt">' + usuario.categoria + '</td>'
                         + '<td class="text-center">' + botones + '</td>' + '</tr>');
