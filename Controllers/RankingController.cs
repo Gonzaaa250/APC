@@ -17,9 +17,9 @@ namespace TesisPadel.Controllers
     public class RankingController : Controller
     {
         private readonly ILogger<RankingController> _logger;
-        private readonly TesisPadelDbContext _context;
+        private readonly ApplicationDbContext _context;
 
-        public RankingController(ILogger<RankingController> logger, TesisPadelDbContext context)
+        public RankingController(ILogger<RankingController> logger, ApplicationDbContext context)
         {
             _logger = logger;
             _context = context;
@@ -29,6 +29,8 @@ namespace TesisPadel.Controllers
         {
             var usuario = _context.Usuario?.ToList();
                 ViewBag.UsuarioId = new SelectList(usuario, "UsuarioId", "Nombre");
+            var club = _context.Club?.ToList();
+            ViewBag.ClubId = new SelectList(club, "ClubId", "Nombre");
             return View();
         }
         public JsonResult BuscarRanking(int RankingId = 0)
@@ -38,7 +40,7 @@ namespace TesisPadel.Controllers
             {
                 rankings = rankings
                     .Where(r => r.RankingId == RankingId)
-                    .OrderBy(r => r.Usuario.Nombre)
+                    .OrderBy(r => r.UsuarioNombre)
                     .ToList();
             }
             return Json(rankings);
@@ -66,7 +68,7 @@ namespace TesisPadel.Controllers
                     {
                         var rankingGuardar = new Ranking
                         {
-                            Usuario = usuarioExistente,
+                            UsuarioNombre = usuarioExistente.Nombre,
                             Puntos = Puntos
                         };
 
@@ -78,7 +80,7 @@ namespace TesisPadel.Controllers
                 else
                 {
                     var rankingEditar = _context.Ranking.Find(RankingId);
-                    if (rankingEditar != null && rankingEditar.Usuario.Nombre == Nombre)
+                    if (rankingEditar != null && rankingEditar.UsuarioNombre == Nombre)
                     {
                         rankingEditar.Puntos = Puntos;
 

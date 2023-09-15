@@ -8,9 +8,6 @@ var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
-var connectionStringTesis = builder.Configuration.GetConnectionString("TesisPadelConnection");
-builder.Services.AddDbContext<TesisPadelDbContext>(options =>
-    options.UseSqlServer(connectionStringTesis));
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 

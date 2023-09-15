@@ -16,7 +16,6 @@ public class Usuario
      public Genero Genero { get; set; }
      public int ClubId {get; set;}
      public virtual Club? Club { get; set; }
-     public virtual ICollection<Ranking>? Ranking { get; set; }
 }
 
 public class ListadoUsuarios

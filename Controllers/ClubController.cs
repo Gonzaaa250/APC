@@ -14,8 +14,8 @@ namespace TesisPadel.Controllers;
 public class ClubController : Controller
 {
     private readonly ILogger<ClubController> _logger;
-    private readonly TesisPadelDbContext _context;
-    public ClubController(ILogger<ClubController> logger, TesisPadelDbContext context)
+    private readonly ApplicationDbContext _context;
+    public ClubController(ILogger<ClubController> logger, ApplicationDbContext context)
     {
         _logger = logger;
         _context = context;

@@ -11,8 +11,7 @@ function BuscarUsuario() {
                 console.log(usuario);
                 var BotonEliminar = '';
                 var botones = '<button type="button" onclick="BuscarUsuarios(' + usuario.usuarioId + ')" class="button-81" role="button" title="Editar"><img src="../css/img/lapiz.png" alt=""></button>' +
-                    '<button type="button" onclick="EliminarUsuario(' + usuario.usuarioId  + ', 1)" class="button-82" role="button" title="Eliminar"><img src="../css/img/tachito.png" alt=""></button>';
-                    // var NombreC = usuario.clubNombre ? usuario.clubNombre :"";                  
+                    '<button type="button" onclick="EliminarUsuario(' + usuario.usuarioId  + ', 1)" class="button-82" role="button" title="Eliminar"><img src="../css/img/tachito.png" alt=""></button>';                
                     var generoTexto = "Masculino";
                     if (usuario.genero == 2) {
                         generoTexto = "Femenino";

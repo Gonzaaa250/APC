@@ -11,32 +11,42 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body fondom">
-                    <input name="ClubId" type="hidden" id="ClubId" value="0" class="letra">
-                    <div class="control-label">
-                        <p class="letra">Nombre</p>
-                        @Html.DropDownList("UsuarioId", null, htmlAttributes: new { @class = "form-control fondoi"})
-                        @* <p class="letra">Club</p>
-                        @Html.DropDownList("ClubId", null, htmlAttributes: new { @class = "form-control fondoi"}) *@
-                        <p class="letra">puntos</p>
-                        <input type="number" class="form-control fondoi" id="Puntos" autocomplete="off">
-                        <p>Categoria</p>
-
-                    </div>
-                    <div class="modal-footer">
+                <input name="ClubId" type="hidden" id="ClubId" value="0" class="letra">
+                <div class="control-label">
+                    <p class="letra">Nombre</p>
+                    @Html.DropDownList("UsuarioId", null, htmlAttributes: new { @class = "form-control fondoi"})
+                    <p class="letra">Club</p>
+                    @Html.DropDownList("ClubId", null, htmlAttributes: new { @class = "form-control fondoi"})
+                    <p class="letra">puntos</p>
+                    <input type="number" class="form-control fondoi" id="Puntos" autocomplete="off">
+                    <p class="letra">Categoria</p>
+                    <select name="Categoria" id="Categoria" class="form-control fondoi">
+                        <option value="0">Seleccione su Categoria</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                    </select>
+                </div>
+                <div class="modal-footer">
                     <button type="button" class="button-8" role="button" data-bs-dismiss="modal">Cerrar</button>
                     <button type="button" onclick="GuardarRanking()" class="button-87" role="button">Guardar</button>
                 </div>
             </div>
-                </div>
         </div>
+    </div>
 </div>
 <h1 class="display-4 titulo bajar" style="font-family: Verdana, Geneva, Tahoma, sans-serif;">Posiciones</h1>
 <div>
     <div class="mb-2">
         <button type="button" onclick="VaciarFormulario()" class="button-87" role="button" data-bs-toggle="modal"
-                data-bs-target="#ModalRanking">
-                Actualizar
-            </button>
+            data-bs-target="#ModalRanking">
+            Actualizar
+        </button>
     </div>
     <table class="table table-dark table-bordered table-striped">
         <thead>
@@ -47,10 +57,10 @@
                 <th style="width: 30% !important;" scope="col" class="lt"></th>
             </tr>
         </thead>
-        <tbody id="tbody-ranking">   
+        <tbody id="tbody-ranking">
         </tbody>
     </table>
 </div>
 @section Scripts{
-<script src="~/js/Ranking-1.0.0.js"></script>
+    <script src="~/js/Ranking-1.0.0.js"></script>
 }

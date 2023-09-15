@@ -16,10 +16,10 @@ namespace TesisPadel.Controllers;
 public class UsuarioController : Controller
 {
     private readonly ILogger<UsuarioController> _logger;
-    private readonly TesisPadelDbContext _context;
+    private readonly ApplicationDbContext _context;
     private readonly UserManager<IdentityUser> _userManager;
 
-    public UsuarioController(ILogger<UsuarioController> logger, TesisPadelDbContext context)
+    public UsuarioController(ILogger<UsuarioController> logger, ApplicationDbContext context)
     {
         _logger = logger;
         _context = context;

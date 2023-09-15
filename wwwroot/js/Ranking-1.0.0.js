@@ -35,6 +35,7 @@ function VaciarFormulario() {
     $("#Localidad").val("");
     $("#Club").val("");
     $("#Puntos").val("");
+    $("#Categoria").val("");
 }
 function BuscarRanking(rankingId){
 $.ajax({
@@ -51,6 +52,7 @@ $.ajax({
             $('#Localidad').val(ranking.localidad);
             $('#Club').val(ranking.club);
             $('#Puntos').val(ranking.puntos);
+            $('#Categoria').val(ranking.categoria);
 
             $('#ModalRanking').modal('show')
         }
@@ -67,9 +69,10 @@ function GuardarRanking(){
     let Localidad= $("#Localidad").val();
     let Club=$("#Club").val();
     let Puntos =$ ("#Puntos").val();
+    let Categoria = $("#Categoria").val();
     $.ajax({
         url: '../../Ranking/GuardarRanking',
-        data:{RankingId:RankingId , Nombre:Nombre  , Localidad:Localidad   , Club:Club    , Puntos: Puntos},
+        data:{RankingId:RankingId , Nombre:Nombre,Localidad:Localidad, Club:Club, Puntos: Puntos, Categoria:Categoria},
         type:'POST',
         dataType: 'json',
         success: function (resultado){
