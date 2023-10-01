@@ -11,11 +11,12 @@ public class Usuario
      public string Nombre { get; set; }
      public string Telefono { get; set; }
      public string DNI { get; set; }
-     public string Categoria { get; set; }
+     public int CategoriaId { get; set; }
      public bool Eliminado { get; set; }
      public Genero Genero { get; set; }
-     public int ClubId {get; set;}
+     public int ClubId { get; set; }
      public virtual Club? Club { get; set; }
+     public virtual Categoria? Categoria { get; set; }
 }
 
 public class ListadoUsuarios
@@ -26,7 +27,6 @@ public class ListadoUsuarios
      public string Telefono { get; set; }
      public string DNI { get; set; }
      public Genero Genero { get; set; }
-     public string Categoria { get; set; }
      public bool Eliminado { get; set; }
      public string ClubNombre { get; set; }
 }

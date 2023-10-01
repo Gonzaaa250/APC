@@ -107,7 +107,7 @@ $.ajax({
     type:'POST',
     dataType: 'json',
     success: function(resultado){
-        if(!resultado) {
+        if(resultado) {
             BuscarUsuario();
             console.log("Usuario Eliminado")
         }

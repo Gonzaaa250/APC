@@ -27,18 +27,23 @@ public class UsuarioController : Controller
     // [Authorize(Roles = "Administrador")]
     public IActionResult Index()
     {
-        var club = _context.Club?.ToList();
+        var club = _context.Club.OrderBy(c => c.Nombre).ToList();
         ViewBag.ClubId = new SelectList(club, "ClubId", "Nombre");
         return View();
     }
 
+
     public JsonResult BuscarUsuario(int UsuarioId = 0)
     {
         var usuarios = _context.Usuario.Include(u => u.Club).ToList();
-        
+
         if (UsuarioId > 0)
         {
             usuarios = usuarios.Where(u => u.UsuarioId == UsuarioId).OrderBy(u => u.Nombre).ToList();
+        }
+        else
+        {
+            usuarios = usuarios.OrderBy(u => u.Nombre).ToList();
         }
 
         List<ListadoUsuarios> usuariosMostrar = new List<ListadoUsuarios>();
@@ -46,27 +51,26 @@ public class UsuarioController : Controller
         {
             var usuarioMostrar = new ListadoUsuarios
             {
-                    UsuarioId = usuario.UsuarioId,
-                    Localidad = usuario.Localidad,
-                    Nombre = usuario.Nombre,
-                    Telefono = usuario.Telefono,
-                    DNI = usuario.DNI,
-                    Genero = usuario.Genero,
-                    Categoria = usuario.Categoria,
-                    ClubNombre = usuario.Club.Nombre
+                UsuarioId = usuario.UsuarioId,
+                Localidad = usuario.Localidad,
+                Nombre = usuario.Nombre,
+                Telefono = usuario.Telefono,
+                DNI = usuario.DNI,
+                Genero = usuario.Genero,
+                ClubNombre = usuario.Club.Nombre
             };
             usuariosMostrar.Add(usuarioMostrar);
         }
 
         return Json(usuariosMostrar);
-        
     }
 
-    public JsonResult GuardarUsuario(int UsuarioId, string Nombre, string Localidad, string Telefono, string DNI, Genero Genero, int ClubId, string Categoria)
+
+    public JsonResult GuardarUsuario(int UsuarioId, string Nombre, string Localidad, string Telefono, string DNI, Genero Genero, int ClubId, int CategoriaId)
     {
         bool resultado = false;
 
-        if (!string.IsNullOrEmpty(Nombre) && !string.IsNullOrEmpty(Localidad) && !string.IsNullOrEmpty(Telefono) && !string.IsNullOrEmpty(DNI) && !string.IsNullOrEmpty(Categoria))
+        if (!string.IsNullOrEmpty(Nombre) && !string.IsNullOrEmpty(Localidad) && !string.IsNullOrEmpty(Telefono) && !string.IsNullOrEmpty(DNI))
         {
             if (UsuarioId == 0)
             {
@@ -74,6 +78,7 @@ public class UsuarioController : Controller
                 if (usuarioExistente == null)
                 {
                     var club = _context.Club.FirstOrDefault(c => c.ClubId == ClubId); // Obtener el club por su ID
+                    var categoria =_context.Categoria.FirstOrDefault(c=> c.CategoriaId == CategoriaId);
                     if (club != null)
                     {
                         var usuarioguardar = new Usuario
@@ -83,8 +88,8 @@ public class UsuarioController : Controller
                             Telefono = Telefono,
                             DNI = DNI,
                             Genero = Genero,
-                            Categoria = Categoria,
-                            Club = club 
+                            Club = club,
+                            Categoria = categoria
                         };
                         _context.Add(usuarioguardar);
                         _context.SaveChanges();
@@ -105,7 +110,7 @@ public class UsuarioController : Controller
                         usuarioActualizar.Telefono = Telefono;
                         usuarioActualizar.DNI = DNI;
                         usuarioActualizar.Genero = Genero;
-                        usuarioActualizar.Categoria = Categoria;
+                        usuarioActualizar.Categoria = _context.Categoria.FirstOrDefault(c=> c.CategoriaId == CategoriaId);
                         usuarioActualizar.Club = _context.Club.FirstOrDefault(c => c.ClubId == ClubId); // Actualizar el objeto Club al usuario
                         _context.SaveChanges();
                         resultado = true;

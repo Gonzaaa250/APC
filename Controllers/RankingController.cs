@@ -28,7 +28,7 @@ namespace TesisPadel.Controllers
         public IActionResult Index()
         {
             var usuario = _context.Usuario?.ToList();
-                ViewBag.UsuarioId = new SelectList(usuario, "UsuarioId", "Nombre");
+            ViewBag.UsuarioId = new SelectList(usuario, "UsuarioId", "Nombre");
             var club = _context.Club?.ToList();
             ViewBag.ClubId = new SelectList(club, "ClubId", "Nombre");
             return View();
@@ -46,44 +46,41 @@ namespace TesisPadel.Controllers
             return Json(rankings);
         }
 
-        public JsonResult GuardarRanking(
-            int RankingId,
-            string Puntos,
-            string Club,
-            string Categoria,
-            string Nombre,
-            string Localidad
-        )
+        public JsonResult GuardarRanking(int RankingId, int Puntos, string Club, string Categoria, string UsuarioNombre, int UsuarioId, int CategoriaId)
         {
             bool resultado = false;
 
-            if (!string.IsNullOrEmpty(Nombre)
-                && !string.IsNullOrEmpty(Club)
-                && !string.IsNullOrEmpty(Puntos))
+            if (!string.IsNullOrEmpty(UsuarioNombre)
+                && !string.IsNullOrEmpty(Club))
             {
                 if (RankingId == 0)
                 {
-                    var usuarioExistente = _context.Usuario.FirstOrDefault(u => u.Nombre == Nombre);
-                    if (usuarioExistente != null)
+                    var usuarioExistente = _context.Usuario.FirstOrDefault(u => u.Nombre == UsuarioNombre);
+                    if (usuarioExistente == null)
                     {
+                        var categoria =_context.Categoria.FirstOrDefault(c=> c.CategoriaId == CategoriaId);
+                        if(categoria != null)
+                        {
                         var rankingGuardar = new Ranking
                         {
                             UsuarioNombre = usuarioExistente.Nombre,
-                            Puntos = Puntos
+                            Puntos = Puntos,
+                            Categoria = categoria
                         };
 
                         _context.Add(rankingGuardar);
                         _context.SaveChanges();
                         resultado = true;
+                        }
                     }
                 }
                 else
                 {
                     var rankingEditar = _context.Ranking.Find(RankingId);
-                    if (rankingEditar != null && rankingEditar.UsuarioNombre == Nombre)
+                    if (rankingEditar != null && rankingEditar.UsuarioNombre == UsuarioNombre)
                     {
                         rankingEditar.Puntos = Puntos;
-
+                        rankingEditar.Categoria =_context.Categoria.FirstOrDefault(c=> c.CategoriaId == CategoriaId);
                         _context.SaveChanges();
                         resultado = true;
                     }

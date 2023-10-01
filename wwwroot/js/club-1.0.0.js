@@ -107,6 +107,9 @@ function EliminarClub(ClubId, Eliminado) {
         type: 'POST',
         dataType: 'json',
         success: function (resultado) {
+            if(resultado = -1){
+                alert("No se puede eliminar este club porque hay un jugador asociado a este")
+            }
             if (resultado) {
                 BuscarClub();
                 console.log("Club eliminado correctamente");

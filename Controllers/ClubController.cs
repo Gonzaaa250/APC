@@ -23,18 +23,23 @@ public class ClubController : Controller
     // [Authorize(Roles = "Administrador")]
     public IActionResult Index()
     {
-        var clubs = _context.Club.ToList();
+        var clubs = _context.Club.OrderBy(c=> c.Nombre).ToList();
         return View();
     }
-    public JsonResult BuscarClub(int ClubId = 0)
+public JsonResult BuscarClub(int ClubId = 0)
+{
+    var clubs = _context.Club.ToList();
+    if (ClubId > 0)
     {
-        var clubs = _context.Club.ToList();
-        if (ClubId > 0)
-        {
-            clubs = clubs.Where(c => c.ClubId == ClubId).OrderBy(c => c.Nombre).ToList();
-        }
-        return Json(clubs);
+        clubs = clubs.Where(c => c.ClubId == ClubId).ToList();
     }
+    else
+    {
+        clubs = clubs.OrderBy(c => c.Nombre).ToList();
+    }
+    return Json(clubs);
+}
+
     // [Authorize(Roles = "Administrador")]
     public JsonResult GuardarClub(int ClubId, string Nombre, string Localidad, IFormFile imagen)
     {
@@ -104,31 +109,43 @@ public class ClubController : Controller
         }
         return Json(resultado);
     }
-    
-    public JsonResult EliminarClub(int ClubId, int Eliminado)
-    {
-        int resultado = 0;
-        var club = _context.Club.Find(ClubId);
 
-        if (club != null)
+    public bool ExistenJugadoresAsociadosAlClub(int ClubId)
+{
+    return _context.Usuario.Any(u => u.ClubId == ClubId);
+}
+
+    public JsonResult EliminarClub(int ClubId, int Eliminado)
+{
+    int resultado = 0;
+    var club = _context.Club.Find(ClubId);
+
+    if (club != null)
+    {
+        if (ExistenJugadoresAsociadosAlClub(ClubId))
         {
-            if (Eliminado ==0)
+            // Si hay jugadores asociados, no permitir la eliminación
+            resultado = -1; // Indicar un error específico para jugadores asociados
+            
+        }
+        else
+        {
+            if (Eliminado == 0)
             {
                 club.Eliminado = false;
-            _context.SaveChanges();
+                _context.SaveChanges();
             }
-            
-            else{
-                if (Eliminado == 1)
-                {
-                    club.Eliminado = true;
-                    _context.Remove(club);
-                    _context.SaveChanges();
-                }
+            else if (Eliminado == 1)
+            {
+                club.Eliminado = true;
+                _context.Remove(club);
+                _context.SaveChanges();
             }
-        }
-        resultado = 1;
 
-        return Json(resultado);
+            resultado = 1; // Indicar que la operación fue exitosa
+        }
     }
+
+    return Json(resultado);
+}
 }

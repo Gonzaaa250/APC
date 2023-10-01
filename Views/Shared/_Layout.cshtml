@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/TesisPadel.styles.css" asp-append-version="true" />
     <script src="https://kit.fontawesome.com/808781cc1c.js" crossorigin="anonymous"></script>
+    @* <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="sweetalert2.all.min.js"></script> *@
 </head>
 
 <body >
@@ -35,7 +37,10 @@
                             <a class="BTN nav-link" asp-area="" asp-controller="Club" asp-action="Index">Clubes</a>
                         </li>
                         <li class="nav-item">
-                            <a class="BTN nav-link" asp-area="" asp-controller="Usuario" asp-action="Index">Usuario</a>
+                            <a class="BTN nav-link" asp-area="" asp-controller="Categoria" asp-action="Index">Categoria</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="BTN nav-link" asp-area="/Usuario/IndexAdmi" asp-controller="Usuario" asp-action="Index">Usuario</a>
                         </li> 
                     </ul>
                     <partial name="_LoginPartial"/>
