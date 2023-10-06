@@ -8,6 +8,6 @@ public class Categoria
     public int CategoriaId { get; set; }
     public string Tipo { get; set; } // Puede ser "Categoria1", "Categoria2", etc.
     public bool Eliminado { get; set; }
-    public virtual ICollection <Usuario>? Usuario {get; set;}
-    public virtual ICollection <Ranking>? Ranking {get; set;}
+    public virtual ICollection <Usuario> Usuario {get; set;}
+    public virtual ICollection <Ranking> Ranking {get; set;}
 }

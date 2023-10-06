@@ -29,6 +29,8 @@ public class UsuarioController : Controller
     {
         var club = _context.Club.OrderBy(c => c.Nombre).ToList();
         ViewBag.ClubId = new SelectList(club, "ClubId", "Nombre");
+        var categoria = _context.Categoria.OrderBy(c=> c.Tipo).ToList();
+        ViewBag.CategoriaId = new SelectList(categoria, "CategoriaId", "Tipo");
         return View();
     }
 
@@ -57,7 +59,8 @@ public class UsuarioController : Controller
                 Telefono = usuario.Telefono,
                 DNI = usuario.DNI,
                 Genero = usuario.Genero,
-                ClubNombre = usuario.Club.Nombre
+                ClubNombre = usuario.Club.Nombre,
+                Tipo = usuario.Categoria.Tipo
             };
             usuariosMostrar.Add(usuarioMostrar);
         }
@@ -81,7 +84,8 @@ public class UsuarioController : Controller
                     var categoria =_context.Categoria.FirstOrDefault(c=> c.CategoriaId == CategoriaId);
                     if (club != null)
                     {
-                        var usuarioguardar = new Usuario
+                        
+                            var usuarioguardar = new Usuario
                         {
                             Nombre = Nombre,
                             Localidad = Localidad,
@@ -94,6 +98,7 @@ public class UsuarioController : Controller
                         _context.Add(usuarioguardar);
                         _context.SaveChanges();
                         resultado = true;
+                        
                     }
                 }
             }

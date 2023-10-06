@@ -12,8 +12,8 @@ using TesisPadel.Data;
 namespace TesisPadel.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231001232948_Categoriaa")]
-    partial class Categoriaa
+    [Migration("20231003001220_Categoria_usuario")]
+    partial class Categoria_usuario
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

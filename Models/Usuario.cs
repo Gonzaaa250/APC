@@ -29,6 +29,7 @@ public class ListadoUsuarios
      public Genero Genero { get; set; }
      public bool Eliminado { get; set; }
      public string ClubNombre { get; set; }
+     public string Tipo {get; set;}
 }
 
 public enum Genero

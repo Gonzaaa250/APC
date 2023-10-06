@@ -51,25 +51,30 @@
         <div class="row">
             <div class=" col-md-6">
             <p style="">Categoria</p>
-            <select name="Categoria" id="Categoria" style="width : 80%;; height: 55%;">
-                    <option value="0">Seleccione su Categoria</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-            </select>
-        </div>
+            @Html.DropDownList("CategoriaId", null, htmlAttributes: new { @class = "form-control borde", @style="width : 80%; height: 55%;" })
         </div>
     </div>
 
 </div>
 <button style="margin-left: 43%;" type="button" onclick="GuardarUsuario()" class="button-87"
     role="button">Guardar</button>
-    
+    <div>
+    <table class="table table-dark table-bordered table-striped">
+        <thead>
+            <tr>
+                <th scope="col" class="lt" style="width: 22% !important;">Nombre</th>
+                <th scope="col" class="lt">Localidad</th>
+                <th scope="col" class="lt">Telefono</th>
+                <th scope="col" class="lt">DNI</th>
+                <th scope="col" class="lt" style="width: 22% !important;">Club</th>
+                <th scope="col" class="lt">Genero</th>
+                <th scope="col" class="lt">Categoria</th>
+                <th scope="col" class="lt" style="width: 22% !important;"></th>
+            </tr>
+        </thead>
+        <tbody id="tbody-usuario"></tbody>
+    </table>
+</div>
 @section Scripts{
     <script src="~/js/usuario-1.0.0.js"></script>
 }

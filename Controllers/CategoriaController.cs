@@ -10,8 +10,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
 using TesisPadel.Data;
 using TesisPadel.Models;
-
 namespace TesisPadel.Controllers;
+[Authorize]
 public class CategoriaController : Controller
 {
     private readonly ILogger<CategoriaController> _logger;
@@ -40,39 +40,50 @@ public class CategoriaController : Controller
         return Json(categorias);
     }
     public JsonResult GuardarCategoria(int CategoriaId, string Tipo)
+{
+    bool result = false;
+
+    if (!string.IsNullOrEmpty(Tipo))
     {
-        bool result = false;
-        if (!string.IsNullOrEmpty(Tipo))
+        if (CategoriaId == 0)
         {
-            if (CategoriaId == 0)
+            // Verificar si la categoría ya existe
+            var categoriaExistente = _context.Categoria.FirstOrDefault(c => c.Tipo == Tipo);
+
+            if (categoriaExistente == null)
             {
-                var categoríaE = _context.Categoria.FirstOrDefault(c => c.Tipo == Tipo);
-                if (categoríaE == null)
+                var nuevaCategoria = new Categoria
                 {
-                    var categoria = new Categoria
-                    {
-                        Tipo = Tipo
-                    };
-                    _context.Add(categoria);
-                    _context.SaveChanges();
-                    result = true;
-                }
+                    Tipo = Tipo
+                };
+
+                _context.Add(nuevaCategoria);
+                _context.SaveChanges();
+                result = true;
             }
-            else
+        }
+        else
+        {
+            // Verificar si el Tipo ya existe en otra categoría
+            var categoriaExistente = _context.Categoria.FirstOrDefault(c => c.Tipo == Tipo && c.CategoriaId != CategoriaId);
+
+            if (categoriaExistente == null)
             {
-                var categoríaE = _context.Categoria.FirstOrDefault(c => c.Tipo == Tipo && c.CategoriaId != CategoriaId);
-                if (categoríaE != null)
+                var editarCategoria = _context.Categoria.Find(CategoriaId);
+
+                if (editarCategoria != null)
                 {
-                    var editarC = _context.Categoria.Find(CategoriaId);
-                    editarC.Tipo = Tipo;
+                    editarCategoria.Tipo = Tipo;
 
                     _context.SaveChanges();
                     result = true;
                 }
             }
         }
-        return Json(result);
     }
+
+    return Json(result);
+}
 
     public JsonResult EliminarCategoria(int CategoriaId)
     {

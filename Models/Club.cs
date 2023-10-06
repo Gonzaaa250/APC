@@ -21,5 +21,6 @@ namespace TesisPadel.Models
 
 
         public virtual ICollection <Usuario>? Usuario {get; set;}
+        public virtual ICollection <Ranking>? Ranking {get; set;}
     }
 }

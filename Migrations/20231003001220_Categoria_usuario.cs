@@ -4,7 +4,7 @@
 
 namespace TesisPadel.Migrations
 {
-    public partial class Categoriaa : Migration
+    public partial class Categoria_usuario : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

@@ -8,11 +8,12 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
+using System.Dynamic;
 using TesisPadel.Data;
 using TesisPadel.Models;
 
-namespace TesisPadel.Controllers
-{
+namespace TesisPadel.Controllers;
+
     [Authorize]
     public class RankingController : Controller
     {
@@ -31,27 +32,26 @@ namespace TesisPadel.Controllers
             ViewBag.UsuarioId = new SelectList(usuario, "UsuarioId", "Nombre");
             var club = _context.Club?.ToList();
             ViewBag.ClubId = new SelectList(club, "ClubId", "Nombre");
+            var categoria= _context.Categoria?.ToList();
+            ViewBag.CategoriaId = new SelectList(categoria, "CategoriaId", "Tipo");
             return View();
         }
         public JsonResult BuscarRanking(int RankingId = 0)
         {
-            var rankings = _context.Ranking.ToList();
+            var rankings = _context.Ranking.Include(r=> r.Categoria).ToList();
             if (RankingId > 0)
             {
-                rankings = rankings
-                    .Where(r => r.RankingId == RankingId)
-                    .OrderBy(r => r.UsuarioNombre)
-                    .ToList();
+                rankings = rankings.Where(r => r.RankingId == RankingId).OrderBy(r => r.UsuarioNombre).ToList();
             }
+            rankings = rankings.OrderBy(r=> r.Categoria.Tipo).ThenBy(r=> r.UsuarioNombre).ToList();
             return Json(rankings);
         }
 
-        public JsonResult GuardarRanking(int RankingId, int Puntos, string Club, string Categoria, string UsuarioNombre, int UsuarioId, int CategoriaId)
+        public JsonResult GuardarRanking(int RankingId, int Puntos, int ClubId, string Categoria, string UsuarioNombre, int UsuarioId, int CategoriaId)
         {
             bool resultado = false;
 
-            if (!string.IsNullOrEmpty(UsuarioNombre)
-                && !string.IsNullOrEmpty(Club))
+            if (!string.IsNullOrEmpty(UsuarioNombre))
             {
                 if (RankingId == 0)
                 {
@@ -59,12 +59,14 @@ namespace TesisPadel.Controllers
                     if (usuarioExistente == null)
                     {
                         var categoria =_context.Categoria.FirstOrDefault(c=> c.CategoriaId == CategoriaId);
+                        var club = _context.Club.FirstOrDefault(c => c.ClubId == ClubId);
                         if(categoria != null)
                         {
                         var rankingGuardar = new Ranking
                         {
                             UsuarioNombre = usuarioExistente.Nombre,
                             Puntos = Puntos,
+                            Club = club,
                             Categoria = categoria
                         };
 
@@ -113,4 +115,3 @@ namespace TesisPadel.Controllers
             return Json(resultado);
         }
     }
-}

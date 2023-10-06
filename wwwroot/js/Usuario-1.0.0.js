@@ -16,6 +16,7 @@ function BuscarUsuario() {
                     if (usuario.genero == 2) {
                         generoTexto = "Femenino";
                     }
+                    var categoriaNombre = usuario.categoria ? usuario.categoria.tipo : "";
                     $("#tbody-usuario").append('<tr class="' + BotonEliminar + '">'
                         + '<td class="text-center lt">' + usuario.nombre + '</td>'
                         + '<td class="text-center lt">' + usuario.localidad + '</td>'
@@ -23,7 +24,7 @@ function BuscarUsuario() {
                         + '<td class="text-center lt">' + usuario.dni + '</td>'
                         + '<td class="text-center lt">' + usuario.clubNombre + '</td>'
                         + '<td class="text-center lt">' + generoTexto + '</td>'
-                        + '<td class="text-center lt">' + usuario.categoria + '</td>'
+                        + '<td class="text-center lt">' + usuario.tipo+ '</td>'
                         + '<td class="text-center">' + botones + '</td>' + '</tr>');
             });
         },
@@ -55,10 +56,10 @@ $.ajax({
             $("#Localidad").val(usuario.localidad);
             $("#Telefono").val(usuario.telefono);
             $("#DNI").val(usuario.dni);
-            $("#Club").val(usuario.club);
+            $("#Club").val(usuario.clubNombre);
             $("#Genero").val(usuario.genero);
             $("#UsuarioId").val(usuario.usuarioId);
-            $("#Categoria").val(usuario.categoria)
+            $("#Categoria").val(usuario.categoria.tipo)
             $("#ModalUsuario").modal("show");
         }
     },
@@ -76,11 +77,10 @@ function GuardarUsuario(){
     let DNI=$("#DNI").val();
     let Genero=$("#Genero").val();
     let ClubId = $("#ClubId").val();
-    let Categoria = $("#Categoria").val()
-    
+    let CategoriaId = $("#CategoriaId").val()
     $.ajax({
         url:'../../Usuario/GuardarUsuario',
-        data: {UsuarioId: UsuarioId, Nombre: Nombre, Localidad: Localidad, Telefono: Telefono, DNI: DNI, Genero: Genero, ClubId: ClubId, Categoria: Categoria},
+        data: {UsuarioId: UsuarioId, Nombre: Nombre, Localidad: Localidad, Telefono: Telefono, DNI: DNI, Genero: Genero, ClubId: ClubId, CategoriaId: CategoriaId},
         type: 'POST',
         dataType: 'json',
         success: function (resultado){
@@ -88,7 +88,7 @@ function GuardarUsuario(){
                 $("#ModalUsuario").modal("hide");
 ;
                 BuscarUsuario();
-                window.location.href="/"
+                // window.location.href="/"
                 alert("Guardado Correctamente")
             } else{
                 alert("Ya existe el usuario");
