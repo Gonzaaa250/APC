@@ -16,7 +16,7 @@ function BuscarUsuario() {
                     if (usuario.genero == 2) {
                         generoTexto = "Femenino";
                     }
-                    var categoriaNombre = usuario.categoria ? usuario.categoria.tipo : "";
+                    // var categoriaNombre = usuario.categoria ? usuario.categoria.Tipo : "";
                     $("#tbody-usuario").append('<tr class="' + BotonEliminar + '">'
                         + '<td class="text-center lt">' + usuario.nombre + '</td>'
                         + '<td class="text-center lt">' + usuario.localidad + '</td>'
@@ -24,7 +24,7 @@ function BuscarUsuario() {
                         + '<td class="text-center lt">' + usuario.dni + '</td>'
                         + '<td class="text-center lt">' + usuario.clubNombre + '</td>'
                         + '<td class="text-center lt">' + generoTexto + '</td>'
-                        + '<td class="text-center lt">' + usuario.tipo+ '</td>'
+                        + '<td class="text-center lt">' + usuario.categoriaNombre + '</td>'
                         + '<td class="text-center">' + botones + '</td>' + '</tr>');
             });
         },

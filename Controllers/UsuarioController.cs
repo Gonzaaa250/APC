@@ -37,7 +37,7 @@ public class UsuarioController : Controller
 
     public JsonResult BuscarUsuario(int UsuarioId = 0)
     {
-        var usuarios = _context.Usuario.Include(u => u.Club).ToList();
+        var usuarios = _context.Usuario.Include(u => u.Club).Include(u => u.Categoria).ToList();
 
         if (UsuarioId > 0)
         {
@@ -51,6 +51,9 @@ public class UsuarioController : Controller
         List<ListadoUsuarios> usuariosMostrar = new List<ListadoUsuarios>();
         foreach (var usuario in usuarios)
         {
+            // var Categoria = _context.Categoria.Where(c = c.CategoriaId == usuario.CategoriaId).FirstOrDefault();
+
+            
             var usuarioMostrar = new ListadoUsuarios
             {
                 UsuarioId = usuario.UsuarioId,
@@ -59,8 +62,8 @@ public class UsuarioController : Controller
                 Telefono = usuario.Telefono,
                 DNI = usuario.DNI,
                 Genero = usuario.Genero,
-                ClubNombre = usuario.Club.Nombre,
-                Tipo = usuario.Categoria.Tipo
+                categoriaNombre = usuario.Categoria.Tipo,
+                ClubNombre = usuario.Club.Nombre
             };
             usuariosMostrar.Add(usuarioMostrar);
         }

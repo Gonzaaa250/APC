@@ -6,7 +6,7 @@ public class Categoria
 {
     [Key]
     public int CategoriaId { get; set; }
-    public string Tipo { get; set; } // Puede ser "Categoria1", "Categoria2", etc.
+    public string Tipo { get; set; } 
     public bool Eliminado { get; set; }
     public virtual ICollection <Usuario> Usuario {get; set;}
     public virtual ICollection <Ranking> Ranking {get; set;}
