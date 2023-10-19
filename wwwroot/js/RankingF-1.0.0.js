@@ -62,48 +62,48 @@ function BuscarRankings(rankingId) {
         }
     });
 }
-
-$("#UsuarioId").change(function () {
-    BuscarInfoUsuario();
-});
-
-function BuscarInfoUsuario(){
-var usuarioId = $("#UsuarioId").val();
-    $.ajax({
-        url:'../../Usuario/BuscarUsuario',
-        data: {UsuarioId: usuarioId},
-        type: 'GET',
-        dataType:"json",
-        success: function(usuarios)
-        {
-            if(usuarios.length ==1){
-                let usuario = usuarios[0];            
-                $("#ClubNombreJugador").val(usuario.clubNombre);             
-                $("#CategoriaNombreJugador").val(usuario.categoriaNombre);               
-            }
-        },
-        error: function(xhr, status){
-            alert('Error al buscar informacion del jugador');
-        }
-    });
-    }
-
-
 //GUARDAR RANKING
 function GuardarRanking() {
-    let rankingId = $("#RankingId").val();
-    var usuarioId = $("#UsuarioId").val();
-    let puntos = $("#Puntos").val();
+    let RankingId = $("#RankingId").val();
+    let Nombre = $("#Nombre").val();
+    let Club = $("#Club").val();
+    let Puntos = $("#Puntos").val();
+    let Categoria = $("#CategoriaId").val();
+    let Genero = $("#Genero").val();
     $.ajax({
         url: '../../Ranking/GuardarRanking',
-        data: { RankingId: rankingId, UsuarioId: usuarioId, Puntos: puntos },
+        data: { RankingId: RankingId, Nombre: Nombre, Club: Club, Puntos: Puntos, Categoria: Categoria, Genero: Genero },
         type: 'POST',
         dataType: 'json',
         success: function (resultado) {
             if (resultado) {
+                if (Categoria === 1) {
+
+                }
+                else if (Categoria == 2) {
+
+                }
+                else if (Categoria == 3) {
+
+                }
+                else if (Categoria === 4) {
+
+                }
+                else if (Categoria === 5) { 
+
+                }
+                else if (Categoria === 6) { 
+
+                }
+                else if (Categoria === 7) { 
+
+                }
+                else if (Categoria === 8) { 
+                    
+                }
                 $("#ModalRanking").modal("hide");
                 BuscarRanking();
-               
+                alert('guardado correctamente')
             }
             else {
                 alert('No se pudo guardar');

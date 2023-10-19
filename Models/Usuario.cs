@@ -17,6 +17,8 @@ public class Usuario
      public int ClubId { get; set; }
      public virtual Club? Club { get; set; }
      public virtual Categoria? Categoria { get; set; }
+
+    public virtual ICollection<Ranking>? Rankings { get; set; }
 }
 
 public class ListadoUsuarios
@@ -30,6 +32,7 @@ public class ListadoUsuarios
      public bool Eliminado { get; set; }
      public string ClubNombre { get; set; }
      public string categoriaNombre {get; set;}
+     public int Puntos {get;set;}
 }
 
 public enum Genero

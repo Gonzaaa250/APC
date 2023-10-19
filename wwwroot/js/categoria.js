@@ -1,4 +1,5 @@
 window.onload = BuscarCategoria();
+
 function BuscarCategoria(){
     $("#tbody-categoria").empty();
     $.ajax({
@@ -78,12 +79,12 @@ function EliminarCategoria(CategoriaId, Eliminado)
         type:'POST',
         dataType: 'json',
         success: function (resultado) {
-            if(resultado = -1){
+            if(resultado === -1){
                 alert("No se puede eliminar esta categoria porque hay un jugador asociado a este")
             }
             if (resultado) {
-                BuscarClub();
-                alert("Categoria eliminado");
+                BuscarCategoria(); // Corregido aquí
+                alert("Categoria eliminada");
             }
         },
         error: function (xhr, status) {

@@ -9,5 +9,4 @@ public class Categoria
     public string Tipo { get; set; } 
     public bool Eliminado { get; set; }
     public virtual ICollection <Usuario> Usuario {get; set;}
-    public virtual ICollection <Ranking> Ranking {get; set;}
 }

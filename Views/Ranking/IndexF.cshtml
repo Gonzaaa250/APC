@@ -1,0 +1,146 @@
+@model TesisPadel.Models.Ranking;
+@{
+    ViewData["Title"] = "Ranking";
+}
+@* MODAL *@
+<div class="modal fade" id="ModalRanking" tabindex="1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header fondom">
+                <h5 class="modal-title letra" id="exampleModalLabel">Agregar puntos</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body fondom">
+                <input name="RankingId" type="hidden" id="RankingId" value="0" class="letra">
+                <div class="control-label">
+                    <p class="letra">Nombre</p>
+                    @Html.DropDownList("UsuarioId", null, htmlAttributes: new { @class = "form-control fondoi"})
+                    <p class="letra">Club</p>
+                    @Html.DropDownList("ClubId", null, htmlAttributes: new { @class = "form-control fondoi"})
+                    <p class="letra">puntos</p>
+                    <input type="number" class="form-control fondoi" id="Puntos" autocomplete="off">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="button-8" role="button" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" onclick="GuardarRanking()" class="button-87" role="button">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<h1 class="display-4 titulo bajar" style="font-family: Verdana, Geneva, Tahoma, sans-serif;">Posiciones</h1>
+<div>
+    <div class="mb-2">
+        <button type="button" onclick="VaciarFormulario()" class="button-87" role="button" data-bs-toggle="modal"
+            data-bs-target="#ModalRanking">
+            Actualizar
+        </button>
+    </div>
+        <h2 style="text-align: center;">1°Categoria</h2>
+    <table class="table table-dark table-bordered table-striped" id="catF1">
+        <thead>
+            <tr>
+                <th scope="col" class="lt">Nombre</th>
+                <th scope="col" class="lt">Club</th>
+                <th scope="col" class="lt">Puntos</th>
+                <th style="width: 18%!important;" scope="col" class="lt"></th>
+            </tr>
+        </thead>
+        <tbody id="tbody-ranking">
+        </tbody>
+    </table>
+    <h2 style="text-align: center;">2°Categoria</h2>
+    <table class="table table-dark table-bordered table-striped" id="catF2">
+        <thead>
+            <tr>
+                <th scope="col" class="lt">Nombre</th>
+                <th scope="col" class="lt">Club</th>
+                <th scope="col" class="lt">Puntos</th>
+                <th style="width: 18% !important;" scope="col" class="lt"></th>
+            </tr>
+        </thead>
+        <tbody id="tbody-ranking">
+        </tbody>
+    </table>
+    <h2 style="text-align: center;">3°Categoria</h2>
+    <table class="table table-dark table-bordered table-striped" id="catF3">
+        <thead>
+            <tr>
+                <th scope="col" class="lt">Nombre</th>
+                <th scope="col" class="lt">Club</th>
+                <th scope="col" class="lt">Puntos</th>
+                <th style="width: 18% !important;" scope="col" class="lt"></th>
+            </tr>
+        </thead>
+        <tbody id="tbody-ranking">
+        </tbody>
+    </table>
+    <h2 style="text-align: center;">4°Categoria</h2>
+    <table class="table table-dark table-bordered table-striped" id="catF4">
+        <thead>
+            <tr>
+                <th scope="col" class="lt">Nombre</th>
+                <th scope="col" class="lt">Club</th>
+                <th scope="col" class="lt">Puntos</th>
+                <th style="width: 18% !important;" scope="col" class="lt"></th>
+            </tr>
+        </thead>
+        <tbody id="tbody-ranking">
+        </tbody>
+    </table>
+    <h2 style="text-align: center;">5°Categoria</h2>
+    <table class="table table-dark table-bordered table-striped" id="catF5">
+        <thead>
+            <tr>
+                <th scope="col" class="lt">Nombre</th>
+                <th scope="col" class="lt">Club</th>
+                <th scope="col" class="lt">Puntos</th>
+                <th style="width: 18% !important;" scope="col" class="lt"></th>
+            </tr>
+        </thead>
+        <tbody id="tbody-ranking">
+        </tbody>
+    </table>
+    <h2 style="text-align: center;">6°Categoria</h2>
+    <table class="table table-dark table-bordered table-striped" id="catF6">
+        <thead>
+            <tr>
+                <th scope="col" class="lt">Nombre</th>
+                <th scope="col" class="lt">Club</th>
+                <th scope="col" class="lt">Puntos</th>
+                <th style="width: 18% !important;" scope="col" class="lt"></th>
+            </tr>
+        </thead>
+        <tbody id="tbody-ranking">
+        </tbody>
+    </table>
+    <h2 style="text-align: center;">7°Categoria</h2>
+    <table class="table table-dark table-bordered table-striped" id="catF7">
+        <thead>
+            <tr>
+                <th scope="col" class="lt">Nombre</th>
+                <th scope="col" class="lt">Club</th>
+                <th scope="col" class="lt">Puntos</th>
+                <th style="width: 18% !important;" scope="col" class="lt"></th>
+            </tr>
+        </thead>
+        <tbody id="tbody-ranking">
+        </tbody>
+    </table>
+    <h2 style="text-align: center;">8°Categoria</h2>
+    <table class="table table-dark table-bordered table-striped" id="caFt8">
+        <thead>
+            <tr>
+                <th scope="col" class="lt">Nombre</th>
+                <th scope="col" class="lt">Club</th>
+                <th scope="col" class="lt">Puntos</th>
+                <th style="width: 18% !important;" scope="col" class="lt"></th>
+            </tr>
+        </thead>
+        <tbody id="tbody-ranking">
+        </tbody>
+    </table>
+</div>
+@section Scripts{
+    <script src="~/js/RankingF-1.0.0.js"></script>
+}

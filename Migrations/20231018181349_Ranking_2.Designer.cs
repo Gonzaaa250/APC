@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TesisPadel.Data;
 
@@ -11,9 +12,10 @@ using TesisPadel.Data;
 namespace TesisPadel.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231018181349_Ranking_2")]
+    partial class Ranking_2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -283,6 +285,12 @@ namespace TesisPadel.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RankingId"), 1L, 1);
 
+                    b.Property<int>("CategoriaId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ClubId")
+                        .HasColumnType("int");
+
                     b.Property<bool>("Eliminado")
                         .HasColumnType("bit");
 
@@ -294,7 +302,9 @@ namespace TesisPadel.Migrations
 
                     b.HasKey("RankingId");
 
-                    b.HasIndex("UsuarioId");
+                    b.HasIndex("CategoriaId");
+
+                    b.HasIndex("ClubId");
 
                     b.ToTable("Ranking");
                 });
@@ -331,6 +341,9 @@ namespace TesisPadel.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("RankingId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Telefono")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -340,6 +353,8 @@ namespace TesisPadel.Migrations
                     b.HasIndex("CategoriaId");
 
                     b.HasIndex("ClubId");
+
+                    b.HasIndex("RankingId");
 
                     b.ToTable("Usuario");
                 });
@@ -397,13 +412,21 @@ namespace TesisPadel.Migrations
 
             modelBuilder.Entity("TesisPadel.Models.Ranking", b =>
                 {
-                    b.HasOne("TesisPadel.Models.Usuario", "Usuario")
-                        .WithMany("Rankings")
-                        .HasForeignKey("UsuarioId")
+                    b.HasOne("TesisPadel.Models.Categoria", "Categoria")
+                        .WithMany()
+                        .HasForeignKey("CategoriaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Usuario");
+                    b.HasOne("TesisPadel.Models.Club", "Club")
+                        .WithMany()
+                        .HasForeignKey("ClubId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Categoria");
+
+                    b.Navigation("Club");
                 });
 
             modelBuilder.Entity("TesisPadel.Models.Usuario", b =>
@@ -420,6 +443,10 @@ namespace TesisPadel.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("TesisPadel.Models.Ranking", null)
+                        .WithMany("Usuario")
+                        .HasForeignKey("RankingId");
+
                     b.Navigation("Categoria");
 
                     b.Navigation("Club");
@@ -435,9 +462,9 @@ namespace TesisPadel.Migrations
                     b.Navigation("Usuario");
                 });
 
-            modelBuilder.Entity("TesisPadel.Models.Usuario", b =>
+            modelBuilder.Entity("TesisPadel.Models.Ranking", b =>
                 {
-                    b.Navigation("Rankings");
+                    b.Navigation("Usuario");
                 });
 #pragma warning restore 612, 618
         }
