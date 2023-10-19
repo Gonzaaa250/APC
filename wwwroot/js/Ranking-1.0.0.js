@@ -1,28 +1,49 @@
 window.onload = BuscarRanking();
 
 function BuscarRanking() {
-    $("#tbody-ranking").empty();
+    $("#div-categorias").empty();
     $.ajax({
         url: '../../Ranking/BuscarRanking',
         type: 'GET',
         dataType: "json",
-        success: function (rankings) {
-            $("#tbody-ranking").empty();
-            $.each(rankings, function (Index, ranking) {
-                var BotonEliminar = "";
-                var botones = 'button type="button" onclick="BuscarRankings(' + ranking.rankingId + ') class="button-81" role="button" title="Editar"><img src="../css/img/lapiz.png" alt=""></button>' +
-                    '<button type="button" onclick="EliminarRanking(' + ranking.rankingId + ', 1)" class="button-82" role="button" title="Eliminar"><img src="../css/img/tachito.png" alt=""></button>';
-                // if(usuario.eliminado){
-                //     BotonEliminar= 'table-danger';
-                //     botones = '<button type="button" onclick="EliminarUsuario(' + usuario.rankingId + ', 1)" class="button-87" role="button">Activar</button>';
-                // }
-                $("#tbody-ranking").append('<tr class="' + BotonEliminar + '">'
-                    + '<td class="text-center lt>' + ranking.nombre + '</td>'
-                    + '<td class="text-center lt>' + ranking.localidad + '</td>'
-                    + '<td class="text-center lt>' + ranking.club + '</td>'
-                    + '<td class="text-center lt">' + ranking.puntos + '</td>'
-                    + '<td class="text-center>' + botones + '</td>' + '</tr>');
+        success: function (rankingsMostrar) {
+
+
+            $("#div-categorias").empty();
+
+
+
+            $.each(rankingsMostrar, function (Index, ranking) {
+               
+               //INSERTAMOS EL NOMBRE DE LA CATEGORIA
+                $("#div-categorias").append('<h2 style="text-align: center;">' + ranking.tipo + '°Categoria</h2>');
+               
+                var bodyCategoria = '';
+
+               //LUEGO DEBEMOS RECORRER CADA JUGADOR DE ESA CATEGORIA 
+               $.each(ranking.listadoJugadores, function (Index, jugador) {
+                bodyCategoria += '<tr>'
+                     + '<td class="lt">' + jugador.nombre + '</td>'                
+                     + '<td class="lt">' + jugador.clubNombre + '</td>'
+                     + '<td class="lt">' + jugador.puntos + '</td></tr>';
+
+               });
+
+               $("#div-categorias").append('<table class="table table-dark table-bordered table-striped">' +
+               '<thead>'+
+                   '<tr>'+
+                       '<th scope="col" class="lt">Nombre</th>'+
+                       '<th scope="col" class="lt">Club</th>'+
+                       '<th scope="col" class="lt">Puntos</th>'+
+                   '</tr>'+
+               '</thead>'+
+               '<tbody>'+
+                bodyCategoria +
+               '</tbody>'+
+           '</table>');
+               
             });
+
         },
         error: function (xhr, status) {
             alert('Error al actualizar el ranking');
@@ -30,12 +51,13 @@ function BuscarRanking() {
     });
 }
 function VaciarFormulario() {
-    $("#Nombre").val('');
+    
     $("#RankingId").val(0);
-    $("#Localidad").val("");
-    $("#Club").val("");
-    $("#Puntos").val("");
-    $("#Categoria").val("");
+    $("#UsuarioId").val(0);
+    $("#ClubNombreJugador").val('');  
+    $("#CategoriaNombreJugador").val(''); 
+    $("#Puntos").val(0);
+   
 }
 function BuscarRankings(rankingId) {
     $.ajax({
@@ -76,9 +98,12 @@ var usuarioId = $("#UsuarioId").val();
         dataType:"json",
         success: function(usuarios)
         {
-            if(usuarios.length ==1){
+            $("#ClubNombreJugador").val('');  
+            $("#CategoriaNombreJugador").val(''); 
+
+            if(usuarios.length == 1){
                 let usuario = usuarios[0];            
-                $("#ClubNombreJugador").val(usuario.clubNombre);             
+                $("#ClubNombreJugador").val(usuario.clubNombre);                           
                 $("#CategoriaNombreJugador").val(usuario.categoriaNombre);               
             }
         },

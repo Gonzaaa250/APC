@@ -40,55 +40,105 @@ public class RankingController : Controller
     {
         return View();
     }
-    public JsonResult BuscarRanking(int RankingId = 0)
-    {
-        var rankings = _context.Ranking.Include(r => r.Usuario).ToList();
-        if (RankingId > 0)
-        {
-            rankings = rankings.Where(r => r.RankingId == RankingId).ToList();
-        }
-        rankings = rankings.OrderBy(r => r.Usuario.Nombre).ToList();
 
+
+ public JsonResult BuscarRanking(int RankingId = 0)
+    {
+        //PRIMERO BUSCAMOS EL LISTADO DE CATEGORIAS Y LUEGO POR CADA UNA EL LISTADO DE JUGADORES 
+        var categorias = _context.Categoria.Include(r => r.Usuario).OrderBy(c => c.Tipo).ToList(); 
 
         List<VistaRanking> rankingsMostrar = new List<VistaRanking>();
-        foreach (var ranking in rankings)
+
+        foreach (var categoriaTabla in categorias)
         {
             //PRIMERO NOS ASEGURAMOS DE QUE LA CATEGORIA NO EXISTE EN EL LISTADO
-            var categoria = rankingsMostrar.Find(c => c.CategoriaId == ranking.Usuario.CategoriaId);
+            var categoria = rankingsMostrar.Find(c => c.CategoriaId == categoriaTabla.CategoriaId);
             if (categoria == null)
             {
-                var categoriaAgregar = _context.Categoria.Where(r => r.CategoriaId == ranking.Usuario.CategoriaId).Single();
                 categoria = new VistaRanking
                 {
-                    CategoriaId = ranking.Usuario.CategoriaId,
-                    Tipo = categoriaAgregar.Tipo,
+                    CategoriaId = categoriaTabla.CategoriaId,
+                    Tipo = categoriaTabla.Tipo,
                     ListadoJugadores = new List<ListadoUsuarios>()
                 };
                 rankingsMostrar.Add(categoria);
             }
 
-            //luego revisamos si el usuario no existe
-            var jugador = categoria.ListadoJugadores.Find(j => j.UsuarioId == ranking.UsuarioId);
-            if (jugador == null)
+            foreach (var jugadorTabla in categoriaTabla.Usuario)
             {
-                var clubAgregar = _context.Club.Where(r => r.ClubId == ranking.Usuario.ClubId).Single();
+                var clubAgregar = _context.Club.Where(r => r.ClubId == jugadorTabla.ClubId).Single();
 
-                jugador = new ListadoUsuarios
+                var sumaPuntos = _context.Ranking.Where(j => j.UsuarioId == jugadorTabla.UsuarioId).Select(j => j.Puntos).Sum();
+
+                var jugador = new ListadoUsuarios
                 {
-                    Nombre = ranking.Usuario.Nombre,
+                    UsuarioId = jugadorTabla.UsuarioId,
+                    Nombre = jugadorTabla.Nombre,
                     ClubNombre = clubAgregar.Nombre,
-                    Puntos = ranking.Puntos
+                    Puntos = sumaPuntos
                 };
                 categoria.ListadoJugadores.Add(jugador);
-            }
-            else
-            {
-                jugador.Puntos += ranking.Puntos;
-            }
-        }
+            }      
 
+            categoria.ListadoJugadores = categoria.ListadoJugadores.OrderByDescending(p => p.Puntos).ToList();
+
+        }
+        rankingsMostrar = rankingsMostrar.OrderBy(r => r.Tipo).ToList();
         return Json(rankingsMostrar);
     }
+
+    // public JsonResult BuscarRanking(int RankingId = 0)
+    // {
+    //     var rankings = _context.Ranking.Include(r => r.Usuario).ToList();
+    //     if (RankingId > 0)
+    //     {
+    //         rankings = rankings.Where(r => r.RankingId == RankingId).ToList();
+    //     }
+    //     rankings = rankings.OrderBy(r => r.Usuario.Nombre).ToList();
+
+
+    //     List<VistaRanking> rankingsMostrar = new List<VistaRanking>();
+    //     foreach (var ranking in rankings)
+    //     {
+    //         //PRIMERO NOS ASEGURAMOS DE QUE LA CATEGORIA NO EXISTE EN EL LISTADO
+    //         var categoria = rankingsMostrar.Find(c => c.CategoriaId == ranking.Usuario.CategoriaId);
+    //         if (categoria == null)
+    //         {
+    //             var categoriaAgregar = _context.Categoria.Where(r => r.CategoriaId == ranking.Usuario.CategoriaId).Single();
+    //             categoria = new VistaRanking
+    //             {
+    //                 CategoriaId = ranking.Usuario.CategoriaId,
+    //                 Tipo = categoriaAgregar.Tipo,
+    //                 ListadoJugadores = new List<ListadoUsuarios>()
+    //             };
+    //             rankingsMostrar.Add(categoria);
+    //         }
+
+    //         //luego revisamos si el usuario no existe
+    //         var jugador = categoria.ListadoJugadores.Find(j => j.UsuarioId == ranking.UsuarioId);
+    //         if (jugador == null)
+    //         {
+    //             var clubAgregar = _context.Club.Where(r => r.ClubId == ranking.Usuario.ClubId).Single();
+
+    //             jugador = new ListadoUsuarios
+    //             {
+    //                 UsuarioId = ranking.UsuarioId,
+    //                 Nombre = ranking.Usuario.Nombre,
+    //                 ClubNombre = clubAgregar.Nombre,
+    //                 Puntos = ranking.Puntos
+    //             };
+    //             categoria.ListadoJugadores.Add(jugador);
+    //         }
+    //         else
+    //         {
+    //             jugador.Puntos += ranking.Puntos;
+    //         }
+
+    //         categoria.ListadoJugadores.OrderBy(p => p.Puntos).ToList();
+    //     }
+    //         rankingsMostrar = rankingsMostrar.OrderBy(r => r.Tipo).ToList();
+    //     return Json(rankingsMostrar);
+    // }
 
     public JsonResult GuardarRanking(int RankingId, int Puntos, int UsuarioId)
     {

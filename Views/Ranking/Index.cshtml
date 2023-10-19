@@ -18,9 +18,15 @@
                     <p class="letra">Club</p>
                     <input type="text" disabled class="form-control" id="ClubNombreJugador" />
                     <p class="letra">Categoría</p>
-                    <input type="text" disabled class="form-control" id="CategoriaNombreJugador" />                    
+                    <input type="text" disabled class="form-control" id="CategoriaNombreJugador" />
                     <p class="letra">Puntos</p>
-                    <input type="number" class="form-control fondoi" id="Puntos" autocomplete="off">
+                    <select class="form-control" id="Puntos">
+                        <option value="0">0</option>
+                        <option value="10">10</option>
+                        <option value="20">20</option>
+                        <option value="40">40</option>
+                        <option value="100">100</option>
+                    </select>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="button-8" role="button" data-bs-dismiss="modal">Cerrar</button>
@@ -39,111 +45,15 @@
             Actualizar
         </button>
     </div>
-    <h2 style="text-align: center;">1°Categoria</h2>
-    <table class="table table-dark table-bordered table-striped" id="cat1">
-        <thead>
-            <tr>
-                <th scope="col" class="lt">Nombre</th>
-                <th scope="col" class="lt">Club</th>
-                <th scope="col" class="lt">Puntos</th>
-                <th style="width: 18% !important;" scope="col" class="lt"></th>
-            </tr>
-        </thead>
-        <tbody id="tbody-ranking">
-        </tbody>
-    </table>
-    @* <h2 style="text-align: center;">2°Categoria</h2>
-    <table class="table table-dark table-bordered table-striped" id="cat2">
-    <thead>
-    <tr>
-    <th scope="col" class="lt">Nombre</th>
-    <th scope="col" class="lt">Club</th>
-    <th scope="col" class="lt">Puntos</th>
-    <th style="width: 18% !important;" scope="col" class="lt"></th>
-    </tr>
-    </thead>
-    <tbody id="tbody-ranking">
-    </tbody>
-    </table>
-    <h2 style="text-align: center;">3°Categoria</h2>
-    <table class="table table-dark table-bordered table-striped" id="cat3">
-    <thead>
-    <tr>
-    <th scope="col" class="lt">Nombre</th>
-    <th scope="col" class="lt">Club</th>
-    <th scope="col" class="lt">Puntos</th>
-    <th style="width: 18% !important;" scope="col" class="lt"></th>
-    </tr>
-    </thead>
-    <tbody id="tbody-ranking">
-    </tbody>
-    </table>
-    <h2 style="text-align: center;">4°Categoria</h2>
-    <table class="table table-dark table-bordered table-striped" id="cat4">
-    <thead>
-    <tr>
-    <th scope="col" class="lt">Nombre</th>
-    <th scope="col" class="lt">Club</th>
-    <th scope="col" class="lt">Puntos</th>
-    <th style="width: 18% !important;" scope="col" class="lt"></th>
-    </tr>
-    </thead>
-    <tbody id="tbody-ranking">
-    </tbody>
-    </table>
-    <h2 style="text-align: center;">5°Categoria</h2>
-    <table class="table table-dark table-bordered table-striped" id="cat5">
-    <thead>
-    <tr>
-    <th scope="col" class="lt">Nombre</th>
-    <th scope="col" class="lt">Club</th>
-    <th scope="col" class="lt">Puntos</th>
-    <th style="width: 18% !important;" scope="col" class="lt"></th>
-    </tr>
-    </thead>
-    <tbody id="tbody-ranking">
-    </tbody>
-    </table>
-    <h2 style="text-align: center;">6°Categoria</h2>
-    <table class="table table-dark table-bordered table-striped" id="cat6">
-    <thead>
-    <tr>
-    <th scope="col" class="lt">Nombre</th>
-    <th scope="col" class="lt">Club</th>
-    <th scope="col" class="lt">Puntos</th>
-    <th style="width: 18% !important;" scope="col" class="lt"></th>
-    </tr>
-    </thead>
-    <tbody id="tbody-ranking">
-    </tbody>
-    </table>
-    <h2 style="text-align: center;">7°Categoria</h2>
-    <table class="table table-dark table-bordered table-striped" id="cat7">
-    <thead>
-    <tr>
-    <th scope="col" class="lt">Nombre</th>
-    <th scope="col" class="lt">Club</th>
-    <th scope="col" class="lt">Puntos</th>
-    <th style="width: 18% !important;" scope="col" class="lt"></th>
-    </tr>
-    </thead>
-    <tbody id="tbody-ranking">
-    </tbody>
-    </table>
-    <h2 style="text-align: center;">8°Categoria</h2>
-    <table class="table table-dark table-bordered table-striped" id="cat8">
-    <thead>
-    <tr>
-    <th scope="col" class="lt">Nombre</th>
-    <th scope="col" class="lt">Club</th>
-    <th scope="col" class="lt">Puntos</th>
-    <th style="width: 18% !important;" scope="col" class="lt"></th>
-    </tr>
-    </thead>
-    <tbody id="tbody-ranking">
-    </tbody>
-    </table>
-    </div> *@
+
+    <div id="div-categorias">
+
+    </div>
+
+
+
+
+
     @section Scripts {
         <script src="~/js/Ranking-1.0.0.js"></script>
     }
