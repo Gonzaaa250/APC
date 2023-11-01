@@ -14,34 +14,34 @@ function BuscarRanking() {
 
 
             $.each(rankingsMostrar, function (Index, ranking) {
-               
-               //INSERTAMOS EL NOMBRE DE LA CATEGORIA
+
+                //INSERTAMOS EL NOMBRE DE LA CATEGORIA
                 $("#div-categorias").append('<h2 style="text-align: center;">' + ranking.tipo + '°Categoria</h2>');
-               
+
                 var bodyCategoria = '';
 
-               //LUEGO DEBEMOS RECORRER CADA JUGADOR DE ESA CATEGORIA 
-               $.each(ranking.listadoJugadores, function (Index, jugador) {
-                bodyCategoria += '<tr>'
-                     + '<td class="lt">' + jugador.nombre + '</td>'                
-                     + '<td class="lt">' + jugador.clubNombre + '</td>'
-                     + '<td class="lt">' + jugador.puntos + '</td></tr>';
+                //LUEGO DEBEMOS RECORRER CADA JUGADOR DE ESA CATEGORIA 
+                $.each(ranking.listadoJugadores, function (Index, jugador) {
+                    bodyCategoria += '<tr>'
+                        + '<td class="lt">' + jugador.nombre + '</td>'
+                        + '<td class="lt">' + jugador.clubNombre + '</td>'
+                        + '<td class="lt">' + jugador.puntos + '</td></tr>';
 
-               });
+                });
 
-               $("#div-categorias").append('<table class="table table-dark table-bordered table-striped">' +
-               '<thead>'+
-                   '<tr>'+
-                       '<th scope="col" class="lt">Nombre</th>'+
-                       '<th scope="col" class="lt">Club</th>'+
-                       '<th scope="col" class="lt">Puntos</th>'+
-                   '</tr>'+
-               '</thead>'+
-               '<tbody>'+
-                bodyCategoria +
-               '</tbody>'+
-           '</table>');
-               
+                $("#div-categorias").append('<table class="table table-dark table-bordered table-striped">' +
+                    '<thead>' +
+                    '<tr>' +
+                    '<th scope="col" class="lt">Nombre</th>' +
+                    '<th scope="col" class="lt">Club</th>' +
+                    '<th scope="col" class="lt">Puntos</th>' +
+                    '</tr>' +
+                    '</thead>' +
+                    '<tbody>' +
+                    bodyCategoria +
+                    '</tbody>' +
+                    '</table>');
+
             });
 
         },
@@ -51,13 +51,13 @@ function BuscarRanking() {
     });
 }
 function VaciarFormulario() {
-    
+
     $("#RankingId").val(0);
     $("#UsuarioId").val(0);
-    $("#ClubNombreJugador").val('');  
-    $("#CategoriaNombreJugador").val(''); 
+    $("#ClubNombreJugador").val('');
+    $("#CategoriaNombreJugador").val('');
     $("#Puntos").val(0);
-   
+
 }
 function BuscarRankings(rankingId) {
     $.ajax({
@@ -89,29 +89,28 @@ $("#UsuarioId").change(function () {
     BuscarInfoUsuario();
 });
 
-function BuscarInfoUsuario(){
-var usuarioId = $("#UsuarioId").val();
+function BuscarInfoUsuario() {
+    var usuarioId = $("#UsuarioId").val();
     $.ajax({
-        url:'../../Usuario/BuscarUsuario',
-        data: {UsuarioId: usuarioId},
+        url: '../../Usuario/BuscarUsuario',
+        data: { UsuarioId: usuarioId },
         type: 'GET',
-        dataType:"json",
-        success: function(usuarios)
-        {
-            $("#ClubNombreJugador").val('');  
-            $("#CategoriaNombreJugador").val(''); 
+        dataType: "json",
+        success: function (usuarios) {
+            $("#ClubNombreJugador").val('');
+            $("#CategoriaNombreJugador").val('');
 
-            if(usuarios.length == 1){
-                let usuario = usuarios[0];            
-                $("#ClubNombreJugador").val(usuario.clubNombre);                           
-                $("#CategoriaNombreJugador").val(usuario.categoriaNombre);               
+            if (usuarios.length == 1) {
+                let usuario = usuarios[0];
+                $("#ClubNombreJugador").val(usuario.clubNombre);
+                $("#CategoriaNombreJugador").val(usuario.categoriaNombre);
             }
         },
-        error: function(xhr, status){
+        error: function (xhr, status) {
             alert('Error al buscar informacion del jugador');
         }
     });
-    }
+}
 
 
 //GUARDAR RANKING
@@ -128,7 +127,7 @@ function GuardarRanking() {
             if (resultado) {
                 $("#ModalRanking").modal("hide");
                 BuscarRanking();
-               
+
             }
             else {
                 alert('No se pudo guardar');
@@ -158,21 +157,3 @@ function EliminarRanking(RankingId, Eliminado) {
         }
     });
 }
-//Modal
-// function obtenerInformacionUsuario() {
-//     var usuarioId = $("#UsuarioId").val();
-
-//     $.ajax({
-//         url: "../../Ranking/ObtenerInformacionUsuario", // Reemplaza con tu endpoint real
-//         type: "GET",
-//         data: { usuarioId: usuarioId },
-//         success: function(data) {
-//             // Actualiza los campos del modal con la información recibida
-//             $("#Club").val(data.clubId); // Asigna el valor del club al campo
-//             $("#CategoriaId").val(data.categoriaId); // Asigna el valor de la categoría al campo
-//         },
-//         error: function() {
-//             alert("Error al obtener la información del usuario.");
-//         }
-//     });
-// }

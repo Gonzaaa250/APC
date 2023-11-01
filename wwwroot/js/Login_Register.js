@@ -32,7 +32,6 @@
         {
           if (data) {
             console.log('Entre en el segundo if');
-            alert('Registrado correctamente');
             window.location.href ="/Usuario";
           } else {
             alert('Error al registrarse: ' + data.errors.join(','));
@@ -62,7 +61,6 @@
       data: formData,
       success: function (data) {
         if (data.success) {
-          alert('Inicio de sesión exitoso');
           window.location.href ="/";
         } else {
           alert('Error al iniciar sesión');
@@ -73,3 +71,10 @@
       }
     });
   }
+  function mostrarLoader() {
+    document.getElementById('loader').style.display = 'block';
+}
+
+function ocultarLoader() {
+    document.getElementById('loader').style.display = 'none';
+}

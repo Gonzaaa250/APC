@@ -71,11 +71,9 @@ function BuscarClubes(ClubId) {
 }
 /*GUARDAR CLUB*/
 function GuardarClub() {
-    //console.log("llegue");
     $("#texto-error").text("");
     let form = $("form#files");
     var formData = new FormData(form[0]);
-    //console.log(form[0]);
     $.ajax({
         url: '../../Club/GuardarCLub',
         type: 'POST',
@@ -100,24 +98,47 @@ function GuardarClub() {
 
 /*Eliminar CLUB*/
 function EliminarClub(ClubId, Eliminado) {
+    Swal.fire({
+                title: '¿Seguro de eliminar este club?',
+                text: 'No podrás revertir esto!',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Sí, Eliminar',
+                cancelButtonText: 'No, Cancelar' // Agregamos el botón "Cancelar"
+            })
+            .then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: '../../Club/EliminarClub',
+                        data: { ClubId: ClubId, Eliminado: Eliminado },
+                        type: 'POST',
+                        dataType: 'json',
+                        success: function (resultado) {
+                            if (resultado === -1) {
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Oops...',
+                                    text: 'No se puede eliminar este club porque hay un jugador asociado a este',
+                                });
+                            } else {
+                                BuscarClub();
+                                Swal.fire(
+                                    'Eliminado',
+                                    'Su archivo ha sido eliminado',
+                                    'éxito'
+                                );
+                            }
+                        }
+                    });
+                } else if (result.isDismissed) {
+                    Swal.fire(
+                        'Cancelado',
+                        'La eliminación del club ha sido cancelada',
+                        'error'
+                    );
+                }
+            });
 
-    $.ajax({
-        url: '../../Club/EliminarClub',
-        data: { ClubId: ClubId, Eliminado: Eliminado },
-        type: 'POST',
-        dataType: 'json',
-        success: function (resultado) {
-            if(resultado === -1){
-                alert("No se puede eliminar este club porque hay un jugador asociado a este")
-            }
-            if (resultado) {
-                BuscarClub();
-                // console.log("Club eliminado correctamente");
-                alert("Club eliminado");
-            }
-        },
-        error: function (xhr, status) {
-            alert('No se pudo eliminar el club');
-        }
-    });
 }

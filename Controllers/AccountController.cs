@@ -69,4 +69,16 @@ namespace TesisPadel.Areas.Identity.Pages.Account;
 
             return Json(new { success = false, errors = "Entrada no válida" });
         }
+        public ActionResult EnviarFormulario() {
+    // Antes de realizar alguna acción, muestra el loader
+    ViewBag.MostrarLoader = true;
+
+    // Realiza la acción
+
+    // Después de completar la acción, oculta el loader
+    ViewBag.MostrarLoader = false;
+
+    return View();
+}
+
     }

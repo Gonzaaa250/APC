@@ -60,7 +60,6 @@ function GuardarCategoria(){
             if(resultado){
                 $("#ModalCategoria").modal("hide");
                 BuscarCategoria();
-                alert('guardado exitosamente');
             }
             else{
                 alert('ya existe la categoria')
@@ -73,22 +72,47 @@ function GuardarCategoria(){
 } 
 function EliminarCategoria(CategoriaId, Eliminado)
 {
-    $.ajax({
-        url: '../../Categoria/EliminarCategoria',
-        data : {CategoriaId: CategoriaId,Eliminado : Eliminado},
-        type:'POST',
-        dataType: 'json',
-        success: function (resultado) {
-            if(resultado === -1){
-                alert("No se puede eliminar esta categoria porque hay un jugador asociado a este")
-            }
-            if (resultado) {
-                BuscarCategoria(); // Corregido aquí
-                alert("Categoria eliminada");
-            }
-        },
-        error: function (xhr, status) {
-            alert('No se pudo eliminar la categoria');
+    Swal.fire({
+        title: '¿Seguro de eliminar esta categoria?',
+        text: 'No podrás revertir esto!',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Sí, Eliminar',
+        cancelButtonText: 'No, Cancelar' // Agregamos el botón "Cancelar"
+    })
+    .then((result) => {
+        if (result.isConfirmed) {
+            $.ajax({
+                url: '../../Categoria/EliminarCategoria',
+                data: { CategoriaId: CategoriaId, Eliminado: Eliminado },
+                type: 'POST',
+                dataType: 'json',
+                success: function (resultado) {
+                    if (resultado === -1) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'No se puede eliminar esta categoria porque hay un jugador asociado a este',
+                        });
+                    } else {
+                        BuscarCategoria();
+                        Swal.fire(
+                            'Eliminado',
+                            'Su archivo ha sido eliminado',
+                            'éxito'
+                        );
+                    }
+                }
+            });
+        } else if (result.isDismissed) {
+            Swal.fire(
+                'Cancelado',
+                'La eliminación de la categoria ha sido cancelada',
+                'error'
+            );
         }
-    });
+     });
+
 }

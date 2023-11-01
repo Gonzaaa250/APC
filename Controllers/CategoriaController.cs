@@ -84,20 +84,35 @@ public class CategoriaController : Controller
 
     return Json(result);
 }
-
-    public JsonResult EliminarCategoria(int CategoriaId)
+public bool ExistenJugadoresAsociadosAlaCategoria(int CategoriaId)
+{
+    return _context.Usuario.Any(u=> u.CategoriaId == CategoriaId);
+}
+    public JsonResult EliminarCategoria(int CategoriaId, int Eliminado)
     {
-        bool result = false;
+      int result = 0;
+        var categoria =_context.Categoria.Find(CategoriaId);
 
-        if (CategoriaId != 0)
+        if (categoria != null)
         {
-            var categoria = _context.Categoria.Find(CategoriaId);
-
-            if (categoria != null)
-            {
-                _context.Categoria.Remove(categoria);
-                _context.SaveChanges();
-                result = true;
+           if (ExistenJugadoresAsociadosAlaCategoria(CategoriaId))
+        {
+            // Si hay jugadores asociados, no permitir la eliminación
+            result = -1; // Indicar un error específico para jugadores asociados
+            
+        }
+            else{
+                if(Eliminado ==0)
+                {
+                    categoria.Eliminado = false;
+                    _context.SaveChanges();
+                }
+                else if(Eliminado ==1)
+                {
+                    categoria.Eliminado = true;
+                    _context.Remove(categoria);
+                    _context.SaveChanges();
+                }
             }
         }
 
