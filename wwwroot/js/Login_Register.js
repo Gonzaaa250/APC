@@ -10,44 +10,57 @@
   // Registrar
   $("#btn-register").click(function (e) {
     e.preventDefault();
-    console.log('entré en la función de registro');
+
+    // Mostrar el loader
+    $(".loader").show();
+
     var email = $("#regemail").val();
     var password = $("#regpass").val();
     var retrypassword = $("#regrtpass").val();
-    console.log('valores:', email, password, retrypassword);
-    
+
     if (password === retrypassword) {
-      console.log('dentro del if de registro');
       var formData = {
         email: email,
         password: password,
       };
-      
-      console.log("data", formData);
+
       $.ajax({
         url: '../../Account/Register',
         method: 'POST',
         data: formData,
-        success: function (data) 
-        {
+        success: function (data) {
           if (data) {
-            console.log('Entre en el segundo if');
-            window.location.href ="/Usuario";
+            window.location.href = "/Usuario";
           } else {
-            alert('Error al registrarse: ' + data.errors.join(','));
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: 'Error al registrarse',
+            });
           }
         },
         error: function (error) {
-          alert('ocurrio un error')
+          alert('Ocurrió un error');
           console.log(error);
+        },
+        complete: function () {
+          // Ocultar el loader una vez que se complete la solicitud (ya sea éxito o error)
+          $(".loader").hide();
         }
       });
+    } else {
+      // Ocultar el loader si la contraseña no coincide
+      $(".loader").hide();
     }
-  });
-
+});
   // Iniciar Sesión
-  function IniciarSesion()
-  {
+  function IniciarSesion() {
+    // Ocultar el botón de iniciar sesión
+    $(".btn").css("display", "none");
+    
+    // Mostrar el loader
+    $(".loader").css("display", "block");
+  
     var email = $("#logemail").val();
     var password = $("#logpass").val();
     var formData = {
@@ -57,13 +70,17 @@
     $.ajax({
       url: '../../Account/Login',
       method: 'POST',
-  
       data: formData,
       success: function (data) {
         if (data.success) {
-          window.location.href ="/";
+          // Redirigir a la página de inicio de sesión exitoso
+          window.location.href = "/";
         } else {
-          alert('Error al iniciar sesión');
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Error al iniciar sesión',
+          });
         }
       },
       error: function (error) {
@@ -71,10 +88,4 @@
       }
     });
   }
-  function mostrarLoader() {
-    document.getElementById('loader').style.display = 'block';
-}
-
-function ocultarLoader() {
-    document.getElementById('loader').style.display = 'none';
-}
+  

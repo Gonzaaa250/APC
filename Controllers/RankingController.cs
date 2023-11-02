@@ -42,7 +42,7 @@ public class RankingController : Controller
     }
 
 
-    public JsonResult BuscarRanking(int RankingId = 0, int Genero = 1)
+    public JsonResult BuscarRanking(int Genero, int RankingId = 0)
     {
         //PRIMERO BUSCAMOS EL LISTADO DE CATEGORIAS Y LUEGO POR CADA UNA EL LISTADO DE JUGADORES 
         var categorias = _context.Categoria.Include(r => r.Usuario).OrderBy(c => c.Tipo).ToList();
