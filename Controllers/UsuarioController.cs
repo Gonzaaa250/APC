@@ -24,12 +24,20 @@ public class UsuarioController : Controller
         _logger = logger;
         _context = context;
     }
-    // [Authorize(Roles = "Administrador")]
+    [Authorize(Roles = "Administrador")]
     public IActionResult Index()
     {
         var club = _context.Club.OrderBy(c => c.Nombre).ToList();
         ViewBag.ClubId = new SelectList(club, "ClubId", "Nombre");
         var categoria = _context.Categoria.OrderBy(c=> c.Tipo).ToList();
+        ViewBag.CategoriaId = new SelectList(categoria, "CategoriaId", "Tipo");
+        return View();
+    }
+    public IActionResult IndexAdmi()
+    {
+        var club = _context.Club.OrderBy(c => c.Nombre).ToList();
+        ViewBag.ClubId = new SelectList(club, "ClubId", "Nombre");
+                var categoria = _context.Categoria.OrderBy(c=> c.Tipo).ToList();
         ViewBag.CategoriaId = new SelectList(categoria, "CategoriaId", "Tipo");
         return View();
     }

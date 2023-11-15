@@ -1,81 +1,83 @@
 ﻿using System.Diagnostics;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Logging;
 using TesisPadel.Data;
 using TesisPadel.Models;
 
-namespace TesisPadel.Controllers;
-
-public class HomeController : Controller
+namespace TesisPadel.Controllers
 {
-    private readonly ILogger<HomeController> _logger;
-    private readonly ApplicationDbContext _context;
-    private readonly UserManager<IdentityUser> _userManager;
-    private readonly RoleManager<IdentityRole> _rolManager;
-
-    public HomeController(ILogger<HomeController> logger, ApplicationDbContext context, UserManager<IdentityUser> userManager, RoleManager<IdentityRole> rolManager)
+    public class HomeController : Controller
     {
-        _logger = logger;
-        _context = context;
-        _userManager = _userManager;
-        _rolManager = _rolManager;
-    }
+        private readonly ILogger<HomeController> _logger;
+        private readonly ApplicationDbContext _context;
+        private readonly UserManager<IdentityUser> _userManager;
+        private readonly RoleManager<IdentityRole> _rolManager;
 
-    public async Task<IActionResult> Index()
-    {
-        // await InicializarPermisosUsuario();
-        return View();
-    }
-    // public async Task<JsonResult> InicializarPermisosUsuario()
-    // {
-    //     //CREAR ROLES SI NO EXISTEN
-    //     var AdministradorExiste = _contextUsuario.Roles.Where(r => r.Name == "Administrador").SingleOrDefault();
-    //     if (AdministradorExiste == null)
-    //     {
-    //         var roleResult = await _rolManager.CreateAsync(new IdentityRole("Administrador"));
-    //     }
-    //     var UsuarioExiste = _contextUsuario.Roles.Where(r => r.Name == "Usuario").SingleOrDefault();
-    //     if (UsuarioExiste == null)
-    //     {
-    //         var roleResult = await _rolManager.CreateAsync(new IdentityRole("Usuario"));
-    //     }
+        public HomeController(ILogger<HomeController> logger, ApplicationDbContext context, UserManager<IdentityUser> userManager, RoleManager<IdentityRole> rolManager)
+        {
+            _logger = logger;
+            _context = context;
+            _userManager = userManager;  // Corregido
+            _rolManager = rolManager;    // Corregido
+        }
 
+        public async Task<IActionResult> Index()
+        {
+            await InicializarPermisosUsuario();
+            return View();
+        }
 
-    //     //CREAR USUARIO PRINCIPAL
-    //     bool creado = false;
-    //     //BUSCAR POR MEDIO DE CORREO ELECTRONICO SI EXISTE EL USUARIO
-    //     var usuario = _contextUsuario.Users.Where(u => u.Email == "usuario@sistema.com").SingleOrDefault();
-    //     if (usuario == null)
-    //     {
-    //         var user = new IdentityUser { UserName = "usuario@sistema.com", Email = "usuario@sistema.com" };
-    //         var result = await _userManager.CreateAsync(user, "password");
+        public async Task<JsonResult> InicializarPermisosUsuario()
+        {
+            // CREAR ROLES SI NO EXISTEN
+            if (!_context.Roles.Any(r => r.Name == "Administrador"))
+            {
+                var roleResult = await _rolManager.CreateAsync(new IdentityRole("Administrador"));
+            }
 
-    //         await _userManager.AddToRoleAsync(user, "NombreRolCrear");
-    //         creado = result.Succeeded;
-    //     }
+            if (!_context.Roles.Any(r => r.Name == "Jugador"))
+            {
+                var roleResult = await _rolManager.CreateAsync(new IdentityRole("Jugador"));
+            }
 
-    //     //CODIGO PARA BUSCAR EL USUARIO EN CASO DE NECESITARLO
-    //     var superusuario = _contextUsuario.Users.Where(r => r.Email == "usuario@sistema.com").SingleOrDefault();
-    //     if (superusuario != null)
-    //     {
+            // CREAR USUARIO PRINCIPAL
+            bool creado = false;
 
-    //         //var personaSuperusuario = _contexto.Personas.Where(r => r.UsuarioID == superusuario.Id).Count();
+            // BUSCAR POR MEDIO DE CORREO ELECTRÓNICO SI EXISTE EL USUARIO
+            var usuario = await _userManager.FindByEmailAsync("Admi@gmail.com"); // Corregido
 
-    //         var usuarioID = superusuario.Id;
+            if (usuario == null)
+            {
+                var user = new IdentityUser { UserName = "Admi@gmail.com", Email = "Admi@gmail.com" };
+                var result = await _userManager.CreateAsync(user, "123456");
 
-    //     }
+                await _userManager.AddToRoleAsync(user, "Administrador");
+                creado = result.Succeeded;
+            }
 
-    //     return Json(creado);
-    // }
-    
-    public IActionResult Privacy()
-    {
-        return View();
-    }
+            var jugador = _context.Users.FirstOrDefault(u => u.Email == "usuario@sistema.com");
 
-    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-    public IActionResult Error()
-    {
-        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            if (jugador != null)
+            {
+                // var personaSuperusuario = _contexto.Personas.Where(r => r.UsuarioID == superusuario.Id).Count();
+                var usuarioID = jugador.Id;
+            }
+
+            return Json(creado);
+        }
+
+        public IActionResult Privacy()
+        {
+            return View();
+        }
+
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public IActionResult Error()
+        {
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
     }
 }

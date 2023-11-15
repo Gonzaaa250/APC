@@ -43,6 +43,7 @@ function VaciarFormulario() {
 }
 //EDITAR USUARIO
 function BuscarUsuarios(usuarioId){
+    $("#UsuarioId").val(usuarioId);
 $.ajax({
     url:'../../Usuario/BuscarUsuario',
     data: {UsuarioId: usuarioId},
@@ -56,10 +57,10 @@ $.ajax({
             $("#Localidad").val(usuario.localidad);
             $("#Telefono").val(usuario.telefono);
             $("#DNI").val(usuario.dni);
-            $("#Club").val(usuario.clubNombre);
+            $("#ClubId").val(usuario.clubId);
             $("#Genero").val(usuario.genero);
             $("#UsuarioId").val(usuario.usuarioId);
-            $("#Categoria").val(usuario.categoria.tipo)
+            $("#CategoriaId").val(usuario.categoriaId);
             $("#ModalUsuario").modal("show");
         }
     },
@@ -99,19 +100,46 @@ function GuardarUsuario(){
 }
 // ELIMINAR USUARIO
 function EliminarUsuario(UsuarioId, Eliminado){
-$.ajax({
-    url:'../../Usuario/EliminarUsuario',
-    data:{'UsuarioId':UsuarioId, Eliminado:Eliminado},
-    type:'POST',
-    dataType: 'json',
-    success: function(resultado){
-        if(resultado) {
-            BuscarUsuario();
-            console.log("Usuario Eliminado")
+    Swal.fire({
+        title: '¿Seguro de eliminar este jugador?',
+        text: 'No podrás revertir esto!',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Sí, Eliminar',
+        cancelButtonText: 'No, Cancelar'
+    })
+    .then((result) => {
+        if (result.isConfirmed) {
+            $.ajax({
+                url: '../../Usuario/EliminarUsuario',
+                data: { UsuarioId: UsuarioId, Eliminado: Eliminado },
+                type: 'POST',
+                dataType: 'json',
+                success: function (resultado) {
+                    if (resultado === -1) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'No se puede eliminar este jugador',
+                        });
+                    } else {
+                        BuscarUsuario();
+                        Swal.fire(
+                            'Eliminado',
+                            'Su archivo ha sido eliminado',
+                            'éxito'
+                        );
+                    }
+                }
+            });
+        } else if (result.isDismissed) {
+            Swal.fire(
+                'Cancelado',
+                'Eliminar jugador cancelado',
+                'error'
+            );
         }
-    },
-    error: function (xhr, status){
-        alert('No se pudo eliminar el Usuario')
-    }
-});
+     });
 }

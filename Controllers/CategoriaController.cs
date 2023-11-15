@@ -39,75 +39,78 @@ public class CategoriaController : Controller
         }
         return Json(categorias);
     }
+    [Authorize(Roles = "Administrador")]
     public JsonResult GuardarCategoria(int CategoriaId, string Tipo)
-{
-    bool result = false;
-
-    if (!string.IsNullOrEmpty(Tipo))
     {
-        if (CategoriaId == 0)
+        bool result = false;
+
+        if (!string.IsNullOrEmpty(Tipo))
         {
-            // Verificar si la categoría ya existe
-            var categoriaExistente = _context.Categoria.FirstOrDefault(c => c.Tipo == Tipo);
-
-            if (categoriaExistente == null)
+            if (CategoriaId == 0)
             {
-                var nuevaCategoria = new Categoria
+                // Verificar si la categoría ya existe
+                var categoriaExistente = _context.Categoria.FirstOrDefault(c => c.Tipo == Tipo);
+
+                if (categoriaExistente == null)
                 {
-                    Tipo = Tipo
-                };
+                    var nuevaCategoria = new Categoria
+                    {
+                        Tipo = Tipo
+                    };
 
-                _context.Add(nuevaCategoria);
-                _context.SaveChanges();
-                result = true;
-            }
-        }
-        else
-        {
-            // Verificar si el Tipo ya existe en otra categoría
-            var categoriaExistente = _context.Categoria.FirstOrDefault(c => c.Tipo == Tipo && c.CategoriaId != CategoriaId);
-
-            if (categoriaExistente == null)
-            {
-                var editarCategoria = _context.Categoria.Find(CategoriaId);
-
-                if (editarCategoria != null)
-                {
-                    editarCategoria.Tipo = Tipo;
-
+                    _context.Add(nuevaCategoria);
                     _context.SaveChanges();
                     result = true;
                 }
             }
-        }
-    }
+            else
+            {
+                // Verificar si el Tipo ya existe en otra categoría
+                var categoriaExistente = _context.Categoria.FirstOrDefault(c => c.Tipo == Tipo && c.CategoriaId != CategoriaId);
 
-    return Json(result);
-}
-public bool ExistenJugadoresAsociadosAlaCategoria(int CategoriaId)
-{
-    return _context.Usuario.Any(u=> u.CategoriaId == CategoriaId);
-}
+                if (categoriaExistente == null)
+                {
+                    var editarCategoria = _context.Categoria.Find(CategoriaId);
+
+                    if (editarCategoria != null)
+                    {
+                        editarCategoria.Tipo = Tipo;
+
+                        _context.SaveChanges();
+                        result = true;
+                    }
+                }
+            }
+        }
+
+        return Json(result);
+    }
+    public bool ExistenJugadoresAsociadosAlaCategoria(int CategoriaId)
+    {
+        return _context.Usuario.Any(u => u.CategoriaId == CategoriaId);
+    }
+    [Authorize(Roles = "Administrador")]
     public JsonResult EliminarCategoria(int CategoriaId, int Eliminado)
     {
-      int result = 0;
-        var categoria =_context.Categoria.Find(CategoriaId);
+        int result = 0;
+        var categoria = _context.Categoria.Find(CategoriaId);
 
         if (categoria != null)
         {
-           if (ExistenJugadoresAsociadosAlaCategoria(CategoriaId))
-        {
-            // Si hay jugadores asociados, no permitir la eliminación
-            result = -1; // Indicar un error específico para jugadores asociados
-            
-        }
-            else{
-                if(Eliminado ==0)
+            if (ExistenJugadoresAsociadosAlaCategoria(CategoriaId))
+            {
+                // Si hay jugadores asociados, no permitir la eliminación
+                result = -1; // Indicar un error específico para jugadores asociados
+
+            }
+            else
+            {
+                if (Eliminado == 0)
                 {
                     categoria.Eliminado = false;
                     _context.SaveChanges();
                 }
-                else if(Eliminado ==1)
+                else if (Eliminado == 1)
                 {
                     categoria.Eliminado = true;
                     _context.Remove(categoria);

@@ -43,7 +43,9 @@ function BuscarCategorias(CategoriaId)
                 $("#ModalCategoria").modal("show");
             }
         },
-        error: function(xhr, status){alert('Error al editar')}
+        error: function(xhr, status){
+            alert('Error al editar')
+        }
     });
 }
 //GUARDAR

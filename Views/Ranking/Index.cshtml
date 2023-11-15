@@ -44,13 +44,14 @@
 
 <div>
     <div class="mb-2">
-        @* <button class="button-87" role="button" href="@Url.Action("MostrarRankingFemenino", "Ranking")">Ranking
-        Femenino</button> *@
-        @* <a class="button-87" role="button" href="@Url.Action("MostrarRankingFemenino", "Ranking")">Ranking
-        Femenino</a> *@
+        <a class="button-87" style="width: 18%;" role="button" href="/Ranking/IndexF">Ranking
+        Femenino</a>
         <button type="button" onclick="VaciarFormulario()" class="button-87" role="button" data-bs-toggle="modal"
             data-bs-target="#ModalRanking">
             Actualizar
+        </button>
+         <button type="button" onclick="EliminarRanking()" class="button-82" style="width: 17%; weight:20%"  role="button"  data-bs-target="#ModalRanking">
+            Vaciar Puntos
         </button>
     </div>
 

@@ -16,11 +16,11 @@
                     <p class="letra">Jugador</p>
                     @Html.DropDownList("UsuarioId", null, htmlAttributes: new { @class = "form-control " })
                     <p class="letra">Club</p>
-                    <input type="text" disabled class="form-control fondoi" id="ClubNombreJugador" />
+                    <input type="text" disabled class="form-control" id="ClubNombreJugador" />
                     <p class="letra">Categoría</p>
-                    <input type="text" disabled class="form-control fondoi" id="CategoriaNombreJugador" />
+                    <input type="text" disabled class="form-control" id="CategoriaNombreJugador" />
                     <p class="letra">Puntos</p>
-                    <select class="form-control fondoi" id="Puntos">
+                    <select class="form-control" id="Puntos">
                         <option value="0">0</option>
                         <option value="10">10</option>
                         <option value="15">15</option>
@@ -41,8 +41,11 @@
 </div>
 
 <h1 class="display-4 titulo bajar" style="font-family: Verdana, Geneva, Tahoma, sans-serif;">Posiciones</h1>
+
 <div>
     <div class="mb-2">
+        <a class="button-87" style="width: 19%;" role="button" href="/Ranking/Index">Ranking
+        Masculino</a>
         <button type="button" onclick="VaciarFormulario()" class="button-87" role="button" data-bs-toggle="modal"
             data-bs-target="#ModalRanking">
             Actualizar
@@ -53,13 +56,6 @@
 
     </div>
 
-
-
-
-
-    @section Scripts {
-        <script src="~/js/Ranking-1.0.0.js"></script>
-    }
-    @* @section Scripts{
-    <script src="~/js/RankingF-1.0.0.js"></script> *@
+    @section Scripts{
+    <script src="~/js/RankingF-1.0.0.js"></script>
     }

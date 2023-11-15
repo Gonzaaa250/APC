@@ -6,6 +6,7 @@ function BuscarRanking() {
         url: '../../Ranking/BuscarRanking',
         type: 'GET',
         dataType: "json",
+        data: {GeneroParametro: 1},
         success: function (rankingsMostrar) {
 
 
@@ -19,13 +20,15 @@ function BuscarRanking() {
                 $("#div-categorias").append('<h2 style="text-align: center;">' + ranking.tipo + '°Categoria</h2>');
 
                 var bodyCategoria = '';
+                var botones='<button type="button" onclick="EliminarRanking(' + ranking.rankingId  + ', 1)" class="button-82" role="button" title="Eliminar"><img src="../css/img/tachito.png" alt=""></button>';
 
                 //LUEGO DEBEMOS RECORRER CADA JUGADOR DE ESA CATEGORIA 
                 $.each(ranking.listadoJugadores, function (Index, jugador) {
                     bodyCategoria += '<tr>'
                         + '<td class="lt">' + jugador.nombre + '</td>'
                         + '<td class="lt">' + jugador.clubNombre + '</td>'
-                        + '<td class="lt">' + jugador.puntos + '</td></tr>';
+                        + '<td class="lt">' + jugador.puntos + '</td>'+
+                        '<td class="lt">' + botones + '</td>'+'</tr>';
 
                 });
 
@@ -35,6 +38,7 @@ function BuscarRanking() {
                     '<th scope="col" class="lt">Nombre</th>' +
                     '<th scope="col" class="lt">Club</th>' +
                     '<th scope="col" class="lt">Puntos</th>' +
+                    '<th scope="col" class="lt"></th>'+
                     '</tr>' +
                     '</thead>' +
                     '<tbody>' +
@@ -140,20 +144,56 @@ function GuardarRanking() {
 }
 
 //ELIMINAR RANKING
+// ELIMINAR RANKING
 function EliminarRanking(RankingId, Eliminado) {
-    $.ajax({
-        url: '../../Ranking/EliminarRanking',
-        data: { RankingId: RankingId, Eliminado: Eliminado },
-        type: 'POST',
-        dataType: 'json',
-        success: function (resultado) {
-            if (!resultado) {
-                BuscarRanking();
-                console.log("Eliminado")
-            }
-        },
-        error: function (xhr, status) {
-            alert('Error al eliminar')
+    Swal.fire({
+        title: '¿Seguro de vaciar los puntos?',
+        text: 'No podrás revertir esto!',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Sí, Vaciar',
+        cancelButtonText: 'No, Cancelar'
+    })
+    .then((result) => {
+        if (result.isConfirmed) {
+            // CORRECCIÓN: Obtener el valor de Puntos antes de la llamada AJAX
+            var Puntos = obtenerPuntos(); // Reemplaza obtenerPuntos() con la lógica adecuada para obtener el valor de Puntos
+            $.ajax({
+                url: '../../Ranking/EliminarRanking',
+                data: { RankingId: RankingId, Eliminado: Eliminado, Puntos: Puntos },
+                type: 'POST',
+                dataType: 'json',
+                success: function (resultado) {
+                    if (resultado === -1) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'No se puede vaciar los puntos',
+                        });
+                    } else {
+                        BuscarRanking();
+                        Swal.fire(
+                            'Eliminado',
+                            'Su archivo ha sido eliminado',
+                            'éxito'
+                        );
+                    }
+                }
+            });
+        } else if (result.isDismissed) {
+            Swal.fire(
+                'Cancelado',
+                'El vaciado de puntos se canceló',
+                'error'
+            );
         }
     });
 }
+
+// Agrega esta función para obtener el valor de Puntos
+function obtenerPuntos() {
+    return $("#div-categorias table tbody tr td:nth-child(3)").text();
+}
+

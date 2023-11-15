@@ -1,28 +1,50 @@
 window.onload = BuscarRanking();
 
 function BuscarRanking() {
-    $("#tbody-ranking").empty();
+    $("#div-categorias").empty();
     $.ajax({
         url: '../../Ranking/BuscarRanking',
         type: 'GET',
         dataType: "json",
-        success: function (rankings) {
-            $("#tbody-ranking").empty();
-            $.each(rankings, function (Index, ranking) {
-                var BotonEliminar = "";
-                var botones = 'button type="button" onclick="BuscarRankings(' + ranking.rankingId + ') class="button-81" role="button" title="Editar"><img src="../css/img/lapiz.png" alt=""></button>' +
-                    '<button type="button" onclick="EliminarRanking(' + ranking.rankingId + ', 1)" class="button-82" role="button" title="Eliminar"><img src="../css/img/tachito.png" alt=""></button>';
-                // if(usuario.eliminado){
-                //     BotonEliminar= 'table-danger';
-                //     botones = '<button type="button" onclick="EliminarUsuario(' + usuario.rankingId + ', 1)" class="button-87" role="button">Activar</button>';
-                // }
-                $("#tbody-ranking").append('<tr class="' + BotonEliminar + '">'
-                    + '<td class="text-center lt>' + ranking.nombre + '</td>'
-                    + '<td class="text-center lt>' + ranking.localidad + '</td>'
-                    + '<td class="text-center lt>' + ranking.club + '</td>'
-                    + '<td class="text-center lt">' + ranking.puntos + '</td>'
-                    + '<td class="text-center>' + botones + '</td>' + '</tr>');
+        data: {GeneroParametro: 2},
+        success: function (rankingsMostrar) {
+
+
+            $("#div-categorias").empty();
+
+
+
+            $.each(rankingsMostrar, function (Index, ranking) {
+
+                //INSERTAMOS EL NOMBRE DE LA CATEGORIA
+                $("#div-categorias").append('<h2 style="text-align: center;">' + ranking.tipo + '°Categoria</h2>');
+
+                var bodyCategoria = '';
+
+                //LUEGO DEBEMOS RECORRER CADA JUGADOR DE ESA CATEGORIA 
+                $.each(ranking.listadoJugadores, function (Index, jugador) {
+                    bodyCategoria += '<tr>'
+                        + '<td class="lt">' + jugador.nombre + '</td>'
+                        + '<td class="lt">' + jugador.clubNombre + '</td>'
+                        + '<td class="lt">' + jugador.puntos + '</td></tr>';
+
+                });
+
+                $("#div-categorias").append('<table class="table table-dark table-bordered table-striped">' +
+                    '<thead>' +
+                    '<tr>' +
+                    '<th scope="col" class="lt">Nombre</th>' +
+                    '<th scope="col" class="lt">Club</th>' +
+                    '<th scope="col" class="lt">Puntos</th>' +
+                    '</tr>' +
+                    '</thead>' +
+                    '<tbody>' +
+                    bodyCategoria +
+                    '</tbody>' +
+                    '</table>');
+
             });
+
         },
         error: function (xhr, status) {
             alert('Error al actualizar el ranking');
@@ -30,12 +52,13 @@ function BuscarRanking() {
     });
 }
 function VaciarFormulario() {
-    $("#Nombre").val('');
+
     $("#RankingId").val(0);
-    $("#Localidad").val("");
-    $("#Club").val("");
-    $("#Puntos").val("");
-    $("#Categoria").val("");
+    $("#UsuarioId").val(0);
+    $("#ClubNombreJugador").val('');
+    $("#CategoriaNombreJugador").val('');
+    $("#Puntos").val(0);
+
 }
 function BuscarRankings(rankingId) {
     $.ajax({
@@ -62,48 +85,50 @@ function BuscarRankings(rankingId) {
         }
     });
 }
+
+$("#UsuarioId").change(function () {
+    BuscarInfoUsuario();
+});
+
+function BuscarInfoUsuario() {
+    var usuarioId = $("#UsuarioId").val();
+    $.ajax({
+        url: '../../Usuario/BuscarUsuario',
+        data: { UsuarioId: usuarioId },
+        type: 'GET',
+        dataType: "json",
+        success: function (usuarios) {
+            $("#ClubNombreJugador").val('');
+            $("#CategoriaNombreJugador").val('');
+
+            if (usuarios.length == 1) {
+                let usuario = usuarios[0];
+                $("#ClubNombreJugador").val(usuario.clubNombre);
+                $("#CategoriaNombreJugador").val(usuario.categoriaNombre);
+            }
+        },
+        error: function (xhr, status) {
+            alert('Error al buscar informacion del jugador');
+        }
+    });
+}
+
+
 //GUARDAR RANKING
 function GuardarRanking() {
-    let RankingId = $("#RankingId").val();
-    let Nombre = $("#Nombre").val();
-    let Club = $("#Club").val();
-    let Puntos = $("#Puntos").val();
-    let Categoria = $("#CategoriaId").val();
-    let Genero = $("#Genero").val();
+    let rankingId = $("#RankingId").val();
+    var usuarioId = $("#UsuarioId").val();
+    let puntos = $("#Puntos").val();
     $.ajax({
         url: '../../Ranking/GuardarRanking',
-        data: { RankingId: RankingId, Nombre: Nombre, Club: Club, Puntos: Puntos, Categoria: Categoria, Genero: Genero },
+        data: { RankingId: rankingId, UsuarioId: usuarioId, Puntos: puntos },
         type: 'POST',
         dataType: 'json',
         success: function (resultado) {
             if (resultado) {
-                if (Categoria === 1) {
-
-                }
-                else if (Categoria == 2) {
-
-                }
-                else if (Categoria == 3) {
-
-                }
-                else if (Categoria === 4) {
-
-                }
-                else if (Categoria === 5) { 
-
-                }
-                else if (Categoria === 6) { 
-
-                }
-                else if (Categoria === 7) { 
-
-                }
-                else if (Categoria === 8) { 
-                    
-                }
                 $("#ModalRanking").modal("hide");
                 BuscarRanking();
-                alert('guardado correctamente')
+
             }
             else {
                 alert('No se pudo guardar');
@@ -117,37 +142,46 @@ function GuardarRanking() {
 
 //ELIMINAR RANKING
 function EliminarRanking(RankingId, Eliminado) {
-    $.ajax({
-        url: '../../Ranking/EliminarRanking',
-        data: { RankingId: RankingId, Eliminado: Eliminado },
-        type: 'POST',
-        dataType: 'json',
-        success: function (resultado) {
-            if (!resultado) {
-                BuscarRanking();
-                console.log("Eliminado")
-            }
-        },
-        error: function (xhr, status) {
-            alert('Error al eliminar')
+ Swal.fire({
+        title: '¿Seguro de eliminar esta categoria?',
+        text: 'No podrás revertir esto!',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Sí, Eliminar',
+        cancelButtonText: 'No, Cancelar' // Agregamos el botón "Cancelar"
+    })
+    .then((result) => {
+        if (result.isConfirmed) {
+            $.ajax({
+                url: '../../Ranking/EliminarRanking',
+                data: { RankingId: RankingId, Eliminado: Eliminado },
+                type: 'POST',
+                dataType: 'json',
+                success: function (resultado) {
+                    if (resultado === -1) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'No se puede eliminar esta categoria porque hay un jugador asociado a este',
+                        });
+                    } else {
+                        BuscarCategoria();
+                        Swal.fire(
+                            'Eliminado',
+                            'Su archivo ha sido eliminado',
+                            'éxito'
+                        );
+                    }
+                }
+            });
+        } else if (result.isDismissed) {
+            Swal.fire(
+                'Cancelado',
+                'La eliminación de la categoria ha sido cancelada',
+                'error'
+            );
         }
-    });
+     });
 }
-//Modal
-// function obtenerInformacionUsuario() {
-//     var usuarioId = $("#UsuarioId").val();
-
-//     $.ajax({
-//         url: "../../Ranking/ObtenerInformacionUsuario", // Reemplaza con tu endpoint real
-//         type: "GET",
-//         data: { usuarioId: usuarioId },
-//         success: function(data) {
-//             // Actualiza los campos del modal con la información recibida
-//             $("#Club").val(data.clubId); // Asigna el valor del club al campo
-//             $("#CategoriaId").val(data.categoriaId); // Asigna el valor de la categoría al campo
-//         },
-//         error: function() {
-//             alert("Error al obtener la información del usuario.");
-//         }
-//     });
-// }

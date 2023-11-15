@@ -40,7 +40,7 @@ public JsonResult BuscarClub(int ClubId = 0)
     return Json(clubs);
 }
 
-    // [Authorize(Roles = "Administrador")]
+    [Authorize(Roles = "Administrador")]
     public JsonResult GuardarClub(int ClubId, string Nombre, string Localidad, IFormFile imagen)
     {
         bool resultado = false;
@@ -114,7 +114,7 @@ public JsonResult BuscarClub(int ClubId = 0)
 {
     return _context.Usuario.Any(u => u.ClubId == ClubId);
 }
-
+ [Authorize(Roles = "Administrador")]
     public JsonResult EliminarClub(int ClubId, int Eliminado)
 {
     int resultado = 0;

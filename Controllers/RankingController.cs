@@ -28,7 +28,8 @@ public class RankingController : Controller
 
     public IActionResult Index()
     {
-        var usuarios = _context.Usuario?.ToList();
+        var genero = Genero.Masculino;
+        var usuarios = _context.Usuario.Where(u => u.Genero == genero).ToList();
 
         var usuarioBuscar = new Usuario { UsuarioId = 0, Nombre = "[Seleccione un Jugador]" };
         usuarios.Add(usuarioBuscar);
@@ -38,11 +39,17 @@ public class RankingController : Controller
     }
     public IActionResult IndexF()
     {
+        var genero = Genero.Femenino;
+        var usuarios = _context.Usuario.Where(u => u.Genero == genero).ToList();
+
+        var usuarioBuscar = new Usuario { UsuarioId = 0, Nombre = "[Seleccione un Jugador]" };
+        usuarios.Add(usuarioBuscar);
+        ViewBag.UsuarioId = new SelectList(usuarios.OrderBy(u => u.Nombre), "UsuarioId", "Nombre");
         return View();
     }
 
 
-    public JsonResult BuscarRanking(int Genero, int RankingId = 0)
+    public JsonResult BuscarRanking(int GeneroParametro = 1, int RankingId = 0)
     {
         //PRIMERO BUSCAMOS EL LISTADO DE CATEGORIAS Y LUEGO POR CADA UNA EL LISTADO DE JUGADORES 
         var categorias = _context.Categoria.Include(r => r.Usuario).OrderBy(c => c.Tipo).ToList();
@@ -64,21 +71,31 @@ public class RankingController : Controller
                 rankingsMostrar.Add(categoria);
             }
             //BUSCO TODOS LOS USUARIOS DE ESA CATEGORIA
-            // var usuarios = _context.Usuario.Where().ToList();
+            var genero = Genero.Masculino;
+            if (GeneroParametro != 1)
+            {
+                genero = Genero.Femenino;
+            }
+
+            var usuarios = _context.Usuario.Where(u => u.Genero == genero).ToList();
             foreach (var jugadorTabla in categoriaTabla.Usuario)
             {
-                var clubAgregar = _context.Club.Where(r => r.ClubId == jugadorTabla.ClubId).Single();
-
-                var sumaPuntos = _context.Ranking.Where(j => j.UsuarioId == jugadorTabla.UsuarioId).Select(j => j.Puntos).Sum();
-
-                var jugador = new ListadoUsuarios
+                var usuarioabuscar = usuarios.Where(u => u.UsuarioId == jugadorTabla.UsuarioId).FirstOrDefault();
+                if (usuarioabuscar != null)
                 {
-                    UsuarioId = jugadorTabla.UsuarioId,
-                    Nombre = jugadorTabla.Nombre,
-                    ClubNombre = clubAgregar.Nombre,
-                    Puntos = sumaPuntos
-                };
-                categoria.ListadoJugadores.Add(jugador);
+                    var clubAgregar = _context.Club.Where(r => r.ClubId == jugadorTabla.ClubId).Single();
+
+                    var sumaPuntos = _context.Ranking.Where(j => j.UsuarioId == jugadorTabla.UsuarioId).Select(j => j.Puntos).Sum();
+
+                    var jugador = new ListadoUsuarios
+                    {
+                        UsuarioId = jugadorTabla.UsuarioId,
+                        Nombre = jugadorTabla.Nombre,
+                        ClubNombre = clubAgregar.Nombre,
+                        Puntos = sumaPuntos
+                    };
+                    categoria.ListadoJugadores.Add(jugador);
+                }
             }
 
             categoria.ListadoJugadores = categoria.ListadoJugadores.OrderByDescending(p => p.Puntos).ToList();
@@ -87,7 +104,7 @@ public class RankingController : Controller
         rankingsMostrar = rankingsMostrar.OrderBy(r => r.Tipo).ToList();
         return Json(rankingsMostrar);
     }
-
+    [Authorize(Roles = "Administrador")]
     public JsonResult GuardarRanking(int RankingId, int Puntos, int UsuarioId)
     {
         bool resultado = false;
@@ -122,7 +139,8 @@ public class RankingController : Controller
     }
 
 
-    public IActionResult EliminarRanking(int RankingId, int Eliminado)
+    [Authorize(Roles = "Administrador")]
+    public IActionResult EliminarRanking(int RankingId, int Eliminado, int Puntos)
     {
         int resultado = 0;
         var ranking = _context.Ranking.Find(RankingId);
@@ -136,7 +154,9 @@ public class RankingController : Controller
             else if (Eliminado == 1)
             {
                 ranking.Eliminado = true;
-                _context.Remove(ranking);
+
+                // CORRECCIÓN: Establecer los puntos en 0 en lugar de intentar eliminar la propiedad Puntos
+                ranking.Puntos = 0;
                 _context.SaveChanges();
             }
             resultado = 1;
@@ -145,3 +165,4 @@ public class RankingController : Controller
         return Json(resultado);
     }
 }
+
