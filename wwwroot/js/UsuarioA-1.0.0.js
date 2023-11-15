@@ -87,7 +87,6 @@ function GuardarUsuario(){
             if(resultado){
                 $("#ModalUsuario").modal("hide");
                 BuscarUsuario();
-                window.location.href="/"
             } else{
                 alert("Ya existe el usuario");
             }
