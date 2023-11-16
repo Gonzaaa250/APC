@@ -24,7 +24,6 @@ public class UsuarioController : Controller
         _logger = logger;
         _context = context;
     }
-    [Authorize(Roles = "Administrador")]
     public IActionResult Index()
     {
         var club = _context.Club.OrderBy(c => c.Nombre).ToList();
@@ -33,6 +32,7 @@ public class UsuarioController : Controller
         ViewBag.CategoriaId = new SelectList(categoria, "CategoriaId", "Tipo");
         return View();
     }
+    // [Authorize(Roles = "Administrador")]
     public IActionResult IndexAdmi()
     {
         var club = _context.Club.OrderBy(c => c.Nombre).ToList();

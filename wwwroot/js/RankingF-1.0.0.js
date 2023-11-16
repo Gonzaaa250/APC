@@ -6,7 +6,7 @@ function BuscarRanking() {
         url: '../../Ranking/BuscarRanking',
         type: 'GET',
         dataType: "json",
-        data: {GeneroParametro: 1},
+        data: {GeneroParametro: 2},
         success: function (rankingsMostrar) {
 
 
