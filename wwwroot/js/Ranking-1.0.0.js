@@ -2,11 +2,12 @@ window.onload = BuscarRanking();
 
 function BuscarRanking() {
     $("#div-categorias").empty();
+    var generoParametro = $("#GeneroBuscar").val();
     $.ajax({
         url: '../../Ranking/BuscarRanking',
         type: 'GET',
         dataType: "json",
-        data: {GeneroParametro: 1},
+        data: {GeneroParametro: generoParametro},
         success: function (rankingsMostrar) {
 
 
@@ -15,15 +16,16 @@ function BuscarRanking() {
 
 
             $.each(rankingsMostrar, function (Index, ranking) {
-
+            
                 //INSERTAMOS EL NOMBRE DE LA CATEGORIA
                 $("#div-categorias").append('<h2 style="text-align: center;">' + ranking.tipo + '°Categoria</h2>');
 
                 var bodyCategoria = '';
-                var botones='<button type="button" onclick="EliminarRanking(' + ranking.rankingId  + ', 1)" class="button-82" role="button" title="Eliminar"><img src="../css/img/tachito.png" alt=""></button>';
+                
 
                 //LUEGO DEBEMOS RECORRER CADA JUGADOR DE ESA CATEGORIA 
                 $.each(ranking.listadoJugadores, function (Index, jugador) {
+                    var botones='<button type="button" onclick="EliminarRanking(' + jugador.usuarioId  + ', 1)" class="button-82" role="button" title="Eliminar"><img src="../css/img/tachito.png" alt=""></button>';
                     bodyCategoria += '<tr>'
                         + '<td class="lt">' + jugador.nombre + '</td>'
                         + '<td class="lt">' + jugador.clubNombre + '</td>'
@@ -145,7 +147,7 @@ function GuardarRanking() {
 
 //ELIMINAR RANKING
 // ELIMINAR RANKING
-function EliminarRanking(RankingId, Eliminado) {
+function EliminarRanking(UsuarioId, Eliminado) {
     Swal.fire({
         title: '¿Seguro de vaciar los puntos?',
         text: 'No podrás revertir esto!',
@@ -162,7 +164,7 @@ function EliminarRanking(RankingId, Eliminado) {
             var Puntos = obtenerPuntos(); // Reemplaza obtenerPuntos() con la lógica adecuada para obtener el valor de Puntos
             $.ajax({
                 url: '../../Ranking/EliminarRanking',
-                data: { RankingId: RankingId, Eliminado: Eliminado, Puntos: Puntos },
+                data: { UsuarioId: UsuarioId, Eliminado: Eliminado, Puntos: Puntos },
                 type: 'POST',
                 dataType: 'json',
                 success: function (resultado) {

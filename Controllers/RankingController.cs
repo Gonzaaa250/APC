@@ -34,7 +34,7 @@ public class RankingController : Controller
         var usuarioBuscar = new Usuario { UsuarioId = 0, Nombre = "[Seleccione un Jugador]" };
         usuarios.Add(usuarioBuscar);
         ViewBag.UsuarioId = new SelectList(usuarios.OrderBy(u => u.Nombre), "UsuarioId", "Nombre");
-
+        ViewBag.IdHidden = 0;
         return View();
     }
     public IActionResult IndexF()
@@ -45,6 +45,7 @@ public class RankingController : Controller
         var usuarioBuscar = new Usuario { UsuarioId = 0, Nombre = "[Seleccione un Jugador]" };
         usuarios.Add(usuarioBuscar);
         ViewBag.UsuarioId = new SelectList(usuarios.OrderBy(u => u.Nombre), "UsuarioId", "Nombre");
+        ViewBag.IdHidden = 1;
         return View();
     }
 
@@ -53,6 +54,12 @@ public class RankingController : Controller
     {
         //PRIMERO BUSCAMOS EL LISTADO DE CATEGORIAS Y LUEGO POR CADA UNA EL LISTADO DE JUGADORES 
         var categorias = _context.Categoria.Include(r => r.Usuario).OrderBy(c => c.Tipo).ToList();
+
+        var genero = Genero.Masculino;
+        if (GeneroParametro == 2)
+        {
+            genero = Genero.Femenino;
+        }
 
         List<VistaRanking> rankingsMostrar = new List<VistaRanking>();
 
@@ -71,11 +78,6 @@ public class RankingController : Controller
                 rankingsMostrar.Add(categoria);
             }
             //BUSCO TODOS LOS USUARIOS DE ESA CATEGORIA
-            var genero = Genero.Masculino;
-            if (GeneroParametro != 1)
-            {
-                genero = Genero.Femenino;
-            }
 
             var usuarios = _context.Usuario.Where(u => u.Genero == genero).ToList();
             foreach (var jugadorTabla in categoriaTabla.Usuario)
@@ -85,7 +87,7 @@ public class RankingController : Controller
                 {
                     var clubAgregar = _context.Club.Where(r => r.ClubId == jugadorTabla.ClubId).Single();
 
-                    var sumaPuntos = _context.Ranking.Where(j => j.UsuarioId == jugadorTabla.UsuarioId).Select(j => j.Puntos).Sum();
+                    var sumaPuntos = _context.Ranking.Where(j => j.UsuarioId == jugadorTabla.UsuarioId && j.Eliminado == false).Select(j => j.Puntos).Sum();
 
                     var jugador = new ListadoUsuarios
                     {
@@ -138,31 +140,25 @@ public class RankingController : Controller
         return Json(resultado);
     }
 
-
     [Authorize(Roles = "Administrador")]
-    public IActionResult EliminarRanking(int RankingId, int Eliminado, int Puntos)
+    public IActionResult EliminarRanking(int UsuarioId, int Eliminado)
     {
         int resultado = 0;
-        var ranking = _context.Ranking.Find(RankingId);
-        if (ranking != null)
-        {
-            if (Eliminado == 0)
-            {
-                ranking.Eliminado = false;
-                _context.SaveChanges();
-            }
-            else if (Eliminado == 1)
-            {
-                ranking.Eliminado = true;
 
-                // CORRECCIÓN: Establecer los puntos en 0 en lugar de intentar eliminar la propiedad Puntos
-                ranking.Puntos = 0;
-                _context.SaveChanges();
-            }
-            resultado = 1;
+        // Obtiene todos los registros de Ranking asociados al UsuarioId
+        var rankings = _context.Ranking.Where(r => r.UsuarioId == UsuarioId && r.Eliminado == false).ToList();
+
+        foreach (var ranking in rankings)
+        {
+                ranking.Eliminado = true;
+                _context.SaveChanges(); // Guarda todos los cambios después de la iteración
         }
+
+
+        resultado = 1;
 
         return Json(resultado);
     }
+
 }
 
