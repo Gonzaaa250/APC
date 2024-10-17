@@ -38,11 +38,6 @@ namespace TesisPadel.Controllers
                 var roleResult = await _rolManager.CreateAsync(new IdentityRole("Administrador"));
             }
 
-            if (!_context.Roles.Any(r => r.Name == "Jugador"))
-            {
-                var roleResult = await _rolManager.CreateAsync(new IdentityRole("Jugador"));
-            }
-
             // CREAR USUARIO PRINCIPAL
             bool creado = false;
 
@@ -56,17 +51,10 @@ namespace TesisPadel.Controllers
 
                 await _userManager.AddToRoleAsync(user, "Administrador");
                 creado = result.Succeeded;
+                return Json(creado);
             }
+            return Json("Listo");
 
-            var jugador = _context.Users.FirstOrDefault(u => u.Email == "usuario@sistema.com");
-
-            if (jugador != null)
-            {
-                // var personaSuperusuario = _contexto.Personas.Where(r => r.UsuarioID == superusuario.Id).Count();
-                var usuarioID = jugador.Id;
-            }
-
-            return Json(creado);
         }
 
         public IActionResult Privacy()

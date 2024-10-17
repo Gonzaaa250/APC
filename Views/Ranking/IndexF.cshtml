@@ -49,16 +49,18 @@
                 <a class="button-84" style="width: 70% !important;" role="button" href="/Ranking/Index">Ranking
                     Masculino</a>
             </div>
-            <div class="col-md-6">
-                <button type="button" onclick="VaciarFormulario()" class="button-87" role="button"
-                    data-bs-toggle="modal" data-bs-target="#ModalRanking">
-                    Actualizar
-                </button>
-            </div>
+            @if(@User.IsInRole("Administrador")){
+                <div class="col-md-6">
+                    <button type="button" onclick="VaciarFormulario()" class="button-87" role="button"
+                        data-bs-toggle="modal" data-bs-target="#ModalRanking">
+                        Actualizar
+                    </button>
+                </div>
+            }
         </div>
 
     </div>
-
+    <p hidden id="RolJugadorPregunta">@User.IsInRole("Administrador")</p>
     <div id="div-categorias">
 
     </div>

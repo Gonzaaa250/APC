@@ -12,6 +12,7 @@ using System.Dynamic;
 using TesisPadel.Data;
 using TesisPadel.Models;
 namespace TesisPadel.Controllers;
+[Authorize]
 
 public class UsuarioController : Controller
 {
@@ -32,7 +33,7 @@ public class UsuarioController : Controller
         ViewBag.CategoriaId = new SelectList(categoria, "CategoriaId", "Tipo");
         return View();
     }
-    // [Authorize(Roles = "Administrador")]
+[Authorize(Roles = "Administrador")]
     public IActionResult IndexAdmi()
     {
         var club = _context.Club.OrderBy(c => c.Nombre).ToList();

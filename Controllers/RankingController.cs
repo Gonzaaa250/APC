@@ -104,6 +104,7 @@ public class RankingController : Controller
 
         }
         rankingsMostrar = rankingsMostrar.OrderBy(r => r.Tipo).ToList();
+        
         return Json(rankingsMostrar);
     }
     [Authorize(Roles = "Administrador")]

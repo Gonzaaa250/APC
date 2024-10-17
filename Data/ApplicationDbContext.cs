@@ -14,4 +14,5 @@ public class ApplicationDbContext : IdentityDbContext
     public DbSet<Ranking>? Ranking { get; set; }
 
     public DbSet<Categoria>? Categoria {get; set;}
+    public DbSet<Noticia>? Noticias {get; set;}
 }

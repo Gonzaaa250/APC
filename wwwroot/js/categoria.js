@@ -2,6 +2,7 @@ window.onload = BuscarCategoria();
 
 function BuscarCategoria(){
     $("#tbody-categoria").empty();
+    var rolJugador = $("#RolJugadorPregunta").text();
     $.ajax({
         url:'../../Categoria/BuscarCategoria',
         type: 'GET',
@@ -11,10 +12,11 @@ function BuscarCategoria(){
             $.each(categorias, function(index, categoria){
                 var BotonEliminar ="";
                 var botones= '<button type="button" onclick="BuscarCategorias(' + categoria.categoriaId + ')" class="button-81" role="button" title="Editar"><img src="../css/img/lapiz.png" alt=""></button>' +
-                '<button type="button" onclick="EliminarCategoria(' + categoria.categoriaId  + ', 1)" class="button-82" role="button" title="Eliminar"><img src="../css/img/tachito.png" alt=""></button>';                
-            $("#tbody-categoria").append('<tr class="' + BotonEliminar + '">'
-            + '<td class="text-center lt">' + categoria.tipo + '</td>'
-            + '<td class="text-center">' + botones + '</td>' + '</tr>');
+                '<button type="button" onclick="EliminarCategoria(' + categoria.categoriaId  + ', 1)" class="button-82 mx-3" role="button" title="Eliminar"><img src="../css/img/tachito.png" alt=""></button>';   
+                var botonNousable = '<button hidden></button>'             
+            $("#tbody-categoria").append(`<tr>               
+            <td class="text-center lt">${categoria.tipo} </td>
+            <td class="text-end ">${rolJugador != "False" ? botones : botonNousable}</td></tr>`);
             })
         },
         error : function (xhr, status){

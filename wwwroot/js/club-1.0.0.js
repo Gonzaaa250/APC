@@ -2,6 +2,7 @@ window.onload = BuscarClub();
 
 function BuscarClub() {
     $("#tbody-club").empty();
+    var rolJugador = $("#RolJugadorPregunta").text();
     $.ajax({
         url: '../../Club/BuscarClub',
         type: 'GET',
@@ -10,28 +11,22 @@ function BuscarClub() {
             $("#tbody-club").empty();
             $.each(clubes, function (Index, club) {
                 //console.log(club);
-                var BotonEliminar = '';
+                var botonNousable = '<button hidden></button>'
                 var botones = '<button type="button" onclick="BuscarClubes(' + club.clubId + ')" class="button-81" role="button" title="Editar"><img src="../css/img/lapiz.png" alt=""></button>' +
                     '<button type="button" onclick="EliminarClub(' + club.clubId + ', 1)" class="button-82" role="button" title="Eliminar"><img src="../css/img/tachito.png" alt=""></button>';
 
-                if (club.eliminado) {
-                    BotonEliminar = 'table-danger';
-                    botones = '<button type="button" onclick="EliminarClub(' + club.clubId + ', 0)" class="button-87" role="button">Activar</button>';
-                }
                 var imagen = '<td></td>';
                 if (club.imagenBase64) {
-                    //console.log(club.tipoImagen + "---" + club.imagenBase64);
-                    imagen = '<td><img src="data:' + club.tipoImagen + ';base64,' + club.imagenBase64 + '" style="width: 100px;"/></td>';
-                    //src='data:image/jpeg;base64, LzlqLzRBQ..
+                    imagen = '<td class="lt"><img src="data:' + club.tipoImagen + ';base64,' + club.imagenBase64 + '" style="width: 100px;"/></td>';
                 }
+                console.log(rolJugador);
 
-                $("#tbody-club").append('<tr class="' + BotonEliminar + '">'
-                    + '<td class="text-center lt">' + club.nombre + '</td>'
-                    + '<td class="text-center lt">' + club.localidad + '</td>'
-                    + imagen
-                    + '<td class="text-center">' + botones + '</td>' +
-                    '</tr>');
-
+                
+                $("#tbody-club").append(`<tr>
+                    <td class="text-center lt">${club.nombre}</td>
+                    <td class="text-center lt">${club.localidad}</td>
+                    ${imagen}
+                    <td class="text-center">${rolJugador != "False" ? botones : botonNousable}</td></tr>`);
             });
         },
         error: function (xhr, status) {

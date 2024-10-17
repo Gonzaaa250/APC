@@ -1,8 +1,12 @@
 @model TesisPadel.Models.Ranking;
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
 @{
     ViewData["Title"] = "Ranking";
 }
 @* MODAL *@
+
 <div class="modal fade" id="ModalRanking" tabindex="1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -49,17 +53,21 @@
                 <a class="button-84" style="width: 70% !important;" role="button" href="/Ranking/IndexF">Ranking
                     Femenino</a>
             </div>
-            <div class="col-md-6">
-                <button type="button" onclick="VaciarFormulario()" class="button-87" role="button"
-                    data-bs-toggle="modal" data-bs-target="#ModalRanking">
-                    Actualizar
-                </button>
-            </div>
+            @if (@User.IsInRole("Administrador")){
+                <div class="col-md-6">
+                    <button type="button" onclick="VaciarFormulario()" class="button-87" role="button"
+                        data-bs-toggle="modal" data-bs-target="#ModalRanking">
+                        Actualizar
+                    </button>
+                </div>
+            }
         </div>
     </div>
 
-    <div id="div-categorias">
+    
+    <p hidden id="RolJugadorPregunta">@User.IsInRole("Administrador")</p>
 
+    <div id="div-categorias">
     </div>
 
     <input type="hidden" value="1" id="GeneroBuscar" />
