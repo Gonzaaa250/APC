@@ -10,14 +10,14 @@
     </li>
     <li class="nav-item">
         <form  class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-            <button  type="submit" class="link BTN">Cerrar sesión</button>
+            <button  type="submit" class="BTN">Cerrar Sesión</button>
         </form>
     </li>
 }
 else
 {
     <li class="nav-item">
-        <a class="link BTN" asp-area="Identity" style="text-decoration: none;" asp-page="/Account/Login">iniciar sesión</a>
+        <a class="BTN" asp-area="Identity" style="text-decoration: none;" asp-page="/Account/Login">iniciar sesión</a>
     </li>
 }
 </ul>
