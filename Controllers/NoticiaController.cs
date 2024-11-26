@@ -18,6 +18,7 @@ public class NoticiaController : Controller
     public JsonResult GuardarNoticia(string Titulo, string Descripcion, int posicion, string Link, IFormFile imagen)
     {
         var NoticiaAGuardar = new Noticia();
+        // Revisamos que esten todos estos datos
         if(Titulo != null && Descripcion != null && posicion != null && Link != null)
         {
             NoticiaAGuardar = new Noticia{
@@ -27,10 +28,13 @@ public class NoticiaController : Controller
                 Link = Link,
                 Eliminado = false
             };
+            //buscamos si existe una noticia en esa posicion
             var NoticiaActivaParaDesactivar = _context.Noticias.Where( N=> N.posicion == posicion && N.Eliminado == false).FirstOrDefault();
+            //Sí existe Eliminarla de la portada
             if (NoticiaActivaParaDesactivar != null){
                 NoticiaActivaParaDesactivar.Eliminado = true;
             }
+            //Logica para guardar la imagen
             if (imagen != null && imagen.Length > 0)
             {
                 byte[] imagenBinaria = null;
@@ -42,9 +46,13 @@ public class NoticiaController : Controller
                 }
                 NoticiaAGuardar.Imagen = imagenBinaria;
                 NoticiaAGuardar.TipoImagen = imagen.ContentType;
+            }else{
+                return Json("Error: Tiene que cargar una imagen");
             }
             _context.Add(NoticiaAGuardar);
             _context.SaveChanges();
+        }else{
+            return Json("Error: Todos Los campos tienen que estar completados", Json(Link, Json(Titulo, Json(Link, Json(Descripcion, Json(posicion))))));
         }
         return Json(NoticiaAGuardar);
     }

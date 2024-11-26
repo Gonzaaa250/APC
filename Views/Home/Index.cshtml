@@ -36,7 +36,51 @@
 
   <h4 style="margin-top: 2rem" class="titulo">Noticias de torneos</h4>
   @if(@User.IsInRole("Administrador")){
-    <button onclick="ActivarEdicionNoticias();">Editar Noticias</button>
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"> 
+      <dialog id="ModificarNoticias" class="modal-dialog" open="">
+        <div class="modal-content">
+          <header class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Nueva Publicidad</h1>
+            @* <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> *@
+          </header>
+          <form id="NoticiaDatos" class="modal-body" method="post" enctype="multipart/form-data">
+            <label for="Titulo" class="control-label">Titulo
+              <input type="text" class="form-control" name="Titulo" id="TituloNoticia">
+            </label>
+            <label for="Descripcion" class="control-label"> Descripcion
+              <input type="text" class="form-control" name="Descripcion" id="DescripcionNoticia">
+            </label>
+            <label for="Link" class="control-label">Link
+              <input type="text" class="form-control" name="Link" id="LinkNoticia">
+            </label>
+            <label for="Link" class="control-label">Posicion
+              <select type="number" class="form-select" name="Posicion" id="PosicionNoticia">
+                <option value="0" selected>[Seleccionar posicion]</option>
+                <option value="1">Izquierda</option>
+                <option value="2">Centro</option>
+                <option value="3">Derecha</option>
+              </select>
+            </label>
+            <div>
+              <label class="control-label">Imagen</label>
+              <input type='file' class="form-control" accept="image/*" name="imagen" id='imagen'>
+            </div>
+          </form>
+          <div class="modal-footer">
+            @* <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> *@
+            <button type="button" class="btn btn-success" onclick="GuardarNoticia()">Guardar Cambios</button>
+          </div>
+        </div>
+      </dialog>
+    </div>
+
+
+
+
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+      Editar Noticias
+    </button>
+    @* <button onclick="ActivarEdicionNoticias();">Editar Noticias</button> *@
   }
 
   <div class="containerN">
