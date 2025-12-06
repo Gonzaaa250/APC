@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using TesisPadel.Data;
 using TesisPadel.Models;
 namespace TesisPadel.Controllers;
+
 public class NoticiaController : Controller
 {
 
@@ -18,17 +19,19 @@ public class NoticiaController : Controller
     public JsonResult GuardarNoticia(string Titulo, string Descripcion, int posicion, string Link, IFormFile imagen)
     {
         var NoticiaAGuardar = new Noticia();
-        if(Titulo != null && Descripcion != null && posicion != null && Link != null)
+        if (Titulo != null && Descripcion != null && posicion != null && Link != null)
         {
-            NoticiaAGuardar = new Noticia{
+            NoticiaAGuardar = new Noticia
+            {
                 Titulo = Titulo,
                 Descripcion = Descripcion,
                 posicion = posicion,
                 Link = Link,
                 Eliminado = false
             };
-            var NoticiaActivaParaDesactivar = _context.Noticias.Where( N=> N.posicion == posicion && N.Eliminado == false).FirstOrDefault();
-            if (NoticiaActivaParaDesactivar != null){
+            var NoticiaActivaParaDesactivar = _context.Noticias.Where(N => N.posicion == posicion && N.Eliminado == false).FirstOrDefault();
+            if (NoticiaActivaParaDesactivar != null)
+            {
                 NoticiaActivaParaDesactivar.Eliminado = true;
             }
             if (imagen != null && imagen.Length > 0)

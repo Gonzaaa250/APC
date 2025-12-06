@@ -12,7 +12,8 @@ public class Noticia
     public string TipoImagen { get; set; }
 
     [NotMapped]
-    public string ImagenBase64{get{if (Imagen != null){return Convert.ToBase64String(Imagen);}else{return "";}}
+    public string ImagenBase64{get{if (Imagen != null)
+    {return Convert.ToBase64String(Imagen);}else{return "";}}
     }
 
     public string Titulo { get; set; }

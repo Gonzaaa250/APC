@@ -1,0 +1,46 @@
+@model TesisPadel.Models.Noticia;
+@using Microsoft.AspNetCore.Identity;
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+@{
+    ViewData["Title"] = "Noticias";
+}
+@*<section>*@
+<div class="modal fade" id="ModalNoticia" tabindex="1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header fondom">
+                <h5 class="modal-title letra" id="exampleModalLabel">Agregar Noticia</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body fondom">
+                <input name="NoticiaId" type="hidden" id="NoticiaId" value="0">
+                <div class="control-label">
+                    <p class="letra">Título</p>
+                    <input type="text" class="form-control" id="Titulo" />
+                    <p class="letra">Contenido</p>
+                    <textarea class="form-control" id="Contenido" rows="4"></textarea>
+                    <p class="letra">Fecha</p>
+                    <input type="date" class="form-control" id="Fecha" />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="button-8" role="button" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" onclick="GuardarNoticia()" class="button-87" role="button">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<h1 class="display-4 titulo bajar" style="font-family: Verdana, Geneva, Tahoma, sans-serif;:">Noticias</h1>
+<div>
+    <div class="mb-2">
+        <button type="button" onclick="VaciarFormulario()" class="button-87" role="button" data-bs-toggle="modal"
+            data-bs-target="#ModalNoticia">
+            Nuevo
+        </button>
+    </div>
+</div>
+@*</section>*@
+@section Scripts {
+    <script src="~/js/Noticia/Noticia.js"></script>
+}

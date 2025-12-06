@@ -1,3 +1,4 @@
-function ActivarEdicionNoticias() {
-    console.log("Holas")
+window.onload= BuscarNoticias();
+function BuscarNoticias() {
+    
 }
