@@ -21,18 +21,18 @@ function BuscarRanking() {
                 //INSERTAMOS EL NOMBRE DE LA CATEGORIA
                 $("#div-categorias").append('<h2 style="text-align: center;">' + ranking.tipo + '°Categoria</h2>');
 
-                var bodyCategoria = `<tr></tr>`;
+                var bodyCategoria = ``;
                 
 
                 //LUEGO DEBEMOS RECORRER CADA JUGADOR DE ESA CATEGORIA 
                 $.each(ranking.listadoJugadores, function (Index, jugador) {
                     var botones='<button type="button" onclick="EliminarRanking(' + jugador.usuarioId  + ', 1)" class="button-82" role="button" title="Eliminar"><img src="../css/img/tachito.png" alt=""></button>';
                     var botonNousable = '<button hidden></button>'
-                    bodyCategoria = (`
+                    bodyCategoria+= (`<tr>
                     <td class="lt">${jugador.nombre}</td>
                     <td class="lt">${jugador.clubNombre}</td>
                     <td class="lt">${jugador.puntos}</td>
-                    <td class="lt">${ rolJugador != "False" ? botones : botonNousable}</td>
+                    <td class="lt">${ rolJugador != "False" ? botones : botonNousable}</td></tr>
                     `);
                 });
 
