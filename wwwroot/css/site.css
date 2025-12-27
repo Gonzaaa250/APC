@@ -55,14 +55,6 @@ html {
 */
 
 /* Barra nvar */
-.Barra {
-  background-color: black;
-}
-
-.B {
-  background-color: #2a2b38;
-}
-
 .APC {
   border-radius: 4px;
   height: 44px;
@@ -89,13 +81,14 @@ header{
   color: white;
   cursor: pointer;
 }
-.menu_hamburgesa:checked + .ul_link{
+.menu_hamburguesa:checked ~ .ul_link{
   height: calc(100vh - 80px);
 }
 .ul_link{
   width: 100%;
   position: absolute;
   top: 80px;
+  background-color: #212529;
   left: 0;
   height: 0;
   overflow: hidden;
@@ -123,9 +116,7 @@ header{
 font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
-.btn2:hover {
-box-shadow: 0 8px 24px 0 rgb(114, 116, 122);
-} 
+
 .BTN {
   border-radius: 4px;
   height: 38px;
@@ -155,10 +146,8 @@ box-shadow: 0 8px 24px 0 rgb(114, 116, 122);
 }
 
 .BTN:hover {
-  background-color: #102770;
-  color: #ffeba7;
-  box-shadow: 0 8px 24px 0 rgba(32, 59, 145, 0.2);
-}
+  color: #FFFFFF;
+  background-color: #32373d}
 
 /* LOGIN-REGISTER */
 @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700,800,900');

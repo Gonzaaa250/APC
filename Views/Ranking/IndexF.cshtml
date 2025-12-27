@@ -1,4 +1,7 @@
 @model TesisPadel.Models.Ranking;
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
 @{
     ViewData["Title"] = "Ranking";
 }
