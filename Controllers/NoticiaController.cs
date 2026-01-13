@@ -1,19 +1,34 @@
-using Microsoft.AspNetCore.Authorization;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Logging;
+using System.Dynamic;
 using TesisPadel.Data;
 using TesisPadel.Models;
 namespace TesisPadel.Controllers;
 
+[Authorize]
 public class NoticiaController : Controller
 {
 
-    private readonly ApplicationDbContext _context;
-    public NoticiaController(ApplicationDbContext context)
+    private readonly ILogger<NoticiaController> _logger;
+    private ApplicationDbContext _context;
+    public NoticiaController(ILogger<NoticiaController> logger, ApplicationDbContext context)
     {
+        _logger = logger;
         _context = context;
+    }
+
+    public IActionResult Index()
+    {
+        var noticias = _context.Noticias.Where(n => n.Eliminado == false).OrderBy(n => n.posicion).ToList();
+        return View(noticias);
     }
 
     public JsonResult GuardarNoticia(string Titulo, string Descripcion, int posicion, string Link, IFormFile imagen)

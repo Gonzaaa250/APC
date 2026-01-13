@@ -1,4 +1,4 @@
-@model TesisPadel.Models.Noticia;
+@model IEnumerable<TesisPadel.Models.Noticia>
 @using Microsoft.AspNetCore.Identity;
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
@@ -17,11 +17,11 @@
                 <input name="NoticiaId" type="hidden" id="NoticiaId" value="0">
                 <div class="control-label">
                     <p class="letra">Título</p>
-                    <input type="text" class="form-control" id="Titulo" />
+                    <input type="text" class="form-control fondoi" id="Titulo" />
                     <p class="letra">Contenido</p>
-                    <textarea class="form-control" id="Contenido" rows="4"></textarea>
+                    <textarea class="form-control fondoi" id="Contenido" rows="4"></textarea>
                     <p class="letra">Fecha</p>
-                    <input type="date" class="form-control" id="Fecha" />
+                    <input type="date" class="form-control fondoi" id="Fecha" />
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="button-8" role="button" data-bs-dismiss="modal">Cerrar</button>
