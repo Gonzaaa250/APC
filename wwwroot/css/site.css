@@ -67,6 +67,7 @@ header{
 }
 .navbar{
   display: flex;
+  position: sticky;
   height: 100%;
   justify-content: space-between;
   align-items: center;
@@ -465,99 +466,10 @@ h6 span {
 }
 
 /* Propiedades carrousel */
-
-/*****carrousel 3d automatique*****/
-
-* {
-  box-sizing: border-box
-}
-
 img {
   max-width: 100%
 }
-
-.contenu_carou_auto {
-
-  margin: 2rem auto;
-  width: 420px;
-  height: 279px;
-  perspective: 8000px
-}
-
-.caroussel-image {
-
-  animation: rotation 24s infinite alternate linear;
-  transform-style: preserve-3d;
-  position: relative;
-
-}
-
-.caroussel-image img {
-
-  position: absolute;
-  top: 0;
-  left: 0;
-
-
-}
-
-
-
-.caroussel-image img {
-
-  filter: drop-shadow(0 12px 5px hsla(0, 0%, 0%, .4));
-  width: 400px;
-  height: 266px;
-  left: 10px;
-  outline: 1px solid transparent;
-  backface-visibility: hidden
-}
-
-.caroussel-image img:nth-child(1) {
-  transform: translate3d(0, 0, 495px)
-}
-
-.caroussel-image img:nth-child(2) {
-  transform: rotateY(45deg) translateZ(495px)
-}
-
-.caroussel-image img:nth-child(3) {
-  transform: rotateY(90deg) translateZ(495px)
-}
-
-.caroussel-image img:nth-child(4) {
-  transform: rotateY(135deg) translateZ(495px)
-}
-
-.caroussel-image img:nth-child(5) {
-  transform: rotateY(180deg) translateZ(495px)
-}
-
-.caroussel-image img:nth-child(6) {
-  transform: rotateY(225deg) translateZ(495px)
-}
-
-.caroussel-image img:nth-child(7) {
-  transform: rotateY(270deg) translateZ(495px)
-}
-
-.caroussel-image img:nth-child(8) {
-  transform: rotateY(315deg) translateZ(495px)
-}
-
-
-@keyframes rotation {
-  from {
-    transform: rotatey(0)
-  }
-
-  to {
-    transform: rotatey(0.5turn)
-  }
-}
-
-/*****fin carrousel 3d automatique*****/
-
+/*fin carrusel*/
 .texto {
   margin-top: 4rem;
   font-size: 1.5rem;
@@ -566,185 +478,6 @@ img {
 }
 
 /* Carrousel para fotos random*/
-
-@import url("https://fonts.googleapis.com/css2?family=Asap:ital,wght@0,400;1,400");
-
-* {
-  box-sizing: border-box;
-}
-
-.body2 {
-  margin: 0;
-  margin-top: 3rem;
-  font-family: 'Asap', 'Poppins', sans-serif;
-  text-shadow: #000 0 0 10px;
-  
-}
-
-.container {
-  display: flex;
-  flex-direction: column;
-  width: 100% !important;
-  height: 100% !important;
-}
-
-.item {
-  position: relative;
-  flex: calc(100vw / 6) 1 1;
-  background-size: cover;
-  overflow: hidden;
-  filter: saturate(90%);
-  transition: 1s;
-}
-
-.item:before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(25deg, rgba(0, 0, 0, .9), rgba(0, 0, 0, 0));
-}
-
-.item:not(:last-child) {
-  border-bottom: 1px solid #ccc;
-  animation: borderPulse 5s infinite;
-
-  @media (min-width: 1024px) {
-    border-right: 1px solid #ccc;
-    border-bottom: none;
-  }
-}
-
-.item:hover {
-  flex-basis: 40%;
-  filter: saturate(120%);
-
-  @media (min-width: 1024px) {
-    flex-basis: 75%;
-  }
-
-  .quote {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-.item:nth-child(1) {
-  background-image: url("https://yt3.googleusercontent.com/fFr5vtF0wTYFd3l5wWhjVa8hOgEBl46hqG_WjFcsBxDSOv6pjqMW_RUmqUJe8KitYtrDDS1B8A=s900-c-k-c0x00ffffff-no-rj");
-  background-position: 72% 35%;
-}
-
-.item:nth-child(2) {
-  background-image: url("https://www.2playbook.com/uploads/s1/82/19/world-padel-tour.jpeg");
-  background-position: 60% 8%;
-}
-
-.item:nth-child(3) {
-  background-image: url("https://padelgood.com/wp-content/uploads/2022/05/sanyo_gutierrez_agustin_tapia_final_danish_open_2022_gp2_4777-1-1170x658-1.jpg");
-  background-position: 52% 8%;
-}
-
-.item:nth-child(4) {
-  background-image: url("https://s1.eestatic.com/2022/03/08/actualidad/655695273_222512250_1706x960.jpg");
-  background-position: 45% 8%;
-}
-
-.item:nth-child(5) {
-  background-image: url("https://d26itsb5vlqdeq.cloudfront.net//image/3A203E31-AF91-4A97-96F3B23C85C04010");
-  background-position: 45% 25%;
-}
-
-.item:nth-child(6) {
-  background-image: url("https://pbs.twimg.com/media/FEFnCxRXsAQTlqH.jpg");
-  background-position: 65% 2%;
-}
-
-.quote {
-  position: absolute;
-  color: #fff;
-  bottom: 35%;
-  left: 5rem;
-  width: calc(100% - 10rem);
-  opacity: 0;
-  transition: 1s;
-  transform: translateX(50%);
-
-  @media (min-width: 512px) {
-    left: 15%;
-    bottom: 35%;
-    width: 20vw;
-  }
-
-  @media (min-width: 1024px) {
-    left: 15%;
-    bottom: 35%;
-    width: 30vw;
-  }
-
-  p {
-    position: relative;
-    display: inline-block;
-    margin-bottom: 1.7rem;
-    font-size: 1.4rem;
-    font-style: italic;
-
-    &:before,
-    &:after {
-      position: absolute;
-      font-size: 5.5rem;
-      opacity: .6;
-    }
-
-    &:before {
-      content: "“";
-      top: 4rem;
-      left: -2rem;
-      transform: translate(-100%, -100%);
-    }
-
-    &:after {
-      content: "”";
-      bottom: 2rem;
-      right: -2rem;
-      transform: translate(100%, 100%);
-    }
-  }
-
-  span {
-    position: absolute;
-    bottom: -2rem;
-    right: 0;
-    text-align: right;
-    font-size: 1.2rem;
-    font-weight: bold;
-    transform: translate(4rem, 100%);
-
-    &:before {
-      content: "—";
-      margin-right: .7rem;
-    }
-  }
-}
-
-@keyframes borderPulse {
-
-  0%,
-  100% {
-    border-color: rgba(204, 204, 204, 1);
-  }
-
-  25%,
-  75% {
-    border-color: rgba(204, 204, 255, 0.9);
-  }
-
-  50% {
-    border-color: rgba(204, 204, 255, 0.5);
-  }
-}
-
-/* Prpiedades profes */
-
-/* Propiedades cards */
 .Card {
   width: 40%;
   height: 40%;
@@ -767,7 +500,7 @@ img {
 }
 /*Fin*/
 
-/* cards profesores */
+/* cards*/
 .cards {
   height: 100%;
   margin-left: 4%;
@@ -788,116 +521,6 @@ img {
 }
 
 /* fin */
-
-/* Card noticias */
-
-.containerN {
-  width: 100%;
-  max-width: 1200px;
-  height: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin: auto;
-  margin-top: 3rem;
-  margin-bottom: 3rem;
-}
-
-
-.containerN .CardN {
-  width: 300px;
-  height: 380px;
-  border-radius: 10px;
-  box-shadow: 0 2px 2px rgb(0, 255, 255);
-  overflow: hidden;
-  margin: 20px;
-  text-align: center;
-  transition: all 0.5s;
-}
-
-.containerN .CardN:hover {
-  transform: translateY(-15px);
-  box-shadow: 0 12px 16px rgb(102, 226, 1);
-}
-
-.containerN .CardN img {
-  width: 300px;
-  height: 220px;
-}
-
-.containerN .CardN .h4 {
-  font-weight: 600;
-}
-
-.containerN .CardN p {
-  padding: 0 1rem;
-  font-size: 16px;
-  font-weight: 300;
-}
-
-.containerN .CardN a {
-  font-weight: 500;
-  text-decoration: none;
-  color: #3498db;
-}
-
-/* Fin */
-
-/* Imagenes varias */
-
-.sectionI1 {
-  display: flex;
-  justify-content: space-between;
-  padding: 40px;
-  width: 100%;
-  margin: 15px auto;
-  background-color: #4d4e66;
-  border-radius: 15px;
-  box-shadow: 5px 5px 5px rgb(#ccc);
-}
-
-.sectionI1 img {
-  width: 200px;
-  border-radius: 25px;
-}
-
-.sectionI1 h4 {
-  margin: 15px;
-  color: rgb(241, 218, 8);
-}
-
-.sectionI1 p {
-  color: rgb(241, 218, 8);
-  margin-right: 15px;
-}
-
-.sectionI2 {
-  display: flex;
-  justify-content: space-between;
-  padding: 40px;
-  width: 100%;
-  margin: 15px auto;
-  background-color: #4d4e66;
-  border-radius: 15px;
-  box-shadow: 5px 5px 5px rgb(#ccc);
-}
-
-.sectionI2 img {
-  width: 200px;
-  border-radius: 25px;
-}
-
-.sectionI2 h4 {
-  margin: 15px;
-  color: rgb(241, 218, 8);
-}
-
-.sectionI2 p {
-  color: rgb(241, 218, 8);
-  margin-right: 15px;
-}
-
-/* Fin */
 .bajar {
   margin-top: 75px;
   color: #ffffff;
@@ -1161,24 +784,4 @@ path {
   /* transform: translate(-50%, -50%); */
 }
 @keyframes l3 {to{transform: rotate(1turn)}} 
-/* .loader {
-  display: none;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 50px;
-  padding: 8px;
-  aspect-ratio: 1;
-  border-radius: 50%;
-  background: #25b09b;
-  --_m: 
-    conic-gradient(#0000 10%,#000),
-    linear-gradient(#000 0 0) content-box;
-  -webkit-mask: var(--_m);
-          mask: var(--_m);
-  -webkit-mask-composite: source-out;
-          mask-composite: subtract;
-  animation: l3 1s infinite linear;
-  transform: translate(-50%, -70%);
-}
-@keyframes l3 {to{transform: rotate(1turn)}} */
+
