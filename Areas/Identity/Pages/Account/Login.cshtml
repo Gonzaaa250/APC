@@ -1,86 +1,63 @@
 ﻿@page
 @model LoginModel
-
 @{
-  ViewData["Title"] = "Iniciar Sesion";
+    ViewData["Title"] = "Iniciar Sesion";
 }
 
-<h1>@ViewData["Title"]</h1>
-
-<body class="LogIn ">
-
-  <div class="section">
-    <div class="container">
-      <div class="row full-height justify-content-center">
-        <div class="col-12 text-center align-self-center py-5">
-          <div class="section pb-5 pt-5 pt-sm-2 text-center">
-            @* Boton para dar vuelta la tarjeta *@
-            <input class="checkbox" type="checkbox" id="reg-log" name="reg-log"></input>
-            <label for="reg-log"></label>
-
-            @* seccion iniciar sesion *@
-            <div class="card-3d-wrap mx-auto">
-              <div class="card-3d-wrapper">
-                <div class="card-front">
-                  <div class="center-wrap">
-                    <div class="section text-center">
-                      <h4 class="mb-4 pb-3">Iniciar sesión</h4>
-                      <div class="form-group">
-                        <input type="email" name="logemail" class="form-style" placeholder="E-mail" id="logemail"
-                          autocomplete="off">
-                        <i class="input-icon uil uil-at"></i>
-                      </div>
-                      <div class="form-group mt-2">
-                        <input type="password" name="logpass" class="form-style" placeholder="Contraseña" id="logpass"
-                          autocomplete="off">
-                        <i class="input-icon uil uil-lock-alt"></i>
-                      </div>
-
-                      <a href="#" class="button-87" role="button" onclick="IniciarSesion()" role="button">Iniciar
-                        sesión</a>
-                      <div class="loader "></div>
-
-                      <p class="mb-0 mt-4 text-center"><a href="#0" class="link">Olvide mi contraseña</a></p>
-                    </div>
-                  </div>
-                </div>
-
-                @* seccion registrarse *@
-                <div class="card-back" href="#RE">
-                  <div class="center-wrap">
-                    <div class="section text-center">
-                      <h4 class="mb-4 pb-3">Registrarse</h4>
-                      <div class="form-group">
-                        <input type="email" name="regemail" class="form-style" placeholder="E-mail" id="regemail"
-                          autocomplete="off">
-                        <i class="input-icon uil uil-at"></i>
-                        <div class="form-group mt-2">
-                          <input type="password" name="regpass" class="form-style" placeholder="Contraseña" id="regpass"
-                            autocomplete="off">
-                          <i class="input-icon uil uil-lock-alt"></i>
-                        </div>
-                        <div class="form-group mt-2">
-                          <input type="password" name="regrtpass" class="form-style" placeholder="Repetir Contraseña"
-                            id="regrtpass" autocomplete="off">
-                          <i class="input-icon uil uil-lock-alt"></i>
-                        </div>
-                        <a id="btn-register" class="button-87" role="button">Registrarse</a>
-                        <div class="loader"></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+@* Nuevo Login *@
+@section Css {
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/login&register.css">
+}
+<div class="main">
+    <div class="container a-container" id="a-container">
+        <form class="form" id="a-form" method="" action="">
+            <h2 class="form_title title">Crea un usuario</h2>
+            <div class="form__icons"><img class="form__icon">
+                <img class="form__icon" />
+                <img class="form__icon" />
             </div>
-          </div>
-        </div>
-      </div>
+            <span class="form__span">Usa tu email para registrarte</span>
+            <input class="form__input" type="text" placeholder="Email" id="regemail">
+            <input class="form__input" type="password" placeholder="Contraseña" id="regpass">
+            <input class="form__input" type="password" placeholder="Validar contraseña" id="regrtpass">
+            <button class="form__button button submit" id="btn-register">Registrarse</button>
+        </form>
     </div>
-</body>
-
-
+    <div class="container b-container" id="b-container">
+        <form class="form" id="b-form" method="" action="">
+            <h2 class="form_title title">Inicia sesion</h2>
+            <div class="form__icons">
+                <img class="form__icon" alt="" />
+                <img class="form__icon" alt="" />
+                <img class="form__icon" alt="" />
+            </div>
+            <span class="form__span">Usa tu email para iniciar sesion</span>
+            <input class="form__input" type="text" placeholder="Email" id="logemail">
+            <input class="form__input" type="password" placeholder="Contraseña" id="logpass">
+            <a class="form__link">¿Olvidaste tu contraseña?</a>
+            <button class="form__button button submit" onclick="IniciarSesion()">Inicia sesion</button>
+        </form>
+    </div>
+    <div class="switch" id="switch-cnt">
+        <div class="switch__circle"></div>
+        <div class="switch__circle switch__circle--t"></div>
+        <div class="switch__container" id="switch-c1">
+            <h2 class="switch__title title">Bienvenido!</h2>
+            <p class="switch__description description">Si ya tenes cuenta, inicia sesion con tu informacion personal
+            </p>
+            <button class="switch__button button switch-btn">Inicia sesion</button>
+        </div>
+        <div class="switch__container is-hidden" id="switch-c2">
+            <h2 class="switch__title title">Hola amigo!</h2>
+            <p class="switch__description description">Registrate para acceder a toda la informacion de APC Padel</p>
+            <button class="switch__button button switch-btn">Registrarse</button>
+        </div>
+    </div>
+</div>
 
 @section Scripts {
-  <partial name="_ValidationScriptsPartial" />
-  <script src="~/js/Login_Register.js"></script>
+    <script src="~/js/AnimacionLogin_Registes.js"></script>
+    <partial name="_ValidationScriptsPartial" />
+    <script src="~/js/Login_Register.js"></script>
 }

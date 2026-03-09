@@ -1,18 +1,10 @@
 
-  $(".info-item .btn").click(function () {
-    $(".container").toggleClass("log-in");
-  });
-
-  $(".container-form .btn").click(function () {
-    $(".container").addClass("active");
-  });
-
   // Registrar
   $("#btn-register").click(function (e) {
     e.preventDefault();
 
-    // Mostrar el loader
-    $(".loader").show();
+    // // Mostrar el loader
+    // $(".loader").show();
 
     var email = $("#regemail").val();
     var password = $("#regpass").val();
@@ -56,10 +48,10 @@
   // Iniciar Sesión
   function IniciarSesion() {
     // Ocultar el botón de iniciar sesión
-    $(".btn").css("display", "none");
+    // $(".btn").css("display", "none");
     
-    // Mostrar el loader
-    $(".loader").css("display", "block");
+    // // Mostrar el loader
+    // $(".loader").css("display", "block");
   
     var email = $("#logemail").val();
     var password = $("#logpass").val();
@@ -67,6 +59,7 @@
       email: email,
       password: password
     };
+    console.log(formData);
     $.ajax({
       url: '../../Account/Login',
       method: 'POST',
